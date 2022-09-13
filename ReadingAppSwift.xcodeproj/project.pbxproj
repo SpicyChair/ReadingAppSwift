@@ -94,8 +94,10 @@
 		FD4EC65828D0729A00B99ED2 /* ReadingAppSwift */ = {
 			isa = PBXGroup;
 			children = (
+				FD4EC68528D0741200B99ED2 /* Components */,
+				FD4EC68428D0740500B99ED2 /* Model */,
+				FD4EC68328D073F700B99ED2 /* Screens */,
 				FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */,
-				FD4EC65B28D0729A00B99ED2 /* ContentView.swift */,
 				FD4EC65D28D0729D00B99ED2 /* Assets.xcassets */,
 				FD4EC65F28D0729D00B99ED2 /* Preview Content */,
 			);
@@ -125,6 +127,28 @@
 				FD4EC67628D0729E00B99ED2 /* ReadingAppSwiftUITestsLaunchTests.swift */,
 			);
 			path = ReadingAppSwiftUITests;
+			sourceTree = "<group>";
+		};
+		FD4EC68328D073F700B99ED2 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FD4EC65B28D0729A00B99ED2 /* ContentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FD4EC68428D0740500B99ED2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FD4EC68528D0741200B99ED2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
