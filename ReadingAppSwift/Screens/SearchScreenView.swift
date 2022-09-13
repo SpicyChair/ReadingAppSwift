@@ -9,11 +9,20 @@ import SwiftUI
 
 struct SearchScreenView: View {
     @State private var searchText = ""
+    
     @StateObject private var state = SearchStateController()
     
     var body: some View {
         NavigationView {
             Form {
+                TextField (
+                    "Search for books",
+                    text: $searchText
+                )
+                .onSubmit {
+                    state.searchFor = searchText
+                }
+                
                 Section {
                     searchText.isEmpty
                     ?
@@ -23,17 +32,16 @@ struct SearchScreenView: View {
                 }
                 Section {
                     List {
-                        Text("Hi")
-                        Text("Hi")
-                        Text("Hi")
-                        Text("Hi")
+                        ForEach(state.books, id: \.self) { book in
+                            Text("\(book.title)")
+                        }
                     }
                 }
             }.navigationTitle("Search")
             
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always),  prompt: "Search for books and authors")
         .navigationViewStyle(.stack)
+        
     }
 }
 
