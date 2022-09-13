@@ -9,14 +9,30 @@ import SwiftUI
 
 struct SearchScreenView: View {
     @State private var searchText = ""
+    @StateObject private var state = SearchStateController()
     
     var body: some View {
         NavigationView {
             Form {
-                Text("Hello World")
+                Section {
+                    searchText.isEmpty
+                    ?
+                    Text("Search above!")
+                    :
+                    Text("Searching for \(searchText)")
+                }
+                Section {
+                    List {
+                        Text("Hi")
+                        Text("Hi")
+                        Text("Hi")
+                        Text("Hi")
+                    }
+                }
             }.navigationTitle("Search")
+            
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always),  prompt: "Search for books and authors")
         .navigationViewStyle(.stack)
     }
 }

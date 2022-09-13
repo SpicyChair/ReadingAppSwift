@@ -10,7 +10,7 @@ import SwiftUI
 struct NavigationBarScreen: View {
     var body: some View {
         TabView {
-            SearchScreenView()
+            HomeScreenView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
@@ -18,13 +18,13 @@ struct NavigationBarScreen: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-            SearchScreenView()
+            DiscoverScreenView()
                 .tabItem {
-                    Label("Library", systemImage: "book")
+                    Label("Discover", systemImage: "safari")
                 }
-            SearchScreenView()
+            SocialScreenView()
                 .tabItem {
-                    Label("Social", systemImage: "mount")
+                    Label("Social", systemImage: "person.3")
                 }
         }
     }
