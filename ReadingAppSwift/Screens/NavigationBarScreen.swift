@@ -35,3 +35,5 @@ struct NavigationBarScreen_Previews: PreviewProvider {
         NavigationBarScreen()
     }
 }
+
+
