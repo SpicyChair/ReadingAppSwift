@@ -33,7 +33,7 @@ struct SearchScreenView: View {
                 Section {
                     List {
                         ForEach(state.books, id: \.self) { book in
-                            Text("\(book.title), \(book.authors.first ?? "author not found")")
+                            Text("\(book.title)")
                         }
                     }
                 }
