@@ -14,6 +14,8 @@
 		FD4EC66B28D0729E00B99ED2 /* ReadingAppSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC66A28D0729E00B99ED2 /* ReadingAppSwiftTests.swift */; };
 		FD4EC67528D0729E00B99ED2 /* ReadingAppSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC67428D0729E00B99ED2 /* ReadingAppSwiftUITests.swift */; };
 		FD4EC67728D0729E00B99ED2 /* ReadingAppSwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC67628D0729E00B99ED2 /* ReadingAppSwiftUITestsLaunchTests.swift */; };
+		FD4EC68728D076EC00B99ED2 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC68628D076EC00B99ED2 /* SearchScreenView.swift */; };
+		FD4EC68928D07FC000B99ED2 /* NavigationBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		FD4EC67028D0729E00B99ED2 /* ReadingAppSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadingAppSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4EC67428D0729E00B99ED2 /* ReadingAppSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingAppSwiftUITests.swift; sourceTree = "<group>"; };
 		FD4EC67628D0729E00B99ED2 /* ReadingAppSwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingAppSwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FD4EC68628D076EC00B99ED2 /* SearchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenView.swift; sourceTree = "<group>"; };
+		FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				FD4EC65B28D0729A00B99ED2 /* ContentView.swift */,
+				FD4EC68628D076EC00B99ED2 /* SearchScreenView.swift */,
+				FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -282,6 +288,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD4EC65C28D0729A00B99ED2 /* ContentView.swift in Sources */,
+				FD4EC68928D07FC000B99ED2 /* NavigationBarScreen.swift in Sources */,
+				FD4EC68728D076EC00B99ED2 /* SearchScreenView.swift in Sources */,
 				FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
