@@ -23,17 +23,19 @@ struct SearchScreenView: View {
                     state.searchFor = searchText
                 }
                 
-                Section {
-                    searchText.isEmpty
+                
+                state.books.isEmpty
                     ?
                     Text("Search above!")
+                    .bold()
                     :
-                    Text("Searching for \(searchText)")
-                }
+                    Text("Results for \(searchText)")
+                    .bold()
+                
                 Section {
                     List {
                         ForEach(state.books, id: \.self) { book in
-                            Text("\(book.title)")
+                            Text("\(book.title), \(book.authors.first ?? "No author")")
                         }
                     }
                 }
