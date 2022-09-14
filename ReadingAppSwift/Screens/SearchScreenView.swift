@@ -22,25 +22,26 @@ struct SearchScreenView: View {
                 .onSubmit {
                     state.searchFor = searchText
                 }
-                
-                
-                state.books.isEmpty
-                    ?
-                    Text("Search above!")
-                    .bold()
-                    :
-                    Text("Results for \(searchText)")
-                    .bold()
-                
                 Section {
+                    state.books.isEmpty
+                        ?
+                        Text("Search above!")
+                        .bold()
+                        :
+                        Text("Results for \(searchText)")
+                        .bold()
                     List {
                         ForEach(state.books, id: \.self) { book in
-                            Text("\(book.title), \(book.authors.first ?? "No author")")
+                            BookCard (
+                                title: "\(book.title.capitalized)",
+                                author: "No author",
+                                key: book.key
+                                
+                            )
                         }
                     }
                 }
             }.navigationTitle("Search")
-            
         }
         .navigationViewStyle(.stack)
         

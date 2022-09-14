@@ -10,7 +10,7 @@ import Foundation
 struct Book: Codable, Hashable {
     var title: String
     var key: String
-    var authors: [String]
+    var authors: [String]?
     
     private enum CodingKeys:String, CodingKey {
            case title = "title"
