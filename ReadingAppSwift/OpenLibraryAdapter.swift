@@ -10,6 +10,7 @@ import Foundation
 class OpenLibraryAdapter {
     // the base url for the openlibrary api
     let baseUrl = "https://openlibrary.org/"
+    let responseLimit = 25
     
     func getSearchResponse(search: String, completion: @escaping ([Book]?) -> Void ) {
         // the completion parameter is a function
@@ -18,7 +19,9 @@ class OpenLibraryAdapter {
         // and passing in nil means faliure
         
         // creates a path; addPercentEncoding allows for spaces in the search string
-        let path = "search.json?title=\(search)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        // limit the fields to key, title, and author_name, and limit the number of responses
+        let path = "search.json?title=\(search)&fields=key,title,author_name&limit=\(responseLimit)"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure
         guard let url = URL(string: baseUrl + path)
@@ -28,6 +31,7 @@ class OpenLibraryAdapter {
             completion(nil)
             return
         }
+        print(url.self)
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {
