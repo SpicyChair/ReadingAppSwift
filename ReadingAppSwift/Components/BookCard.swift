@@ -16,7 +16,7 @@ struct BookCard: View {
     
     var body: some View {
         ZStack (alignment: .leading) {
-                    
+                
             HStack (alignment: .center) {
                 RoundedRectangle(cornerRadius: 15)
                         .fill(Color.blue)

@@ -22,6 +22,8 @@ struct SearchScreenView: View {
                 .onSubmit {
                     state.searchFor = searchText
                 }
+                .autocapitalization(.none)
+                
                 Section {
                     state.books.isEmpty
                         ?
@@ -34,7 +36,13 @@ struct SearchScreenView: View {
                         ForEach(state.books, id: \.self) { book in
                             BookCard (
                                 title: "\(book.title.capitalized)",
-                                author: "No author",
+                                author: { () -> String in
+                                    
+                                    if let authors = book.authors {
+                                        return authors.first?.capitalized ?? "No author"
+                                    }
+                                    return "No author"
+                                }(),
                                 key: book.key
                                 
                             )
