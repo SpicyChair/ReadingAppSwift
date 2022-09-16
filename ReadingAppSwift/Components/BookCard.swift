@@ -12,7 +12,6 @@ struct BookCard: View {
     var title: String
     var author: String
     var key: String
-    var coverID: String
     
     
     var body: some View {
@@ -21,13 +20,24 @@ struct BookCard: View {
             HStack (alignment: .center) {
                 
                 
-                AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1]))-L.jpg")) { image in
+                AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1])-M.jpg")) { image in
                     image.resizable()
                 } placeholder: {
-                    ProgressView()
+                    
+                    ZStack (alignment: .center) {
+                        
+                        Rectangle()
+                            .fill(.gray)
+                        Image(systemName: "xmark.octagon")
+                        
+                        
+                    }
+    
+                    
+                        
                 }
                 .frame(width:80, height: 120)
-                .cornerRadius(15)
+                .cornerRadius(12)
                 
                 
                 VStack (alignment: .leading) {
@@ -44,13 +54,13 @@ struct BookCard: View {
         }
         .onTapGesture {
             print("BookCard Tapped")
-            print("https://covers.openlibrary.org/b/id/\(coverID)-L.jpg")
+            print("https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1])-L.jpg")
         }
     }
 }
 
 struct BookCard_Previews: PreviewProvider {
     static var previews: some View {
-        BookCard(title: "String", author: "String", key: "String", coverID: "String")
+        BookCard(title: "String", author: "String", key: "String")
     }
 }

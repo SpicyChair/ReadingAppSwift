@@ -10,7 +10,7 @@ import Foundation
 class OpenLibraryAdapter {
     // the base url for the openlibrary api
     let baseUrl = "https://openlibrary.org/"
-    let responseLimit = 25
+    let responseLimit = 10
     
     func getSearchResponse(search: String, completion: @escaping ([Book]?) -> Void ) {
         // the completion parameter is a function

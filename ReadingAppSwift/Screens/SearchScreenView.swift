@@ -43,8 +43,7 @@ struct SearchScreenView: View {
                                     }
                                     return "No author"
                                 }(),
-                                key: book.key,
-                                coverID: book.coverID ?? "noCoverID"
+                                key: book.key
                                 
                             )
                         }
