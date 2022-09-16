@@ -9,7 +9,7 @@ import Foundation
 
 class OpenLibraryAdapter {
     // the base url for the openlibrary api
-    let baseUrl = "https://openlibrary.org/"
+    let baseUrl = "https://openlibrary.org"
     let responseLimit = 10
     
     func getSearchResponse(search: String, completion: @escaping ([Book]?) -> Void ) {
@@ -20,7 +20,7 @@ class OpenLibraryAdapter {
         
         // creates a path; addPercentEncoding allows for spaces in the search string
         // limit the fields to key, title, and author_name, and limit the number of responses
-        let path = "search.json?title=\(search)&fields=key,title,author_name&limit=\(responseLimit)"
+        let path = "/search.json?title=\(search)&fields=key,title,author_name&limit=\(responseLimit)"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure
@@ -35,7 +35,7 @@ class OpenLibraryAdapter {
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {
-                        if let response = self.parseJson(json: data) {
+                        if let response: SearchResponse = self.parseJson(json: data) {
                             // call completion function on the response data
                             completion(response.results)
                         } else {
@@ -47,11 +47,45 @@ class OpenLibraryAdapter {
                 }.resume()
     }
     
-    private func parseJson(json: Data) -> SearchResponse? {
+    func getBookDetails(key: String, completion: @escaping (BookDetails?) -> Void ) {
+        // the completion parameter is a function
+        // it dictates what to do on completion of the response
+        // in this case, this means updating data if successful
+        // and passing in nil means faliure
+        
+    
+        let path = "\(key).json"
+        
+        
+        // the guard let means that this can fail - the else is executed on failure
+        guard let url = URL(string: baseUrl + path)
+        else {
+            print("Invalid URL")
+            // call completion function on null
+            completion(nil)
+            return
+        }
+        print(url.self)
+        let request = URLRequest(url: url)
+                URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    if let data = data {
+                        if let response: BookDetails = self.parseJson(json: data) {
+                            // call completion function on the response data
+                            completion(response)
+                        } else {
+                            // call completion function on nil
+                            completion(nil)
+                        }
+                    }
+                    // starts the request
+                }.resume()
+    }
+    
+    private func parseJson<T: Decodable>(json: Data) -> T? {
         let decoder = JSONDecoder()
             
         do {
-            let searchResponse = try decoder.decode(SearchResponse.self, from: json)
+            let searchResponse = try decoder.decode(T.self, from: json)
             // if decoding the json is successful
             return searchResponse
         } catch let jsonError as NSError {

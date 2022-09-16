@@ -15,7 +15,7 @@ struct BookCard: View {
     
     
     var body: some View {
-    
+        NavigationLink(destination: BookDetailScreenView(key: key)) {
             HStack (alignment: .center) {
                 
                 BookCoverImage(key: key, width: 80, height: 120, cornerRadius: 12)
@@ -28,15 +28,15 @@ struct BookCard: View {
                     Text(author)
                     Button("Add to Library", action: addToLibrary)
                         .buttonStyle(.bordered)
+                    
                 }
                 .padding(20)
                 
                 
             }
             .frame(height: 140)
-            .onTapGesture {
-                //TODO: ONTAP GESTURE FOR BOOKCARD
-            }
+        }
+        
     }
     
     func addToLibrary() {
