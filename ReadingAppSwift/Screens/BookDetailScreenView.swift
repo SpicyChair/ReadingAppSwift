@@ -9,7 +9,17 @@ import SwiftUI
 
 struct BookDetailScreenView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                Text("About Book")
+                
+                Section {
+                    
+                }
+            }.navigationTitle("About Book")
+            
+        }
+        .navigationViewStyle(.stack)
     }
 }
 

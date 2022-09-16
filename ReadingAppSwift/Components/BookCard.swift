@@ -15,42 +15,33 @@ struct BookCard: View {
     
     
     var body: some View {
-        ZStack (alignment: .leading) {
-                
+    
             HStack (alignment: .center) {
                 
-                
-                AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1])-M.jpg")) { image in
-
-                        image.resizable() // Displays the loaded image.
-                } placeholder: {
-                    // show a placeholder if error or if loading
-                    ZStack (alignment: .center) {
-                        Rectangle()
-                            .fill(.gray)
-                        Image(systemName: "xmark.octagon")
-                    }
-                }
-                .frame(width:80, height: 120)
-                .cornerRadius(12)
-                
-
+                BookCoverImage(key: key, width: 80, height: 120, cornerRadius: 12)
+            
                 VStack (alignment: .leading) {
                     Text(title)
                         .font(.headline)
                         .bold()
                         .truncationMode(.tail)
                     Text(author)
+                    Button("Add to Library", action: addToLibrary)
+                        .buttonStyle(.bordered)
                 }
                 .padding(20)
+                
+                
             }
             .frame(height: 140)
-        }
-        .onTapGesture {
-            print("BookCard Tapped")
-            print(key)
-            print("https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1])-L.jpg")
-        }
+            .onTapGesture {
+                //TODO: ONTAP GESTURE FOR BOOKCARD
+            }
+    }
+    
+    func addToLibrary() {
+        //TODO: ADD TO LIBRARY FUNCTIONALITY
+        return
     }
 }
 
