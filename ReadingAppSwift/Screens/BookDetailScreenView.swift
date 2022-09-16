@@ -1,0 +1,20 @@
+//
+//  BookDetailScreenView.swift
+//  ReadingAppSwift
+//
+//  Created by Hin, Ethan-Scott (WING) on 16/09/2022.
+//
+
+import SwiftUI
+
+struct BookDetailScreenView: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+struct BookDetailScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        BookDetailScreenView()
+    }
+}

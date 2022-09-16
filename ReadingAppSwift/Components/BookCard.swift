@@ -21,7 +21,8 @@ struct BookCard: View {
                 
                 
                 AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1])-M.jpg")) { image in
-                    image.resizable()
+
+                        image.resizable() // Displays the loaded image.
                 } placeholder: {
                     // show a placeholder if error or if loading
                     ZStack (alignment: .center) {
@@ -33,9 +34,7 @@ struct BookCard: View {
                 .frame(width:80, height: 120)
                 .cornerRadius(12)
                 
-                
-                
-                
+
                 VStack (alignment: .leading) {
                     Text(title)
                         .font(.headline)
