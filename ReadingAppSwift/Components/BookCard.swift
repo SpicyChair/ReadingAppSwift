@@ -15,28 +15,33 @@ struct BookCard: View {
     
     
     var body: some View {
-        ZStack (alignment: .leading) {
-                
+    
             HStack (alignment: .center) {
-                RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.blue)
-                        .frame(width:80, height: 120)
                 
+                BookCoverImage(key: key, width: 80, height: 120, cornerRadius: 12)
+            
                 VStack (alignment: .leading) {
                     Text(title)
                         .font(.headline)
                         .bold()
                         .truncationMode(.tail)
                     Text(author)
+                    Button("Add to Library", action: addToLibrary)
+                        .buttonStyle(.bordered)
                 }
                 .padding(20)
-                        //.multilineTextAlignment(.leading)
+                
+                
             }
             .frame(height: 140)
-        }
-        .onTapGesture {
-            print("BookCard Tapped")
-        }
+            .onTapGesture {
+                //TODO: ONTAP GESTURE FOR BOOKCARD
+            }
+    }
+    
+    func addToLibrary() {
+        //TODO: ADD TO LIBRARY FUNCTIONALITY
+        return
     }
 }
 

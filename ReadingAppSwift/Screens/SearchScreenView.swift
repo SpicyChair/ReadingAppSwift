@@ -20,7 +20,10 @@ struct SearchScreenView: View {
                     text: $searchText
                 )
                 .onSubmit {
-                    state.searchFor = searchText
+                    if (!searchText.isEmpty) {
+                        state.searchFor = searchText
+                    }
+                    
                 }
                 .autocapitalization(.none)
                 
