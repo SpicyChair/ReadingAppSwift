@@ -21,7 +21,7 @@ struct BookCard: View {
             HStack (alignment: .center) {
                 
                 
-                AsyncImage(url: URL(string: "https://covers.openlibrary.org/b/id/\(coverID)-M.jpg")) { image in
+                AsyncImage(url: URL(string: "https://covers.openlibrary.org/b/id/\(coverID)-L.jpg")) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
@@ -44,6 +44,7 @@ struct BookCard: View {
         }
         .onTapGesture {
             print("BookCard Tapped")
+            print("https://covers.openlibrary.org/b/id/\(coverID)-L.jpg")
         }
     }
 }
