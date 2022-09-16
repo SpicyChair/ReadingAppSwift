@@ -21,7 +21,7 @@ struct BookCard: View {
             HStack (alignment: .center) {
                 
                 
-                AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: ",")[1]))-L.jpg")) { image in
+                AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1]))-L.jpg")) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
