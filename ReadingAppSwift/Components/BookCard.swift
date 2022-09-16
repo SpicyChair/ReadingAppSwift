@@ -12,15 +12,23 @@ struct BookCard: View {
     var title: String
     var author: String
     var key: String
+    var coverID: String
     
     
     var body: some View {
         ZStack (alignment: .leading) {
                 
             HStack (alignment: .center) {
-                RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.blue)
-                        .frame(width:80, height: 120)
+                
+                
+                AsyncImage(url: URL(string: "https://covers.openlibrary.org/b/id/\(coverID)-M.jpg")) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width:80, height: 120)
+                .cornerRadius(15)
+                
                 
                 VStack (alignment: .leading) {
                     Text(title)
@@ -42,6 +50,6 @@ struct BookCard: View {
 
 struct BookCard_Previews: PreviewProvider {
     static var previews: some View {
-        BookCard(title: "String", author: "String", key: "String")
+        BookCard(title: "String", author: "String", key: "String", coverID: "String")
     }
 }
