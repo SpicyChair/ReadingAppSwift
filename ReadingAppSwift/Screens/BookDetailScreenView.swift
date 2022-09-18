@@ -15,7 +15,7 @@ struct BookDetailScreenView: View {
     var body: some View {
         NavigationView {
             
-            Form {
+            VStack(alignment: .center) {
                 BookCoverImage(key: key, width: 120, height: 180, cornerRadius: 15)
                 Text(state.book?.title?.capitalized ?? "Untitled")
                     .bold()
