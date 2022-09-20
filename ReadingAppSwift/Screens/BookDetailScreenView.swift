@@ -13,22 +13,25 @@ struct BookDetailScreenView: View {
     var key: String
     
     var body: some View {
-        NavigationView {
-            
-            VStack(alignment: .center) {
-                BookCoverImage(key: key, width: 120, height: 180, cornerRadius: 15)
-                Text(state.book?.title?.capitalized ?? "Untitled")
-                    .bold()
-                Text(state.book?.subtitle ?? "No Subtitle")
-                    
-                
-                Section {
-                    Text(state.book?.description ?? "No description provided.")
+
+                Form {
+                    let coverImage = BookCoverImage(key: key, width: 150, height: 225, cornerRadius: 10)
+                    ZStack {
+                            HStack(alignment: .center) {
+                                coverImage
+                                Text(state.book?.description ?? "No description provided.")
+                            }
+                    }
+                    if let subtitle = state.book?.subtitle?.capitalized {
+                        Section {
+                            Text(subtitle)
+                        }
+                    }
+                    Section {
+                        Text(state.book?.description ?? "No description provided.")
+                    }
                 }
-            }.navigationTitle("About Book")
-            
-        }
-        .navigationViewStyle(.stack)
+            .navigationTitle("About Book")
         .task {
             state.key = key
         }
@@ -40,3 +43,4 @@ struct BookDetailScreenView_Previews: PreviewProvider {
         BookDetailScreenView(key: "string")
     }
 }
+

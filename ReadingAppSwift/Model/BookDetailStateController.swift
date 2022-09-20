@@ -28,5 +28,5 @@ class BookDetailStateController: ObservableObject  {
             self.book = response
         }
     }
-    
 }
+

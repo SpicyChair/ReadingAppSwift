@@ -14,14 +14,13 @@ struct BookDetails: Codable, Hashable {
     var tags: [String]?
     var places: [String]?
     var description: String?
-    
-    //var description: [String : String]?
-    
+
     private enum CodingKeys:String, CodingKey {
            case title = "title"
            case subtitle = "subtitle"
            case tags = "subjects"
            case places = "subject_places"
-           case description = "description[value]"
+           case description = "description"
     }
 }
+

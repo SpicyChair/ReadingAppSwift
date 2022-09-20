@@ -52,8 +52,6 @@ class OpenLibraryAdapter {
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
         // and passing in nil means faliure
-        
-    
         let path = "\(key).json"
         
         

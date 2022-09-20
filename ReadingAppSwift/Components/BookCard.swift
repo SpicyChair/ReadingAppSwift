@@ -17,7 +17,6 @@ struct BookCard: View {
     var body: some View {
         NavigationLink(destination: BookDetailScreenView(key: key)) {
             HStack (alignment: .center) {
-                
                 BookCoverImage(key: key, width: 80, height: 120, cornerRadius: 12)
             
                 VStack (alignment: .leading) {
@@ -31,12 +30,9 @@ struct BookCard: View {
                     
                 }
                 .padding(20)
-                
-                
             }
             .frame(height: 140)
         }
-        
     }
     
     func addToLibrary() {
