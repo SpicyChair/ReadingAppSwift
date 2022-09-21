@@ -91,7 +91,6 @@ class OpenLibraryAdapter {
         }
         
         return nil
-    
          
     }
 }
