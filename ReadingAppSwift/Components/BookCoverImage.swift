@@ -39,6 +39,6 @@ struct BookCoverImage: View {
 
 struct BookCoverImage_Previews: PreviewProvider {
     static var previews: some View {
-        BookCoverImage(key: "String", width: 1, height: 1, cornerRadius: 1)
+        BookCoverImage(key: "String", width: 120, height: 180, cornerRadius: 15)
     }
 }

@@ -12,7 +12,7 @@ class OpenLibraryAdapter {
     let baseUrl = "https://openlibrary.org"
     let responseLimit = 10
     
-    func getSearchResponse(search: String, completion: @escaping ([Book]?) -> Void ) {
+    func getSearchResponse(search: String, completion: @escaping ([SearchResponse]?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
@@ -20,7 +20,7 @@ class OpenLibraryAdapter {
         
         // creates a path; addPercentEncoding allows for spaces in the search string
         // limit the fields to key, title, and author_name, and limit the number of responses
-        let path = "/search.json?title=\(search)&fields=key,title,author_name&limit=\(responseLimit)"
+        let path = "/search.json?q=\(search)&fields=key,type&limit=\(responseLimit)"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure

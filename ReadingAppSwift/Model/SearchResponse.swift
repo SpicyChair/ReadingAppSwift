@@ -9,7 +9,7 @@ import Foundation
 
 struct SearchResponse : Codable {
     var resultCount:Int
-    var results: [Book]
+    var results: [SearchResult]
     
     private enum CodingKeys:String, CodingKey {
         case resultCount = "numFound"

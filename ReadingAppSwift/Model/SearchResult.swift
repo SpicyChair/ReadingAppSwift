@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct Book: Codable, Hashable {
-    var title: String
+struct SearchResult: Codable, Hashable {
     var key: String
-    var authors: [String]?
+    var type: String
     
     private enum CodingKeys:String, CodingKey {
-           case title = "title"
-           case key = "key"
-           case authors = "author_name"
+        case key = "key"
+        case type = "type"
     }
 }
 
