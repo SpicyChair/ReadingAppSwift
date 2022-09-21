@@ -14,6 +14,7 @@ struct BookDetailsExternal: Codable, Hashable {
     var tags: [String]?
     var places: [String]?
     var description: String?
+    var description_as_dict: [String: String]?
 
     private enum CodingKeys:String, CodingKey {
            case title = "title"

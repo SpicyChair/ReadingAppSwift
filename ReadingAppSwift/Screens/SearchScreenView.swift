@@ -28,7 +28,7 @@ struct SearchScreenView: View {
                 .autocapitalization(.none)
                 
                 Section {
-                    state.books.isEmpty
+                    state.results.isEmpty
                         ?
                         Text("Search above!")
                         .bold()
@@ -36,18 +36,13 @@ struct SearchScreenView: View {
                         Text("Results for \(searchText)")
                         .bold()
                     List {
-                        ForEach(state.books, id: \.self) { book in
+                        ForEach(state.results, id: \.self) { result in
+                            //TODO: DISPLAY BOOKCARD IF RESULT IS A BOOK, OR ELSE AN AUTHORCARD
                             BookCard (
-                                title: "\(book.title.capitalized)",
-                                author: { () -> String in
-                                    
-                                    if let authors = book.authors {
-                                        return authors.first?.capitalized ?? "No author"
-                                    }
-                                    return "No author"
-                                }(),
-                                key: book.key
-                                
+                                title: "\(result.key)",
+                                author: "No author",
+                                key: result.key
+
                             )
                         }
                     }
@@ -67,8 +62,27 @@ struct SearchScreenView_Previews: PreviewProvider {
 }
 
 /*
- Text("Search")
-     .font(.largeTitle)
+ state.books.isEmpty
+     ?
+     Text("Search above!")
      .bold()
- UISearchBar()
+     :
+     Text("Results for \(searchText)")
+     .bold()
+ List {
+     ForEach(state.books, id: \.self) { book in
+         BookCard (
+             title: "\(book.title.capitalized)",
+             author: { () -> String in
+                 
+                 if let authors = book.authors {
+                     return authors.first?.capitalized ?? "No author"
+                 }
+                 return "No author"
+             }(),
+             key: book.key
+             
+         )
+     }
+ }
  */
