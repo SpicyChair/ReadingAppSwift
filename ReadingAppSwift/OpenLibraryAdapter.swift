@@ -12,7 +12,7 @@ class OpenLibraryAdapter {
     let baseUrl = "https://openlibrary.org"
     let responseLimit = 10
     
-    func getSearchResponse(search: String, completion: @escaping ([SearchResponse]?) -> Void ) {
+    func getSearchResponse(search: String, completion: @escaping ([SearchResult]?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful

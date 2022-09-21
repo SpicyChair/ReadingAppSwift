@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct BookDetailsInternal {
+    // internal class so unwrapping of optionals not neccessary thoughout app
+    
+    var title: String
+    var subtitle: String
+    var tags: String
+    var places: [String]
+    var description: String
+
+}

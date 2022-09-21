@@ -9,25 +9,25 @@ import Foundation
 
 class SearchStateController: ObservableObject  {
     
-    @Published var responses: [SearchResponse] = []
+    @Published var results: [SearchResult] = []
     private let adapter = OpenLibraryAdapter()
     
     var searchFor = "" {
         // when this value changes
         didSet {
             // ask the adapter to get the response from the API
-            adapter.getSearchResponse(search: searchFor, completion: updateSearchResponses)
+            adapter.getSearchResponse(search: searchFor, completion: updateSearchResults)
         }
     }
     
     let openLibraryAdapter = OpenLibraryAdapter()
     
-    func updateSearchResponses(responses: [SearchResponse]?) {
-        let responses = responses?.map {
+    func updateSearchResults(results: [SearchResult]?) {
+        let results = results?.map {
             return $0
         }
         DispatchQueue.main.async{
-            self.responses = responses ?? []
+            self.results = results ?? []
         }
     }
 }
