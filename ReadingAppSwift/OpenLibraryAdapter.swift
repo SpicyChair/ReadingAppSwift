@@ -20,7 +20,7 @@ class OpenLibraryAdapter {
         
         // creates a path; addPercentEncoding allows for spaces in the search string
         // limit the fields to key, title, and author_name, and limit the number of responses
-        let path = "/search.json?q=\(search)&fields=key,type&limit=\(responseLimit)"
+        let path = "/search.json?title=\(search)&fields=key,type&limit=\(responseLimit)"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure

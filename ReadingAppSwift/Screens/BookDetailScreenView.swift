@@ -19,7 +19,7 @@ struct BookDetailScreenView: View {
                     ZStack {
                             HStack(alignment: .center) {
                                 coverImage
-                                Text(state.book?.description ?? "No description provided.")
+                                Text(state.book?.title?.capitalized ?? "No description provided.")
                             }
                     }
                     if let subtitle = state.book?.subtitle?.capitalized {
@@ -27,9 +27,7 @@ struct BookDetailScreenView: View {
                             Text(subtitle)
                         }
                     }
-                    Section {
-                        Text(state.book?.description ?? "No description provided.")
-                    }
+                    
                 }
             .navigationTitle("About Book")
         .task {
