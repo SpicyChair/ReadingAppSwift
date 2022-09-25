@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookDetailsInternal {
+struct BookDetailsModel {
     // internal class so unwrapping of optionals not neccessary thoughout app
     
     var title: String
@@ -15,5 +15,10 @@ struct BookDetailsInternal {
     var tags: String
     var places: [String]
     var description: String
+    
+    private struct RawBookDetailsModel: Codable {
+        
+    }
+
 
 }

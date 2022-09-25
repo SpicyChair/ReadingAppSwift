@@ -29,8 +29,7 @@
 		FDEF339228D0FC34005599BC /* SearchStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF339128D0FC34005599BC /* SearchStateController.swift */; };
 		FDEF339428D0FF2B005599BC /* SearchResultBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF339328D0FF2B005599BC /* SearchResultBase.swift */; };
 		FDEF339628D1028A005599BC /* OpenLibraryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF339528D1028A005599BC /* OpenLibraryAdapter.swift */; };
-		FDF5FC7828DB1A74008F80B1 /* BookDetailsExternalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF5FC7728DB1A74008F80B1 /* BookDetailsExternalModel.swift */; };
-		FDF5FC7A28DB1A82008F80B1 /* BookDetailsInternalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF5FC7928DB1A82008F80B1 /* BookDetailsInternalModel.swift */; };
+		FDF5FC7A28DB1A82008F80B1 /* BookDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF5FC7928DB1A82008F80B1 /* BookDetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,8 +75,7 @@
 		FDEF339128D0FC34005599BC /* SearchStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStateController.swift; sourceTree = "<group>"; };
 		FDEF339328D0FF2B005599BC /* SearchResultBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultBase.swift; sourceTree = "<group>"; };
 		FDEF339528D1028A005599BC /* OpenLibraryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLibraryAdapter.swift; sourceTree = "<group>"; };
-		FDF5FC7728DB1A74008F80B1 /* BookDetailsExternalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsExternalModel.swift; sourceTree = "<group>"; };
-		FDF5FC7928DB1A82008F80B1 /* BookDetailsInternalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsInternalModel.swift; sourceTree = "<group>"; };
+		FDF5FC7928DB1A82008F80B1 /* BookDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,8 +208,7 @@
 		FDF5FC7C28DB1AA4008F80B1 /* Book */ = {
 			isa = PBXGroup;
 			children = (
-				FDF5FC7928DB1A82008F80B1 /* BookDetailsInternalModel.swift */,
-				FDF5FC7728DB1A74008F80B1 /* BookDetailsExternalModel.swift */,
+				FDF5FC7928DB1A82008F80B1 /* BookDetailsModel.swift */,
 				FDD647CC28D4F4C300B7D79C /* BookDetails.swift */,
 				FDB690D828DB7625004F17BF /* BookDetailBase.swift */,
 			);
@@ -365,8 +362,7 @@
 				FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */,
 				FDB690D928DB7625004F17BF /* BookDetailBase.swift in Sources */,
 				FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */,
-				FDF5FC7A28DB1A82008F80B1 /* BookDetailsInternalModel.swift in Sources */,
-				FDF5FC7828DB1A74008F80B1 /* BookDetailsExternalModel.swift in Sources */,
+				FDF5FC7A28DB1A82008F80B1 /* BookDetailsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

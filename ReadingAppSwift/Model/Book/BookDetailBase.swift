@@ -10,10 +10,10 @@ import Foundation
 class BookDetailBase : ObservableObject {
     
     
-    @Published var books: [String: BookDetailsInternal] = [:]
-    private let placeholder: BookDetailsInternal = BookDetailsInternal(title: "", subtitle: "", tags: "", places: [""], description: "")
+    @Published var books: [String: BookDetailsModel] = [:]
+    private let placeholder: BookDetailsModel = BookDetailsModel(title: "", subtitle: "", tags: "", places: [""], description: "")
     
-    func getBookDetail(key: String) -> BookDetailsInternal {
+    func getBookDetail(key: String) -> BookDetailsModel {
         if let book = books[key] {
             return book
         } else {
