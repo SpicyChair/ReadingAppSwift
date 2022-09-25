@@ -7,11 +7,11 @@
 
 import Foundation
 
-class BookDetailBase : ObservableObject {
+class BookDetailsBase : ObservableObject {
     
     
     @Published var books: [String: BookDetailsModel] = [:]
-    private let placeholder: BookDetailsModel = BookDetailsModel(title: "", subtitle: "", tags: "", places: [""], description: "")
+    private let placeholder: BookDetailsModel = BookDetailsModel(title: "", subtitle: "", tags: "", description: "")
     
     func getBookDetail(key: String) -> BookDetailsModel {
         if let book = books[key] {

@@ -10,13 +10,13 @@ import Foundation
 struct BookDetailsModel {
     // internal class so unwrapping of optionals not neccessary thoughout app
     
-    var title: String
-    var subtitle: String
-    var tags: String
-    var places: [String]
-    var description: String
+    var title, subtitle: String
+    var author: String
+    var date_published: String
     
     private struct RawBookDetailsModel: Codable {
+        let title: String?
+        let subtitle: String?
         
     }
 
