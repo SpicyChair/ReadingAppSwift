@@ -10,7 +10,7 @@ import Foundation
 class SearchStateController: ObservableObject  {
     
     @Published var results: [SearchResult] = []
-    private let adapter = OpenLibraryAdapter()
+    private let adapter = GoogleBooksAdapter()
     
     var searchFor = "" {
         // when this value changes
@@ -20,7 +20,7 @@ class SearchStateController: ObservableObject  {
         }
     }
     
-    let openLibraryAdapter = OpenLibraryAdapter()
+    let openLibraryAdapter = GoogleBooksAdapter()
     
     func updateSearchResults(results: [SearchResult]?) {
         let results = results?.map {

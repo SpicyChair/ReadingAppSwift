@@ -10,7 +10,7 @@ import Foundation
 class BookDetailStateController: ObservableObject  {
     
     @Published var book: BookDetails?
-    private let adapter = OpenLibraryAdapter()
+    private let adapter = GoogleBooksAdapter()
     
     var key = "" {
         // when this value changes
@@ -20,7 +20,7 @@ class BookDetailStateController: ObservableObject  {
         }
     }
     
-    let openLibraryAdapter = OpenLibraryAdapter()
+    let openLibraryAdapter = GoogleBooksAdapter()
     
     func updateBook(book: BookDetails?) {
         let response = book
