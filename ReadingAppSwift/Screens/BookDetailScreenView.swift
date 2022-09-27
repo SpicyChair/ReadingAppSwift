@@ -15,7 +15,7 @@ struct BookDetailScreenView: View {
     var body: some View {
 
                 Form {
-                    let coverImage = BookCoverImage(key: key, width: 150, height: 225, cornerRadius: 10)
+                    let coverImage = BookCoverImage(coverImage: "", width: 150, height: 225, cornerRadius: 10)
                     ZStack {
                             HStack(alignment: .center) {
                                 coverImage

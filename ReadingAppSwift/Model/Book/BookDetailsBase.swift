@@ -11,14 +11,18 @@ class BookDetailsBase : ObservableObject {
     
     
     @Published var books: [String: BookDetailsModel] = [:]
-    private let placeholder: BookDetailsModel = BookDetailsModel(title: "", subtitle: "", tags: "", description: "")
+    //private let placeholder: BookDetailsModel = BookDetailsModel()
     
-    func getBookDetail(key: String) -> BookDetailsModel {
+    func getBookDetail(key: String) -> BookDetailsModel? {
         if let book = books[key] {
             return book
         } else {
-            return placeholder
+            return nil
         }
+    }
+    
+    func bookInCache(key: String) -> Bool {
+        return (books.keys.contains(key))
     }
 }
 

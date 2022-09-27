@@ -17,7 +17,7 @@ struct BookCard: View {
     var body: some View {
         NavigationLink(destination: BookDetailScreenView(key: key)) {
             HStack (alignment: .center) {
-                BookCoverImage(key: key, width: 80, height: 120, cornerRadius: 12)
+                BookCoverImage(coverImage: "", width: 80, height: 120, cornerRadius: 12)
             
                 VStack (alignment: .leading) {
                     Text(title)

@@ -39,9 +39,9 @@ struct SearchScreenView: View {
                         ForEach(state.results, id: \.self) { result in
                             //TODO: DISPLAY BOOKCARD IF RESULT IS A BOOK, OR ELSE AN AUTHORCARD
                             BookCard (
-                                title: "\(result.key)",
-                                author: "No author",
-                                key: result.key
+                                title: "\(result.id)",
+                                author: "\(result.kind)",
+                                key: result.id
 
                             )
                         }

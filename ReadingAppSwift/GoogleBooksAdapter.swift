@@ -47,7 +47,7 @@ class GoogleBooksAdapter {
                 }.resume()
     }
     
-    func getBookDetails(key: String, completion: @escaping (BookDetails?) -> Void ) {
+    func getBookDetails(key: String, completion: @escaping (BookDetailsModel?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
@@ -67,7 +67,7 @@ class GoogleBooksAdapter {
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {
-                        if let response: BookDetails = self.parseJson(json: data) {
+                        if let response: BookDetailsModel = self.parseJson(json: data) {
                             // call completion function on the response data
                             completion(response)
                         } else {

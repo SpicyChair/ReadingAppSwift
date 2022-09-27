@@ -8,12 +8,13 @@
 import Foundation
 
 struct SearchResult: Codable, Hashable {
-    var key: String
-    var type: String
+    var id: String
+    var kind: String
+    
     
     private enum CodingKeys:String, CodingKey {
-        case key = "key"
-        case type = "type"
+        case id = "id"
+        case kind = "kind"
     }
 }
 

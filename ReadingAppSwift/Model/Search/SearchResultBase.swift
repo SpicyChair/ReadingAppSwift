@@ -12,9 +12,10 @@ struct SearchResultBase : Codable {
     var results: [SearchResult]
     
     private enum CodingKeys:String, CodingKey {
-        case resultCount = "numFound"
-        case results = "docs"
+        case resultCount = "totalItems"
+        case results = "items"
     }
 }
+
 
 
