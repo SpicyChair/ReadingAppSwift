@@ -9,7 +9,7 @@ import Foundation
 
 class SearchStateController: ObservableObject  {
     
-    @Published var results: [SearchResult] = []
+    @Published var results: [BookDetailsModel] = []
     private let adapter = GoogleBooksAdapter()
     
     var searchFor = "" {
@@ -22,13 +22,14 @@ class SearchStateController: ObservableObject  {
     
     let openLibraryAdapter = GoogleBooksAdapter()
     
-    func updateSearchResults(results: [SearchResult]?) {
+    func updateSearchResults(results: [BookDetailsModel]?) {
         let results = results?.map {
             return $0
         }
         DispatchQueue.main.async{
             self.results = results ?? []
         }
+        
     }
 }
 

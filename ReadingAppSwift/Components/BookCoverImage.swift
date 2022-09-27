@@ -25,7 +25,7 @@ struct BookCoverImage: View {
             }
             
             // Book Cover
-            AsyncImage(url: URL(string: "")) { image in
+            AsyncImage(url: URL(string: coverImage)) { image in
                 image.resizable()
             } placeholder: {
                 //placeholder if the image fails to load

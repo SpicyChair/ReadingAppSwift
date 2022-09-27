@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookVolumeInfo: Codable {
+struct BookVolumeInfo: Codable, Hashable {
     // internal class so unwrapping of optionals not neccessary thoughout app
     // all fields here are non optional
     let title: String
@@ -20,12 +20,11 @@ struct BookVolumeInfo: Codable {
         let rawBookDetails = try RawBookDetailsModel(from: decoder)
         
         // unwrapping takes place here
-        
         self.title = rawBookDetails.title ?? "No title"
         self.description = rawBookDetails.description ?? "No description"
         self.authors = rawBookDetails.authors ?? ["No author"]
         self.datePublished = rawBookDetails.publishedDate ?? "No publish date"
-        self.coverImage = rawBookDetails.imageLinks?.thumbnail ?? ""
+        self.coverImage = rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? ""
     }
     
     //horrible-looking struct modelled one to one with the JSON data
@@ -47,7 +46,7 @@ struct BookVolumeInfo: Codable {
         }
         // forward slash divided tags / categories
         // will be split
-        let categories: String?
+        let categories: [String]?
         
         let imageLinks: ImageLinks?
         

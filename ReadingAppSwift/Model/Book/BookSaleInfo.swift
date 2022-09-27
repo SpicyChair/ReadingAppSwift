@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookSaleInfo: Codable {
+struct BookSaleInfo: Codable, Hashable {
     let purchaseLink: String
     let isForSale: Bool
     let price: Double

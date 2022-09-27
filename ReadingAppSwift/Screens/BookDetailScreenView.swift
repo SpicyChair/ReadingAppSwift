@@ -9,36 +9,36 @@ import SwiftUI
 
 struct BookDetailScreenView: View {
     
-    @StateObject private var state = BookDetailStateController()
     var key: String
+    @EnvironmentObject var bookDetailsBase:BookDetailsBase
     
     var body: some View {
 
                 Form {
-                    let coverImage = BookCoverImage(coverImage: "", width: 150, height: 225, cornerRadius: 10)
-                    ZStack {
-                            HStack(alignment: .center) {
-                                coverImage
-                                Text(state.book?.title?.capitalized ?? "No description provided.")
-                            }
-                    }
-                    if let subtitle = state.book?.subtitle?.capitalized {
-                        Section {
-                            Text(subtitle)
+                    
+                    if let book = bookDetailsBase.getBookDetail(key: key) {
+                        
+                        HStack {
+                            BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
                         }
+                        Text(book.volumeInfo.title)
+                            .bold()
+                        Text(book.volumeInfo.authors.first ?? "")
+                        Text(book.volumeInfo.description)
+                        
+                        
+                    } else {
+                        Text("Could not retrieve book information.")
                     }
                     
                 }
             .navigationTitle("About Book")
-        .task {
-            state.key = key
-        }
     }
 }
 
 struct BookDetailScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetailScreenView(key: "string")
+        BookDetailScreenView(key: "")
     }
 }
 

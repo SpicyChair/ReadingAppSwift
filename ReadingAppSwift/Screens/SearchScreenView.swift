@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SearchScreenView: View {
     @State private var searchText = ""
-    
     @StateObject private var state = SearchStateController()
+    @EnvironmentObject var bookDetailBase: BookDetailsBase
+
     
     var body: some View {
         NavigationView {
@@ -26,6 +27,7 @@ struct SearchScreenView: View {
                     
                 }
                 .autocapitalization(.none)
+                .disableAutocorrection(true)
                 
                 Section {
                     state.results.isEmpty
@@ -36,15 +38,20 @@ struct SearchScreenView: View {
                         Text("Results for \(searchText)")
                         .bold()
                     List {
-                        ForEach(state.results, id: \.self) { result in
-                            //TODO: DISPLAY BOOKCARD IF RESULT IS A BOOK, OR ELSE AN AUTHORCARD
+                        ForEach(state.results, id: \.self) { book in
+                            
                             BookCard (
-                                title: "\(result.id)",
-                                author: "\(result.kind)",
-                                key: result.id
-
+                                title: book.volumeInfo.title,
+                                authors: book.volumeInfo.authors,
+                                key: book.key,
+                                cover: book.volumeInfo.coverImage
                             )
+                            .onAppear {
+                                bookDetailBase.addBookToBase(book: book)
+                            }
+                            
                         }
+                        
                     }
                 }
             }.navigationTitle("Search")

@@ -11,7 +11,6 @@ class BookDetailsBase : ObservableObject {
     
     
     @Published var books: [String: BookDetailsModel] = [:]
-    //private let placeholder: BookDetailsModel = BookDetailsModel()
     
     func getBookDetail(key: String) -> BookDetailsModel? {
         if let book = books[key] {
@@ -21,8 +20,12 @@ class BookDetailsBase : ObservableObject {
         }
     }
     
-    func bookInCache(key: String) -> Bool {
+    func bookInBase(key: String) -> Bool {
         return (books.keys.contains(key))
+    }
+    
+    func addBookToBase(book: BookDetailsModel) {
+        books.updateValue(book, forKey: book.key)
     }
 }
 
