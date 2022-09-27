@@ -9,7 +9,7 @@ import Foundation
 
 class SearchStateController: ObservableObject  {
     
-    @Published var results: SearchResultBase
+    @Published var results: [SearchResult] = []
     private let adapter = GoogleBooksAdapter()
     
     var searchFor = "" {
