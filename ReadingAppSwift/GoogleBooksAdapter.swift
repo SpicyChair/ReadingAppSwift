@@ -12,7 +12,7 @@ class GoogleBooksAdapter {
     let baseUrl = "https://www.googleapis.com/books/v1"
     let responseLimit = 10
     
-    func getSearchResponse(search: String, completion: @escaping ([SearchResult]?) -> Void ) {
+    func getSearchResponse(search: String, completion: @escaping ([BookDetailsModel]?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
@@ -20,7 +20,7 @@ class GoogleBooksAdapter {
         
         // creates a path; addPercentEncoding allows for spaces in the search string
         // limit the fields to key, title, and author_name, and limit the number of responses
-        let path = "/volumes?q=\(search)&projection=full&maxResults=\(responseLimit)"
+        let path = "/volumes?q=\(search)&projection=full&maxResults=\(responseLimit)&fields=items"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure
