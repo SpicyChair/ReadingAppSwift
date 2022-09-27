@@ -14,6 +14,6 @@ struct BookDetailsModel: Codable {
     
     private enum CodingKeys:String, CodingKey {
         case volumeInfo = "volumeInfo"
-        case saleInfo = "sakeInfo"
+        case saleInfo = "saleInfo"
     }
 }
