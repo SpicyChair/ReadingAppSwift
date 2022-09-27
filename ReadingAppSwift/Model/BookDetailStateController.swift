@@ -9,7 +9,7 @@ import Foundation
 
 class BookDetailStateController: ObservableObject  {
     
-    @Published var book: BookDetails?
+    @Published var book: BookDetailsModel?
     private let adapter = GoogleBooksAdapter()
     
     var key = "" {
@@ -22,7 +22,7 @@ class BookDetailStateController: ObservableObject  {
     
     let openLibraryAdapter = GoogleBooksAdapter()
     
-    func updateBook(book: BookDetails?) {
+    func updateBook(book: BookDetailsModel?) {
         let response = book
         DispatchQueue.main.async{
             self.book = response

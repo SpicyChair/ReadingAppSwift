@@ -12,7 +12,7 @@ class GoogleBooksAdapter {
     let baseUrl = "https://www.googleapis.com/books/v1"
     let responseLimit = 10
     
-    func getSearchResponse(search: String, completion: @escaping ([BookDetailsModel]?) -> Void ) {
+    func getSearchResponse(search: String, completion: @escaping ([SearchResult]?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
