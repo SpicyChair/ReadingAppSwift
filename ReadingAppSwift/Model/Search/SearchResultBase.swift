@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct SearchResponse : Codable {
-    var resultCount:Int
-    var results: [Book]
+struct SearchResultBase : Codable {
+    var results: [BookDetailsModel]
     
     private enum CodingKeys:String, CodingKey {
-        case resultCount = "numFound"
-        case results = "docs"
+        case results = "items"
     }
 }
+
+
+
 
 

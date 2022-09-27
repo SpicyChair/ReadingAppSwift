@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SearchScreenView: View {
     @State private var searchText = ""
-    
     @StateObject private var state = SearchStateController()
+    @EnvironmentObject var bookDetailBase: BookDetailsBase
+
     
     var body: some View {
         NavigationView {
@@ -26,9 +27,10 @@ struct SearchScreenView: View {
                     
                 }
                 .autocapitalization(.none)
+                .disableAutocorrection(true)
                 
                 Section {
-                    state.books.isEmpty
+                    state.results.isEmpty
                         ?
                         Text("Search above!")
                         .bold()
@@ -36,20 +38,20 @@ struct SearchScreenView: View {
                         Text("Results for \(searchText)")
                         .bold()
                     List {
-                        ForEach(state.books, id: \.self) { book in
+                        ForEach(state.results, id: \.self) { book in
+                            
                             BookCard (
-                                title: "\(book.title.capitalized)",
-                                author: { () -> String in
-                                    
-                                    if let authors = book.authors {
-                                        return authors.first?.capitalized ?? "No author"
-                                    }
-                                    return "No author"
-                                }(),
-                                key: book.key
-                                
+                                title: book.volumeInfo.title,
+                                authors: book.volumeInfo.authors,
+                                key: book.key,
+                                cover: book.volumeInfo.coverImage
                             )
+                            .onAppear {
+                                bookDetailBase.addBookToBase(book: book)
+                            }
+                            
                         }
+                        
                     }
                 }
             }.navigationTitle("Search")
@@ -67,8 +69,27 @@ struct SearchScreenView_Previews: PreviewProvider {
 }
 
 /*
- Text("Search")
-     .font(.largeTitle)
+ state.books.isEmpty
+     ?
+     Text("Search above!")
      .bold()
- UISearchBar()
+     :
+     Text("Results for \(searchText)")
+     .bold()
+ List {
+     ForEach(state.books, id: \.self) { book in
+         BookCard (
+             title: "\(book.title.capitalized)",
+             author: { () -> String in
+                 
+                 if let authors = book.authors {
+                     return authors.first?.capitalized ?? "No author"
+                 }
+                 return "No author"
+             }(),
+             key: book.key
+             
+         )
+     }
+ }
  */

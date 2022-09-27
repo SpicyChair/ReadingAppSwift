@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookCoverImage: View {
-    var key: String
+    var coverImage: String
     var width: Float
     var height: Float
     var cornerRadius: Float
@@ -25,7 +25,7 @@ struct BookCoverImage: View {
             }
             
             // Book Cover
-            AsyncImage(url: URL(string: "https://covers.openlibrary.org/w/olid/\(key.split(separator: "/")[1])-M.jpg")) { image in
+            AsyncImage(url: URL(string: coverImage)) { image in
                 image.resizable()
             } placeholder: {
                 //placeholder if the image fails to load
@@ -39,6 +39,6 @@ struct BookCoverImage: View {
 
 struct BookCoverImage_Previews: PreviewProvider {
     static var previews: some View {
-        BookCoverImage(key: "String", width: 1, height: 1, cornerRadius: 1)
+        BookCoverImage(coverImage: "", width: 120, height: 180, cornerRadius: 15)
     }
 }

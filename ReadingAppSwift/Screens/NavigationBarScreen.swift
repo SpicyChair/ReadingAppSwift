@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NavigationBarScreen: View {
+    let bookDetailBase: BookDetailsBase = BookDetailsBase()
+    
     var body: some View {
         TabView {
             HomeScreenView()
@@ -27,10 +29,12 @@ struct NavigationBarScreen: View {
                     Label("Social", systemImage: "person.3")
                 }
         }
+        .environmentObject(bookDetailBase)
     }
 }
 
 struct NavigationBarScreen_Previews: PreviewProvider {
+    
     static var previews: some View {
         NavigationBarScreen()
     }

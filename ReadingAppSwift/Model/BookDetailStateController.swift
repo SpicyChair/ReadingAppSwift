@@ -5,16 +5,28 @@
 //  Created by Hin, Ethan-Scott (WING) on 16/09/2022.
 //
 
-import SwiftUI
+import Foundation
 
-struct BookDetailStateController: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class BookDetailStateController: ObservableObject  {
+    
+    @Published var book: BookDetailsModel?
+    private let adapter = GoogleBooksAdapter()
+    
+    var key = "" {
+        // when this value changes
+        didSet {
+            // ask the adapter to get the response from the API
+            adapter.getBookDetails(key: key, completion: updateBook)
+        }
+    }
+    
+    let openLibraryAdapter = GoogleBooksAdapter()
+    
+    func updateBook(book: BookDetailsModel?) {
+        let response = book
+        DispatchQueue.main.async{
+            self.book = response
+        }
     }
 }
 
-struct BookDetailStateController_Previews: PreviewProvider {
-    static var previews: some View {
-        BookDetailStateController()
-    }
-}

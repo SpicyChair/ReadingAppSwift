@@ -8,23 +8,37 @@
 import SwiftUI
 
 struct BookDetailScreenView: View {
+    
+    var key: String
+    @EnvironmentObject var bookDetailsBase:BookDetailsBase
+    
     var body: some View {
-        NavigationView {
-            Form {
-                Text("About Book")
-                
-                Section {
+
+                Form {
+                    
+                    if let book = bookDetailsBase.getBookDetail(key: key) {
+                        
+                        HStack {
+                            BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
+                        }
+                        Text(book.volumeInfo.title)
+                            .bold()
+                        Text(book.volumeInfo.authors.first ?? "")
+                        Text(book.volumeInfo.description)
+                        
+                        
+                    } else {
+                        Text("Could not retrieve book information.")
+                    }
                     
                 }
-            }.navigationTitle("About Book")
-            
-        }
-        .navigationViewStyle(.stack)
+            .navigationTitle("About Book")
     }
 }
 
 struct BookDetailScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetailScreenView()
+        BookDetailScreenView(key: "")
     }
 }
+
