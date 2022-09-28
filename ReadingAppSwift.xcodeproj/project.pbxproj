@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */; };
+		FD4930B528E4D93900330E75 /* BookCardCompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B428E4D93900330E75 /* BookCardCompact.swift */; };
 		FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */; };
 		FD4EC65C28D0729A00B99ED2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC65B28D0729A00B99ED2 /* ContentView.swift */; };
 		FD4EC65E28D0729D00B99ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD4EC65D28D0729D00B99ED2 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
+		FD4930B428E4D93900330E75 /* BookCardCompact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardCompact.swift; sourceTree = "<group>"; };
 		FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingAppSwiftApp.swift; sourceTree = "<group>"; };
 		FD4EC65B28D0729A00B99ED2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 			children = (
 				FD95343828D24FA100FF9274 /* BookCard.swift */,
 				FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */,
+				FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */,
+				FD4930B428E4D93900330E75 /* BookCardCompact.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 				FD4EC68928D07FC000B99ED2 /* NavigationBarScreen.swift in Sources */,
 				FD95343928D24FA100FF9274 /* BookCard.swift in Sources */,
 				FDEF338A28D0F276005599BC /* HomeScreenView.swift in Sources */,
+				FD4930B528E4D93900330E75 /* BookCardCompact.swift in Sources */,
 				FDEF338E28D0F307005599BC /* DiscoverScreenView.swift in Sources */,
 				FD4EC68728D076EC00B99ED2 /* SearchScreenView.swift in Sources */,
 				FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */,
@@ -362,6 +369,7 @@
 				FDB690D928DB7625004F17BF /* BookBase.swift in Sources */,
 				FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */,
 				FDE1875D28E2F7EE000100F2 /* BookVolumeInfo.swift in Sources */,
+				FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */,
 				FDF5FC7A28DB1A82008F80B1 /* BookDetailsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

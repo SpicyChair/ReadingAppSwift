@@ -24,6 +24,7 @@ struct BookDetailScreenView: View {
                         Text(book.volumeInfo.title)
                             .bold()
                         Text(book.volumeInfo.authors.first ?? "")
+                        AddToLibraryButton(key: key)
                         Text(book.volumeInfo.description)
                         
                         

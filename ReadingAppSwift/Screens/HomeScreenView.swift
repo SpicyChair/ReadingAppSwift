@@ -14,22 +14,30 @@ struct HomeScreenView: View {
     var body: some View {
         NavigationView {
             Form {
-                List {
-                    ForEach(bookBase.library, id: \.self) { key in
-                        //access library keys
-                        
-                        if let book = bookBase.getBookDetail(key: key) {
-                            //then access the env object cache
-                            
-                            VStack {
-                                Text(book.volumeInfo.title)
-                                    .bold()
-                                Text(book.volumeInfo.authors.first ?? "")
+                
+                Section (header: Text("Saved to Library")) {
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        // horizontal scrollview
+                        HStack (spacing: 12) {
+                            ForEach(bookBase.library, id: \.self) { key in
+                                //access library keys
+                                
+                                if let book = bookBase.getBookDetail(key: key) {
+                                    //then access the env object cache
+                                    
+                                    BookCardCompact(key: book.key,
+                                                    title: book.volumeInfo.title,
+                                                    authors: book.volumeInfo.authors,
+                                                    cover: book.volumeInfo.coverImage)
+                                }
+                                
                             }
                         }
-                        
                     }
+                    
                 }
+                
             }.navigationTitle("Home")
         }
         .navigationViewStyle(.stack)

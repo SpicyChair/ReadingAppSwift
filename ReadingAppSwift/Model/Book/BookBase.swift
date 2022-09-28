@@ -32,10 +32,16 @@ class BookBase : ObservableObject {
         books.updateValue(book, forKey: book.key)
     }
     
+    // methods to interact with the library
+    
     func addBookToLibrary(key: String) {
         if !(library.contains(key)) {
             library.append(key)
         }
+    }
+    
+    func isBookInLibrary(key: String) -> Bool {
+        return library.contains(key)
     }
 }
 

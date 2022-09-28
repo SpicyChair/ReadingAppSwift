@@ -2,43 +2,43 @@
 //  BookCard.swift
 //  ReadingAppSwift
 //
-//  Created by Hin, Ethan-Scott (WING) on 14/09/2022.
+//  Created by Hin, Ethan-Scott (WING) on 28/09/2022.
 //
 
 import SwiftUI
 
-struct BookCard: View {
+struct BookCardCompact: View {
     
+    var key: String
     var title: String
     var authors: [String]
-    var key: String
     var cover: String
-    // when the add to library button pressed
-    
     
     var body: some View {
         NavigationLink(destination: BookDetailScreenView(key: key)) {
-            HStack (alignment: .center) {
-                BookCoverImage(coverImage: cover, width: 80, height: 120, cornerRadius: 12)
-            
+            VStack (alignment: .center) {
+                BookCoverImage(coverImage: cover, width: 90, height: 135, cornerRadius: 12)
+
                 VStack (alignment: .leading) {
                     Text(title)
                         .font(.headline)
                         .bold()
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(2)
                         .truncationMode(.tail)
                     Text(authors.first ?? "" )
-                    AddToLibraryButton(key: key)
                 }
-                .padding(20)
+                
+                
+
             }
-            .frame(height: 140)
+            .frame(width: 100, height: 220)
         }
     }
 }
 
-struct BookCard_Previews: PreviewProvider {
+struct BookCardCompact_Previews: PreviewProvider {
     static var previews: some View {
-        BookCard(title: "String", authors: ["String"], key: "String", cover: "")
-        
+        BookCardCompact(key: "", title: "", authors: [], cover: "")
     }
 }

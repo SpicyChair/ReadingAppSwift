@@ -45,11 +45,7 @@ struct SearchScreenView: View {
                                 title: book.volumeInfo.title,
                                 authors: book.volumeInfo.authors,
                                 key: book.key,
-                                cover: book.volumeInfo.coverImage,
-                                addToLibrary: { () -> Void in
-                                    bookDetailBase.addBookToLibrary(key: book.key)
-                                    print(bookDetailBase.library)
-                                }
+                                cover: book.volumeInfo.coverImage
                             )
                             .onAppear {
                                 bookDetailBase.addBookToBase(book: book)
