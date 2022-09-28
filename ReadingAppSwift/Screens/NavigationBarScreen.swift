@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavigationBarScreen: View {
-    let bookDetailBase: BookDetailsBase = BookDetailsBase()
+    let bookDetailBase: BookBase = BookBase()
     
     var body: some View {
         TabView {

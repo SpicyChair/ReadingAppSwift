@@ -10,7 +10,7 @@ import SwiftUI
 struct BookDetailScreenView: View {
     
     var key: String
-    @EnvironmentObject var bookDetailsBase:BookDetailsBase
+    @EnvironmentObject var bookDetailsBase:BookBase
     
     var body: some View {
 

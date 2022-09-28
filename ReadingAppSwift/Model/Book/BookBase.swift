@@ -7,10 +7,14 @@
 
 import Foundation
 
-class BookDetailsBase : ObservableObject {
+class BookBase : ObservableObject {
     
-    
+    // cached books from search
     @Published var books: [String: BookDetailsModel] = [:]
+    
+    // array of book keys that the user has saved
+    // use these keys to access books
+    @Published var library: [String] = []
     
     func getBookDetail(key: String) -> BookDetailsModel? {
         if let book = books[key] {
@@ -26,6 +30,12 @@ class BookDetailsBase : ObservableObject {
     
     func addBookToBase(book: BookDetailsModel) {
         books.updateValue(book, forKey: book.key)
+    }
+    
+    func addBookToLibrary(key: String) {
+        if !(library.contains(key)) {
+            library.append(key)
+        }
     }
 }
 

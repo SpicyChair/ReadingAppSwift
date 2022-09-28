@@ -10,7 +10,8 @@ import SwiftUI
 struct SearchScreenView: View {
     @State private var searchText = ""
     @StateObject private var state = SearchStateController()
-    @EnvironmentObject var bookDetailBase: BookDetailsBase
+    @EnvironmentObject var bookDetailBase: BookBase
+    
 
     
     var body: some View {
@@ -44,12 +45,15 @@ struct SearchScreenView: View {
                                 title: book.volumeInfo.title,
                                 authors: book.volumeInfo.authors,
                                 key: book.key,
-                                cover: book.volumeInfo.coverImage
+                                cover: book.volumeInfo.coverImage,
+                                addToLibrary: { () -> Void in
+                                    bookDetailBase.addBookToLibrary(key: book.key)
+                                    print(bookDetailBase.library)
+                                }
                             )
                             .onAppear {
                                 bookDetailBase.addBookToBase(book: book)
                             }
-                            
                         }
                         
                     }
