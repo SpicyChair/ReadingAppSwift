@@ -7,12 +7,12 @@
 
 import Foundation
 
-class OpenLibraryAdapter {
-    // the base url for the openlibrary api
-    let baseUrl = "https://openlibrary.org"
+class GoogleBooksAdapter {
+    // the base url for the google books api
+    let baseUrl = "https://www.googleapis.com/books/v1"
     let responseLimit = 10
     
-    func getSearchResponse(search: String, completion: @escaping ([Book]?) -> Void ) {
+    func getSearchResponse(search: String, completion: @escaping ([BookDetailsModel]?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
@@ -20,7 +20,7 @@ class OpenLibraryAdapter {
         
         // creates a path; addPercentEncoding allows for spaces in the search string
         // limit the fields to key, title, and author_name, and limit the number of responses
-        let path = "/search.json?title=\(search)&fields=key,title,author_name&limit=\(responseLimit)"
+        let path = "/volumes?q=\(search)&projection=full&maxResults=\(responseLimit)&fields=items"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure
@@ -35,7 +35,7 @@ class OpenLibraryAdapter {
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {
-                        if let response: SearchResponse = self.parseJson(json: data) {
+                        if let response: SearchResultBase = self.parseJson(json: data) {
                             // call completion function on the response data
                             completion(response.results)
                         } else {
@@ -47,13 +47,11 @@ class OpenLibraryAdapter {
                 }.resume()
     }
     
-    func getBookDetails(key: String, completion: @escaping (BookDetails?) -> Void ) {
+    func getBookDetails(key: String, completion: @escaping (BookDetailsModel?) -> Void ) {
         // the completion parameter is a function
         // it dictates what to do on completion of the response
         // in this case, this means updating data if successful
         // and passing in nil means faliure
-        
-    
         let path = "\(key).json"
         
         
@@ -69,7 +67,7 @@ class OpenLibraryAdapter {
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {
-                        if let response: BookDetails = self.parseJson(json: data) {
+                        if let response: BookDetailsModel = self.parseJson(json: data) {
                             // call completion function on the response data
                             completion(response)
                         } else {
@@ -93,7 +91,6 @@ class OpenLibraryAdapter {
         }
         
         return nil
-    
          
     }
 }

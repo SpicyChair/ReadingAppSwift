@@ -9,8 +9,8 @@ import Foundation
 
 class BookDetailStateController: ObservableObject  {
     
-    @Published var book: BookDetails?
-    private let adapter = OpenLibraryAdapter()
+    @Published var book: BookDetailsModel?
+    private let adapter = GoogleBooksAdapter()
     
     var key = "" {
         // when this value changes
@@ -20,13 +20,13 @@ class BookDetailStateController: ObservableObject  {
         }
     }
     
-    let openLibraryAdapter = OpenLibraryAdapter()
+    let openLibraryAdapter = GoogleBooksAdapter()
     
-    func updateBook(book: BookDetails?) {
+    func updateBook(book: BookDetailsModel?) {
         let response = book
         DispatchQueue.main.async{
             self.book = response
         }
     }
-    
 }
+

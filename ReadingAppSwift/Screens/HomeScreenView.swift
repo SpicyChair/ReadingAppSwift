@@ -8,10 +8,36 @@
 import SwiftUI
 
 struct HomeScreenView: View {
+    
+    @EnvironmentObject var bookBase: BookBase
+    
     var body: some View {
         NavigationView {
             Form {
-                Text("Hello World")
+                
+                Section (header: Text("Saved to Library")) {
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        // horizontal scrollview
+                        HStack (spacing: 12) {
+                            ForEach(bookBase.library, id: \.self) { key in
+                                //access library keys
+                                
+                                if let book = bookBase.getBookDetail(key: key) {
+                                    //then access the env object cache
+                                    
+                                    BookCardCompact(key: book.key,
+                                                    title: book.volumeInfo.title,
+                                                    authors: book.volumeInfo.authors,
+                                                    cover: book.volumeInfo.coverImage)
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                }
+                
             }.navigationTitle("Home")
         }
         .navigationViewStyle(.stack)

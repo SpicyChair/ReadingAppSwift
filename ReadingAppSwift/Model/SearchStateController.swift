@@ -9,26 +9,28 @@ import Foundation
 
 class SearchStateController: ObservableObject  {
     
-    @Published var books: [Book] = []
-    private let adapter = OpenLibraryAdapter()
+    @Published var results: [BookDetailsModel] = []
+    private let adapter = GoogleBooksAdapter()
     
     var searchFor = "" {
         // when this value changes
         didSet {
             // ask the adapter to get the response from the API
-            adapter.getSearchResponse(search: searchFor, completion: updateSearchResponses)
+            adapter.getSearchResponse(search: searchFor, completion: updateSearchResults)
         }
     }
     
-    let openLibraryAdapter = OpenLibraryAdapter()
+    let openLibraryAdapter = GoogleBooksAdapter()
     
-    func updateSearchResponses(books: [Book]?) {
-        let responses = books?.map {
+    func updateSearchResults(results: [BookDetailsModel]?) {
+        let results = results?.map {
             return $0
         }
         DispatchQueue.main.async{
-            self.books = responses ?? []
+            self.results = results ?? []
         }
+        
     }
-    
 }
+
+
