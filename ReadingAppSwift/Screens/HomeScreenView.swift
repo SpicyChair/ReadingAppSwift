@@ -26,7 +26,7 @@ struct HomeScreenView: View {
                                 if let book = bookBase.getBookDetail(key: key) {
                                     //then access the env object cache
                                     
-                                    BookCardCompact(key: book.key,
+                                    BookCardVertical(key: book.key,
                                                     title: book.volumeInfo.title,
                                                     authors: book.volumeInfo.authors,
                                                     cover: book.volumeInfo.coverImage)
