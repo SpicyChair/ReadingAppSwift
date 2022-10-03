@@ -46,9 +46,6 @@ struct HomeScreenView: View {
                     Button(action: cache.clearCache) {
                            Label("Clear Cache", systemImage: "xmark")
                     }.foregroundColor(Color.red)
-                    
-                    
-
                 }
                 
             }.navigationTitle("Home")

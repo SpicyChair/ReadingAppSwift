@@ -10,8 +10,10 @@ import Foundation
 extension FileManager {
     
     func getDocDirectoryURLWithFilename(filename: String) -> URL {
+        // we only need the first path
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let userPath = paths[0]
+        // so that the path becomes [path] / [filename.json]
         return userPath.appendingPathComponent(filename)
     }
     
@@ -19,11 +21,11 @@ extension FileManager {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(object) {
             if let json = String(data: encoded, encoding: .utf8) {
-                //take encoded objects and convert them into string
+                //take encoded objects and convert them int a JSON string
                 
                 let url = getDocDirectoryURLWithFilename(filename: filename)
                 do {
-                    //write json to file
+                    //write json to filename.json
                     try json.write(to: url, atomically: true, encoding: .utf8)
                 } catch {
                     print(error.localizedDescription)
@@ -31,7 +33,6 @@ extension FileManager {
             } else {
                 print("Unable to form JSON string")
             }
-            
         }
     }
     
