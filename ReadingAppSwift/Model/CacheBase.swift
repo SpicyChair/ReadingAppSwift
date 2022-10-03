@@ -7,14 +7,12 @@
 
 import Foundation
 
-class BookBase : ObservableObject {
+class CacheBase : ObservableObject {
     
     // cached books from search
     @Published var books: [String: BookDetailsModel] = [:]
     
-    // array of book keys that the user has saved
-    // use these keys to access books
-    @Published var library: [String] = []
+
     
     func getBookDetail(key: String) -> BookDetailsModel? {
         if let book = books[key] {
@@ -23,7 +21,7 @@ class BookBase : ObservableObject {
             return nil
         }
     }
-    
+        
     func bookInBase(key: String) -> Bool {
         return (books.keys.contains(key))
     }
@@ -32,17 +30,6 @@ class BookBase : ObservableObject {
         books.updateValue(book, forKey: book.key)
     }
     
-    // methods to interact with the library
-    
-    func addBookToLibrary(key: String) {
-        if !(library.contains(key)) {
-            library.append(key)
-        }
-    }
-    
-    func isBookInLibrary(key: String) -> Bool {
-        return library.contains(key)
-    }
 }
 
 

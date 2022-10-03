@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeScreenView: View {
     
-    @EnvironmentObject var bookBase: BookBase
+    @EnvironmentObject var cache: CacheBase
+    @EnvironmentObject var library: LibraryBase
     
     var body: some View {
         NavigationView {
@@ -20,10 +21,10 @@ struct HomeScreenView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         // horizontal scrollview
                         HStack (spacing: 12) {
-                            ForEach(bookBase.library, id: \.self) { key in
+                            ForEach(library.library, id: \.self) { key in
                                 //access library keys
                                 
-                                if let book = bookBase.getBookDetail(key: key) {
+                                if let book = cache.getBookDetail(key: key) {
                                     //then access the env object cache
                                     
                                     BookCardVertical(key: book.key,

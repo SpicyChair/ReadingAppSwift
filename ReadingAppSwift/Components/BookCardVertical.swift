@@ -18,10 +18,10 @@ struct BookCardVertical: View {
         NavigationLink(destination: BookDetailScreenView(key: key)) {
             
             ZStack {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: 15)
                     .fill(Color(UIColor.secondarySystemBackground))
                 VStack (alignment: .center) {
-                    BookCoverImage(coverImage: cover, width: 110, height: 165, cornerRadius: 12)
+                    BookCoverImage(coverImage: cover, width: 100, height: 150, cornerRadius: 12)
 
                     VStack (alignment: .leading) {
                         Text(title)
@@ -35,9 +35,9 @@ struct BookCardVertical: View {
                     }
                     
                 }
-                .frame(width: 110, height: 235)
+                .frame(width: 100, height: 225)
             }
-            .frame(width: 135, height: 260)
+            .frame(width: 125, height: 250)
         }
     }
 }

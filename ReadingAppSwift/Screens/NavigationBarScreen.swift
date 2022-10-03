@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NavigationBarScreen: View {
-    let bookDetailBase: BookBase = BookBase()
+    let cacheBase: CacheBase = CacheBase()
+    let libraryBase: LibraryBase = LibraryBase()
     
     var body: some View {
         TabView {
@@ -29,7 +30,9 @@ struct NavigationBarScreen: View {
                     Label("Social", systemImage: "person.3")
                 }
         }
-        .environmentObject(bookDetailBase)
+        .environmentObject(libraryBase)
+        .environmentObject(cacheBase)
+        
     }
 }
 

@@ -10,11 +10,11 @@ import SwiftUI
 struct AddToLibraryButton: View {
     
     var key: String
-    @EnvironmentObject var bookBase: BookBase
+    @EnvironmentObject var library: LibraryBase
     
     var body: some View {
         Button(action: addToLibrary) {
-            if bookBase.isBookInLibrary(key: key) {
+            if library.isBookInLibrary(key: self.key) {
                 // if the book is in library, show different text
                 Label("In Library", systemImage: "checkmark.square")
                     .foregroundColor(Color.green)
@@ -27,7 +27,7 @@ struct AddToLibraryButton: View {
     }
     
     func addToLibrary() {
-        bookBase.addBookToLibrary(key: key)
+        library.addBookToLibrary(key: self.key)
     }
 }
 

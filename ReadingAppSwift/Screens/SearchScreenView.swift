@@ -10,7 +10,8 @@ import SwiftUI
 struct SearchScreenView: View {
     @State private var searchText = ""
     @StateObject private var state = SearchStateController()
-    @EnvironmentObject var bookDetailBase: BookBase
+    @EnvironmentObject var cache: CacheBase
+    @EnvironmentObject var library: LibraryBase
     
 
     
@@ -48,7 +49,7 @@ struct SearchScreenView: View {
                                 cover: book.volumeInfo.coverImage
                             )
                             .onAppear {
-                                bookDetailBase.addBookToBase(book: book)
+                                cache.addBookToBase(book: book)
                             }
                         }
                         
@@ -68,28 +69,3 @@ struct SearchScreenView_Previews: PreviewProvider {
     }
 }
 
-/*
- state.books.isEmpty
-     ?
-     Text("Search above!")
-     .bold()
-     :
-     Text("Results for \(searchText)")
-     .bold()
- List {
-     ForEach(state.books, id: \.self) { book in
-         BookCard (
-             title: "\(book.title.capitalized)",
-             author: { () -> String in
-                 
-                 if let authors = book.authors {
-                     return authors.first?.capitalized ?? "No author"
-                 }
-                 return "No author"
-             }(),
-             key: book.key
-             
-         )
-     }
- }
- */

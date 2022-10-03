@@ -10,13 +10,13 @@ import SwiftUI
 struct BookDetailScreenView: View {
     
     var key: String
-    @EnvironmentObject var bookDetailsBase:BookBase
+    @EnvironmentObject var cache:CacheBase
     
     var body: some View {
 
                 Form {
                     
-                    if let book = bookDetailsBase.getBookDetail(key: key) {
+                    if let book = cache.getBookDetail(key: key) {
                         
                         HStack {
                             BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
