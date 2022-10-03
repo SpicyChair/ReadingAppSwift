@@ -17,7 +17,7 @@ class LibraryBase: ObservableObject {
     // array of book keys that the user has saved
     // use these keys to access books
     @Published var library: [String] = []
-    let fileManager: FileManager
+    let fileManager: FileManager = FileManager()
     let filename = "library.json"
 
     // methods to interact with the library
@@ -37,6 +37,8 @@ class LibraryBase: ObservableObject {
     }
     
     func loadFromFile() {
-        fileManager.loadJSONFromFile(filename: filename)
+        if let loaded: [String] = fileManager.loadJSONFromFile(filename: filename) {
+            library = loaded
+        }
     }
 }
