@@ -34,6 +34,7 @@ struct BookCoverImage: View {
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
         .cornerRadius(CGFloat(cornerRadius))
+    
     }
 }
 

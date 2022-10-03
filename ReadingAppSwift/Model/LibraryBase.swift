@@ -10,7 +10,7 @@ import Foundation
 class LibraryBase: ObservableObject {
     
     init () {
-        loadFromFile()
+        loadLibraryFromFile()
     }
     
     
@@ -25,6 +25,7 @@ class LibraryBase: ObservableObject {
     func addBookToLibrary(key: String) {
         if !(library.contains(key)) {
             library.append(key)
+            saveLibraryToFile()
         }
     }
 
@@ -32,13 +33,22 @@ class LibraryBase: ObservableObject {
         return library.contains(key)
     }
     
-    func saveToFile() {
+    func saveLibraryToFile() {
         fileManager.saveToJSON(filename: filename , object: library)
     }
     
-    func loadFromFile() {
+    func loadLibraryFromFile() {
         if let loaded: [String] = fileManager.loadJSONFromFile(filename: filename) {
             library = loaded
         }
+    }
+    
+    func clearLibrary() {
+        
+        // empty the array
+        // and delete the json from file
+        
+        library = []
+        fileManager.deleteFile(filename: filename)
     }
 }

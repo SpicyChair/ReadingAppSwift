@@ -36,7 +36,19 @@ struct HomeScreenView: View {
                             }
                         }
                     }
+                }
+                
+                Section (header: Text("Persistence Options")) {
+                    Button(action: library.clearLibrary) {
+                           Label("Clear Library", systemImage: "book.closed")
+                    }.foregroundColor(Color.red)
                     
+                    Button(action: cache.clearCache) {
+                           Label("Clear Cache", systemImage: "xmark")
+                    }.foregroundColor(Color.red)
+                    
+                    
+
                 }
                 
             }.navigationTitle("Home")

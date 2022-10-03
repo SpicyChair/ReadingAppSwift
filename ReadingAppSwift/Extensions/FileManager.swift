@@ -12,7 +12,7 @@ extension FileManager {
     func getDocDirectoryURLWithFilename(filename: String) -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let userPath = paths[0]
-        return userPath.appendingPathComponent("divisions.json")
+        return userPath.appendingPathComponent(filename)
     }
     
     func saveToJSON<T: Codable>(filename: String, object: T) {
@@ -32,12 +32,11 @@ extension FileManager {
                 print("Unable to form JSON string")
             }
             
-            //TODO: ask q about the try?
         }
     }
     
     func loadJSONFromFile<T: Codable>(filename: String) -> T? {
-        let url = getDocDirectoryURLWithFilename(filename: "divisions.json")
+        let url = getDocDirectoryURLWithFilename(filename: filename)
         
         if let data = try? Data(contentsOf: url) {
             let decoder = JSONDecoder()
@@ -45,8 +44,17 @@ extension FileManager {
                 return loaded
             }
         }
-        print("Could not load from file")
+        print("Could not load from file \(filename)")
         return nil
         
+    }
+    
+    func deleteFile(filename: String) {
+        let url = getDocDirectoryURLWithFilename(filename: filename)
+        do {
+            try self.removeItem(at: url)
+        } catch {
+            print("Could not delete file \(filename)")
+        }
     }
 }

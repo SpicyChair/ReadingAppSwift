@@ -49,7 +49,7 @@ struct SearchScreenView: View {
                                 cover: book.volumeInfo.coverImage
                             )
                             .onAppear {
-                                cache.addBookToBase(book: book)
+                                cache.addBookToCache(book: book)
                             }
                         }
                         
