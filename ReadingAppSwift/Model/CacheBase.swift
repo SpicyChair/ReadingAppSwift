@@ -7,35 +7,48 @@
 
 import Foundation
 
+
+
 class CacheBase : ObservableObject {
     
     // cached books from search
     @Published var books: [String: BookDetailsModel] = [:]
     let filename = "cache.json"
     let fileManager: FileManager = FileManager()
+    let adapter = GoogleBooksAdapter()
     
     init () {
         loadCacheFromFile()
     }
     
-    func getBookDetail(key: String) -> BookDetailsModel? {
+    func getBookDetail(key: String) -> BookDetailsModel?  {
         if let book = books[key] {
             return book
         } else {
-            return nil
+            // if the book is not in the cache, fetch data from API
+            adapter.getBookDetails(key: key, completion: addBookToCache)
+            
+            
         }
+        return nil
     }
         
     func bookInCache(key: String) -> Bool {
-        return (books.keys.contains(key))
+        return books[key] != nil
     }
     
-    func addBookToCache(book: BookDetailsModel) {
-        if !(books.keys.contains(book.key)) {
-            books.updateValue(book, forKey: book.key)
-            saveCacheToFile()
-        }
+    func addBookToCache(toAdd: BookDetailsModel?) -> Void {
         
+        if let book = toAdd {
+            if !(books.keys.contains(book.key)) {
+                // run on the main thread to stop swiftui complaining
+                Task { @MainActor in
+                    books.updateValue(book, forKey: book.key)
+                    }
+                
+                saveCacheToFile()
+            }
+        }
     }
     
     func saveCacheToFile() {

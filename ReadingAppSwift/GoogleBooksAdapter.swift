@@ -53,9 +53,6 @@ class GoogleBooksAdapter {
         // in this case, this means updating data if successful
         // and passing in nil means faliure
         
-        
-        
-        
         let path = "/volumes/\(key)"
         
         // the guard let means that this can fail - the else is executed on failure
