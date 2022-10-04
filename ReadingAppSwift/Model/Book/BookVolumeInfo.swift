@@ -13,7 +13,7 @@ struct BookVolumeInfo: Codable, Hashable {
     let title: String
     let description: String
     let authors: [String]
-    let datePublished: String
+    let publishedDate: String
     let coverImage: String
     
     init(from decoder: Decoder) throws {
@@ -23,8 +23,15 @@ struct BookVolumeInfo: Codable, Hashable {
         self.title = rawBookDetails.title ?? "No title"
         self.description = rawBookDetails.description ?? "No description"
         self.authors = rawBookDetails.authors ?? ["No author"]
-        self.datePublished = rawBookDetails.publishedDate ?? "No publish date"
-        self.coverImage = rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? ""
+        self.publishedDate = rawBookDetails.publishedDate ?? "No publish date"
+        
+        if let cover = rawBookDetails.coverImage {
+            // check if cover exists in storage
+            self.coverImage = cover
+        } else {
+            // if not, get from API
+            self.coverImage = rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? ""
+        }
     }
     
     //horrible-looking struct modelled one to one with the JSON data
@@ -36,6 +43,10 @@ struct BookVolumeInfo: Codable, Hashable {
         let publisher: String?
         let authors: [String]?
         let pageCount: Int?
+        
+        // Properties to Allow for Decoding from JSON in Storage
+        let coverImage: String?
+        // END
         
         // ISBN numbers
         let industryIdentifiers: [IndustryIdentifiers]?
