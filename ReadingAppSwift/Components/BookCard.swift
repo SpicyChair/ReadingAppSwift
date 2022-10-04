@@ -13,6 +13,7 @@ struct BookCard: View {
     var authors: [String]
     var key: String
     var cover: String
+    // when the add to library button pressed
     
     
     var body: some View {
@@ -26,24 +27,18 @@ struct BookCard: View {
                         .bold()
                         .truncationMode(.tail)
                     Text(authors.first ?? "" )
-                    Button("Add to Library", action: addToLibrary)
-                        .buttonStyle(.bordered)
-                    
+                    AddToLibraryButton(key: key)
                 }
                 .padding(20)
             }
             .frame(height: 140)
         }
     }
-    
-    func addToLibrary() {
-        //TODO: ADD TO LIBRARY FUNCTIONALITY
-        return
-    }
 }
 
 struct BookCard_Previews: PreviewProvider {
     static var previews: some View {
         BookCard(title: "String", authors: ["String"], key: "String", cover: "")
+        
     }
 }

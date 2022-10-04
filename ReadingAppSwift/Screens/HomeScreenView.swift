@@ -8,10 +8,46 @@
 import SwiftUI
 
 struct HomeScreenView: View {
+    
+    @EnvironmentObject var cache: CacheBase
+    @EnvironmentObject var library: LibraryBase
+    
     var body: some View {
         NavigationView {
             Form {
-                Text("Hello World")
+                
+                Section (header: Text("Saved to Library")) {
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        // horizontal scrollview
+                        HStack (spacing: 12) {
+                            ForEach(library.library, id: \.self) { key in
+                                //access library keys
+                                
+                                if let book = cache.getBookDetail(key: key) {
+                                    //then access the env object cache
+                                    
+                                    BookCardVertical(key: book.key,
+                                                    title: book.volumeInfo.title,
+                                                    authors: book.volumeInfo.authors,
+                                                    cover: book.volumeInfo.coverImage)
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+                
+                Section (header: Text("Persistence Options")) {
+                    Button(action: library.clearLibrary) {
+                           Label("Clear Library", systemImage: "book.closed")
+                    }.foregroundColor(Color.red)
+                    
+                    Button(action: cache.clearCache) {
+                           Label("Clear Cache", systemImage: "xmark")
+                    }.foregroundColor(Color.red)
+                }
+                
             }.navigationTitle("Home")
         }
         .navigationViewStyle(.stack)
