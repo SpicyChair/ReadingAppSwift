@@ -28,6 +28,14 @@ class LibraryBase: ObservableObject {
             saveLibraryToFile()
         }
     }
+    
+    func removeBookFromLibrary(key: String) {
+        // find the index of the item
+        if let index = library.firstIndex(of: key) {
+            // remove the item from the array
+          library.remove(at: index)
+        }
+    }
 
     func isBookInLibrary(key: String) -> Bool {
         return library.contains(key)
