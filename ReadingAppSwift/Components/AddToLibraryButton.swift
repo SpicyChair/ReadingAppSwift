@@ -13,21 +13,47 @@ struct AddToLibraryButton: View {
     @EnvironmentObject var library: LibraryBase
     
     var body: some View {
-        Button(action: addToLibrary) {
-            if library.isBookInLibrary(key: self.key) {
-                // if the book is in library, show different text
-                Label("In Library", systemImage: "checkmark.square")
-                    .foregroundColor(Color.green)
-            } else {
+        if library.isBookInLibrary(key: self.key) {
+            // if the book is in library, show different button(s)
+            HStack {
+                Button(action: addToLibrary) {
+                    // add book to library button
+                    
+                    Label("Added", systemImage: "checkmark.square")
+                        .frame(maxHeight: .infinity)
+                        .foregroundColor(Color.green)
+                    
+                }
+                .buttonStyle(.bordered)
+                
+                Button(action: removeFromLibrary) {
+                    //smaller button to remove book from library
+                    
+                    Image(systemName: "xmark")
+                        .frame(maxHeight: .infinity)
+                        .foregroundColor(Color.red)
+                        
+                }
+                .buttonStyle(.bordered)
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxHeight: 200)
+            
+        } else {
+            Button(action: addToLibrary) {
                 Label("Add", systemImage: "plus.square.on.square")
             }
-            
+            .buttonStyle(.bordered)
         }
-        .buttonStyle(.bordered)
+        
     }
     
     func addToLibrary() {
         library.addBookToLibrary(key: self.key)
+    }
+    
+    func removeFromLibrary() {
+        library.removeBookFromLibrary(key: self.key)
     }
 }
 

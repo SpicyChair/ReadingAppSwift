@@ -31,29 +31,29 @@ struct SearchScreenView: View {
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 
-                Section {
-                    state.results.isEmpty
-                        ?
+                Section(header: Text("Results")) {
+                    
+                    if (state.results.isEmpty) {
                         Text("Search above!")
-                        .bold()
-                        :
-                        Text("Results for \(searchText)")
-                        .bold()
-                    List {
-                        ForEach(state.results, id: \.self) { book in
-                            
-                            BookCard (
-                                title: book.volumeInfo.title,
-                                authors: book.volumeInfo.authors,
-                                key: book.key,
-                                cover: book.volumeInfo.coverImage
-                            )
-                            .onAppear {
-                                cache.addBookToCache(toAdd: book)
+                    } else {
+                        List {
+                            ForEach(state.results, id: \.self) { book in
+                                
+                                BookCard (
+                                    title: book.volumeInfo.title,
+                                    authors: book.volumeInfo.authors,
+                                    key: book.key,
+                                    cover: book.volumeInfo.coverImage
+                                )
+                                .onAppear {
+                                    cache.addBookToCache(toAdd: book)
+                                }
                             }
+                            
                         }
-                        
                     }
+    
+                    
                 }
             }.navigationTitle("Search")
         }

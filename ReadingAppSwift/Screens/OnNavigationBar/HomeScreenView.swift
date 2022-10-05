@@ -35,7 +35,7 @@ struct HomeScreenView: View {
                                 
                             }
                         }
-                    }
+                    }.padding([.top, .bottom], 10)
                 }
                 
                 Section (header: Text("Persistence Options")) {

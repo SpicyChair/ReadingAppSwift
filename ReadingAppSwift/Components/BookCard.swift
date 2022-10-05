@@ -38,7 +38,7 @@ struct BookCard: View {
 
 struct BookCard_Previews: PreviewProvider {
     static var previews: some View {
-        BookCard(title: "String", authors: ["String"], key: "String", cover: "")
+        BookCard(title: "String", authors: ["String"], key: "m1A-DAAAQBAJ", cover: "https://books.google.com/books/content?id=m1A-DAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api")
         
     }
 }
