@@ -15,6 +15,8 @@ struct BookVolumeInfo: Codable, Hashable {
     let authors: [String]
     let publishedDate: String
     let coverImage: String
+    let pageCount: Int
+    let language: String
     
     init(from decoder: Decoder) throws {
         let rawBookDetails = try RawBookDetailsModel(from: decoder)
@@ -24,6 +26,9 @@ struct BookVolumeInfo: Codable, Hashable {
         self.description = rawBookDetails.description ?? "No description"
         self.authors = rawBookDetails.authors ?? ["No author"]
         self.publishedDate = rawBookDetails.publishedDate ?? "No publish date"
+        self.pageCount = rawBookDetails.pageCount ?? 0
+        self.language = rawBookDetails.language ?? "No language"
+        
         
         if let cover = rawBookDetails.coverImage {
             // check if cover exists in storage
