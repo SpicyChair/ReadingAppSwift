@@ -17,8 +17,16 @@ class LibraryBase: ObservableObject {
     // array of book keys that the user has saved
     // use these keys to access books
     @Published var library: [String] = []
+    
+    // book key points to the book log data
+    // separate to ensure removing from library does not remove
+    // log data
+    @Published var log: [String : BookLogData]
+    
+    
     let fileManager: FileManager = FileManager()
-    let filename = "library.json"
+    let library_filename = "library.json"
+    let log_filename = "book_log.json"
 
     // methods to interact with the library
 
@@ -42,11 +50,11 @@ class LibraryBase: ObservableObject {
     }
     
     func saveLibraryToFile() {
-        fileManager.saveToJSON(filename: filename , object: library)
+        fileManager.saveToJSON(filename: library_filename , object: library)
     }
     
     func loadLibraryFromFile() {
-        if let loaded: [String] = fileManager.loadJSONFromFile(filename: filename) {
+        if let loaded: [String] = fileManager.loadJSONFromFile(filename: library_filename) {
             library = loaded
         }
     }
@@ -57,6 +65,6 @@ class LibraryBase: ObservableObject {
         // and delete the json from file
         
         library = []
-        fileManager.deleteFile(filename: filename)
+        fileManager.deleteFile(filename: library_filename)
     }
 }
