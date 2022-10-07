@@ -27,8 +27,6 @@ class CacheBase : ObservableObject {
         } else {
             // if the book is not in the cache, fetch data from API
             adapter.getBookDetails(key: key, completion: addBookToCache)
-            
-            
         }
         return nil
     }

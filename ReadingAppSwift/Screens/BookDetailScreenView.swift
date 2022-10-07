@@ -36,7 +36,7 @@ struct BookDetailScreenView: View {
                                 }
                             }
                             
-                            AddToLibraryButton(key: key)
+                            AddToLibraryButton(key: key, pagesInBook: book.volumeInfo.pageCount)
                         //padding to top and bottom of the vstack
                         }.padding([.top, .bottom], 10)
                         

@@ -13,6 +13,7 @@ struct BookCard: View {
     var authors: [String]
     var key: String
     var cover: String
+    var pageCount: Int
     // when the add to library button pressed
     
     
@@ -27,7 +28,7 @@ struct BookCard: View {
                         .bold()
                         .truncationMode(.tail)
                     Text(authors.first ?? "" )
-                    AddToLibraryButton(key: key)
+                    AddToLibraryButton(key: key, pagesInBook: pageCount)
                 }
                 .padding(20)
             }
@@ -38,7 +39,7 @@ struct BookCard: View {
 
 struct BookCard_Previews: PreviewProvider {
     static var previews: some View {
-        BookCard(title: "String", authors: ["String"], key: "m1A-DAAAQBAJ", cover: "https://books.google.com/books/content?id=m1A-DAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api")
+        BookCard(title: "String", authors: ["String"], key: "m1A-DAAAQBAJ", cover: "https://books.google.com/books/content?id=m1A-DAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", pageCount: 10)
         
     }
 }

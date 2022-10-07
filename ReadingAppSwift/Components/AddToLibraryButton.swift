@@ -10,6 +10,7 @@ import SwiftUI
 struct AddToLibraryButton: View {
     
     var key: String
+    var pagesInBook: Int
     @EnvironmentObject var library: LibraryBase
     
     var body: some View {
@@ -49,7 +50,7 @@ struct AddToLibraryButton: View {
     }
     
     func addToLibrary() {
-        library.addBookToLibrary(key: self.key)
+        library.addBookToLibrary(key: self.key, pages: pagesInBook)
     }
     
     func removeFromLibrary() {
@@ -59,6 +60,6 @@ struct AddToLibraryButton: View {
 
 struct AddToLibraryButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddToLibraryButton(key: "")
+        AddToLibraryButton(key: "", pagesInBook: 10)
     }
 }
