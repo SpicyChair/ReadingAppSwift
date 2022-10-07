@@ -8,21 +8,17 @@
 import Foundation
 
 
-class BookLogData: ObservableObject {
-
+class BookLogData: Codable {
+    
     // total amount of pages
-    @Published var pageCount: Int = 0
+    let pageCount: Int
     
     // total progress in pages
-    @Published var pageProgress: Int = 0
+    var pageProgress: Int = 0
     
     // dictionary of dates pointing to number of pages read
     // on that particular day
-    var pagesPerDay : [String : Int] = [:]
-    
-    init (pageCount: Int) {
-        self.pageCount = pageCount
-    }
+    var pagesPerDay : [String : Int]
     
     func logPages(pages: Int) {
         
@@ -49,10 +45,12 @@ class BookLogData: ObservableObject {
         
         if let currentPages = pagesPerDay[dateAsString] {
             pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
-
+            
+        
         // else, create a new entry for today
+            
         } else {
-            pagesPerDay.updateValue(toAdd, forKey: dateAsString)
+            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
         }
         
         // update the total progress

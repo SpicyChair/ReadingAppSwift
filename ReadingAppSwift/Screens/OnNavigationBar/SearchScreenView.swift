@@ -43,8 +43,7 @@ struct SearchScreenView: View {
                                     title: book.volumeInfo.title,
                                     authors: book.volumeInfo.authors,
                                     key: book.key,
-                                    cover: book.volumeInfo.coverImage,
-                                    pageCount: book.volumeInfo.pageCount
+                                    cover: book.volumeInfo.coverImage
                                 )
                                 .onAppear {
                                     cache.addBookToCache(toAdd: book)
