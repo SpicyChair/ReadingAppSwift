@@ -20,11 +20,7 @@ class BookLogData: ObservableObject {
     // on that particular day
     @Published var pagesPerDay : [String : Int] = [:]
     
-    
-    init() {
-        
-        
-    }
+    init() {}
     
     func logPages(pages: Int) {
         

@@ -11,58 +11,57 @@ struct BookLogScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
+    @EnvironmentObject var logBase: BookLogBase
     
-    @ObservedObject var log: BookLogData
-    var key: String
-    
-    init (key: String) {
-        self.key = key
-        self.log = BookLogData()
-    }
+    let key: String
+
     
     var body: some View {
+        
         Form {
             if let book = cache.getBookDetail(key: key) {
-                VStack (alignment: .center) {
-                    HStack {
-                        BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
-                            .padding([.trailing], 10)
-                        
-                        VStack (alignment: .leading) {
-                            // book title in large text
-                            Text(book.volumeInfo.title)
-                                .font(.system(size: 25, weight: .bold, design: .serif))
-                                .fixedSize(horizontal: false, vertical: true)
-                                .frame(maxHeight: 300)
+                    VStack (alignment: .center) {
+                        HStack {
+                            BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
+                                .padding([.trailing], 10)
                             
-                            //book author in smaller text
-                            Text(book.volumeInfo.authors.first ?? "")
-                                .font(.system(size: 20, design: .serif))
+                            VStack (alignment: .leading) {
+                                // book title in large text
+                                Text(book.volumeInfo.title)
+                                    .font(.system(size: 25, weight: .bold, design: .serif))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .frame(maxHeight: 300)
+                                
+                                //book author in smaller text
+                                Text(book.volumeInfo.authors.first ?? "")
+                                    .font(.system(size: 20, design: .serif))
+                            }
                         }
+                        
+                        //AddToLibraryButton(key: key)
+                    //padding to top and bottom of the vstack
+                    }.padding([.top, .bottom], 10)
+                    
+                    Section (header: Text("Log Data")) {
+                        Text("Page Count: \($logBase.getBookLog(key: key))")
+                        
+                        Stepper(onIncrement: {
+                            
+                        
+                            
+                        }, onDecrement: {
+                            
+                            
+                            
+                        }) {
+                            Text("Progress: \(logBase.getBookLog(key: key).pageProgress)")
+                        }
+                        
+                    }.onAppear {
+                        logBase.getBookLog(key: key).pageCount = book.volumeInfo.pageCount
                     }
                     
-                    //AddToLibraryButton(key: key)
-                //padding to top and bottom of the vstack
-                }.padding([.top, .bottom], 10)
                 
-                Section (header: Text("Log Data")) {
-                    Text("Page Count: \(log.pageCount)")
-                    
-                    Stepper(onIncrement: {
-                        
-                        log.logPages(pages: 1)
-                    }, onDecrement: {
-                        
-                        log.logPages(pages: -1)
-                    }) {
-                        Text("Progress: \(log.pageProgress)")
-                    }
-                    
-                }
-                .onAppear {
-                    log.pageCount = book.volumeInfo.pageCount
-                    //print(log.pageCount)
-                }
 
             } else {
                 Text("Could not retrieve book information.")

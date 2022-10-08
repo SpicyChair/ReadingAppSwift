@@ -196,11 +196,11 @@
 		FD4EC68428D0740500B99ED2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FDF5FC7C28DB1AA4008F80B1 /* Book */,
 				FD285D5028F1C39400647DE8 /* Search */,
 				FD285D4E28F1C35500647DE8 /* BookLogBase.swift */,
 				FDD804DC28EB25E40081B28B /* LibraryBase.swift */,
 				FDB690D828DB7625004F17BF /* CacheBase.swift */,
-				FDF5FC7C28DB1AA4008F80B1 /* Book */,
 			);
 			path = Model;
 			sourceTree = "<group>";
