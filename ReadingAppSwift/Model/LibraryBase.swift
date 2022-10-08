@@ -21,7 +21,9 @@ class LibraryBase: ObservableObject {
     // book key points to the book log data
     // separate to ensure removing from library does not remove
     // log data
-    @Published var log: [String : BookLogData]
+    @Published var log: [String : BookLogData] = [:]
+    
+    
     
     
     let fileManager: FileManager = FileManager()
@@ -32,7 +34,10 @@ class LibraryBase: ObservableObject {
 
     func addBookToLibrary(key: String) {
         if !(library.contains(key)) {
+            
             library.append(key)
+            log.updateValue(BookLogData(), forKey: key)
+            
             saveLibraryToFile()
         }
     }
@@ -49,9 +54,12 @@ class LibraryBase: ObservableObject {
         return library.contains(key)
     }
     
+    // methods to handle library persistence
     func saveLibraryToFile() {
         fileManager.saveToJSON(filename: library_filename , object: library)
     }
+    
+
     
     func loadLibraryFromFile() {
         if let loaded: [String] = fileManager.loadJSONFromFile(filename: library_filename) {
@@ -66,5 +74,39 @@ class LibraryBase: ObservableObject {
         
         library = []
         fileManager.deleteFile(filename: library_filename)
+
     }
+    
+    
+    // methods for handling logs
+    /*
+    func saveLogToFile() {
+        fileManager.saveToJSON(filename: log_filename, object: log)
+    }
+    
+    func loadLogFromFile() {
+        if let loaded: [String: BookLogData] = fileManager.loadJSONFromFile(filename: log_filename) {
+            log = loaded
+        }
+    }
+     */
+    
+    func getBookLog(key: String) -> BookLogData {
+        if let bookLog = log[key] {
+            return bookLog
+        }
+        let bookLog = BookLogData()
+        log.updateValue(bookLog, forKey: key)
+        return bookLog
+    }
+    
+    func clearLog() {
+        
+        // empty the array
+        // and delete the json from file
+        
+        log = [:]
+        fileManager.deleteFile(filename: log_filename)
+    }
+
 }

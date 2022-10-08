@@ -11,13 +11,18 @@ struct BookLogScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
+    
+    @ObservedObject var log: BookLogData
     var key: String
+    
+    init (key: String) {
+        self.key = key
+        self.log = BookLogData()
+    }
     
     var body: some View {
         Form {
-            
             if let book = cache.getBookDetail(key: key) {
-                
                 VStack (alignment: .center) {
                     HStack {
                         BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
@@ -40,8 +45,23 @@ struct BookLogScreenView: View {
                 //padding to top and bottom of the vstack
                 }.padding([.top, .bottom], 10)
                 
-                Section (header: Text("Description")) {
-                    Text(book.volumeInfo.description)
+                Section (header: Text("Log Data")) {
+                    Text("Page Count: \(log.pageCount)")
+                    
+                    Stepper(onIncrement: {
+                        
+                        log.logPages(pages: 1)
+                    }, onDecrement: {
+                        
+                        log.logPages(pages: -1)
+                    }) {
+                        Text("Progress: \(log.pageProgress)")
+                    }
+                    
+                }
+                .onAppear {
+                    log.pageCount = book.volumeInfo.pageCount
+                    //print(log.pageCount)
                 }
                 
                 Section (header: Text("More Information")) {

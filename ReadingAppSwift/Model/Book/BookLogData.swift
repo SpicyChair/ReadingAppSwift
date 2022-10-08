@@ -8,17 +8,23 @@
 import Foundation
 
 
-class BookLogData: Codable {
+class BookLogData: ObservableObject {
     
     // total amount of pages
-    let pageCount: Int
+    @Published var pageCount: Int = 0
     
     // total progress in pages
-    var pageProgress: Int = 0
+    @Published var pageProgress: Int = 0
     
     // dictionary of dates pointing to number of pages read
     // on that particular day
-    var pagesPerDay : [String : Int]
+    @Published var pagesPerDay : [String : Int] = [:]
+    
+    
+    init() {
+        
+        
+    }
     
     func logPages(pages: Int) {
         
@@ -28,32 +34,44 @@ class BookLogData: Codable {
         // pages read can never be greater than the amount of pages in the book
         if (pageProgress + pages >= pageCount) {
             toAdd = pageCount - pageProgress
+            
+            
+        // pages read can never be negative!
+        } else if (pageProgress + pages < 0){
+            toAdd = pageProgress * (-1)
         } else {
             toAdd = pages
         }
         
+
+        // if an entry exists for today, add the new pages
+        
+        let dateAsString = getDateAsString()
+        
+        if let currentPages = pagesPerDay[dateAsString] {
+            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
+            
+        // else, create a new entry for today
+            
+        } else {
+            pagesPerDay.updateValue(toAdd, forKey: dateAsString)
+        }
+        
+        // update the total progress
+        pageProgress += toAdd
+    }
+    
+    func getDateAsString() -> String {
+        
         // calculate dateAsString
         // this is used as the key in the pagesPerDay dictionary
+        
         let date = Date()
         let calendar = Calendar.current
         let day = calendar.component(.day, from: date)
         let month = calendar.component(.month, from: date)
         let year = calendar.component(.year, from: date)
-        let dateAsString = "\(day)-\(month)-\(year)"
-
-        // if an entry exists for today, add the new pages
         
-        if let currentPages = pagesPerDay[dateAsString] {
-            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
-            
-        
-        // else, create a new entry for today
-            
-        } else {
-            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
-        }
-        
-        // update the total progress
-        pageProgress += toAdd
+        return "\(day)-\(month)-\(year)"
     }
 }
