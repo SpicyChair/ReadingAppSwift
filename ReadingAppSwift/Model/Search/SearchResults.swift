@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResultBase : Codable {
+struct SearchResults : Codable {
     var results: [BookDetailsModel]
     
     private enum CodingKeys:String, CodingKey {

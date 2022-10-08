@@ -35,7 +35,7 @@ class GoogleBooksAdapter {
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {
-                        if let response: SearchResultBase = self.parseJson(json: data) {
+                        if let response: SearchResults = self.parseJson(json: data) {
                             // call completion function on the response data
                             completion(response.results)
                         } else {

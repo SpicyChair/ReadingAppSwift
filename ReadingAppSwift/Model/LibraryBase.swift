@@ -18,10 +18,8 @@ class LibraryBase: ObservableObject {
     // use these keys to access books
     @Published var library: [String] = []
     
-    // book key points to the book log data
-    // separate to ensure removing from library does not remove
-    // log data
-    @Published var log: [String : BookLogData]
+    
+    
     
     
     let fileManager: FileManager = FileManager()
@@ -32,6 +30,7 @@ class LibraryBase: ObservableObject {
 
     func addBookToLibrary(key: String) {
         if !(library.contains(key)) {
+            
             library.append(key)
             saveLibraryToFile()
         }
@@ -49,9 +48,12 @@ class LibraryBase: ObservableObject {
         return library.contains(key)
     }
     
+    // methods to handle library persistence
     func saveLibraryToFile() {
         fileManager.saveToJSON(filename: library_filename , object: library)
     }
+    
+
     
     func loadLibraryFromFile() {
         if let loaded: [String] = fileManager.loadJSONFromFile(filename: library_filename) {
@@ -66,5 +68,22 @@ class LibraryBase: ObservableObject {
         
         library = []
         fileManager.deleteFile(filename: library_filename)
+
     }
+    
+    
+    // methods for handling logs
+    /*
+    func saveLogToFile() {
+        fileManager.saveToJSON(filename: log_filename, object: log)
+    }
+    
+    func loadLogFromFile() {
+        if let loaded: [String: BookLogData] = fileManager.loadJSONFromFile(filename: log_filename) {
+            log = loaded
+        }
+    }
+     */
+    
+
 }

@@ -15,7 +15,7 @@ struct BookCardVertical: View {
     var cover: String
     
     var body: some View {
-        NavigationLink(destination: BookDetailScreenView(key: key)) {
+        NavigationLink(destination: BookLogScreenView(key: key)) {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
