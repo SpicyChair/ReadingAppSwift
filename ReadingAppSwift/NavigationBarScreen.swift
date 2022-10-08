@@ -10,7 +10,6 @@ import SwiftUI
 struct NavigationBarScreen: View {
     let cacheBase: CacheBase = CacheBase()
     let libraryBase: LibraryBase = LibraryBase()
-    let logBase: BookLogBase = BookLogBase()
     
     var body: some View {
         TabView {
@@ -33,7 +32,6 @@ struct NavigationBarScreen: View {
         }
         .environmentObject(libraryBase)
         .environmentObject(cacheBase)
-        .environmentObject(logBase)
         
     }
 }

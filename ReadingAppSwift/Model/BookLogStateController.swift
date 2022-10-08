@@ -6,9 +6,27 @@
 //
 
 import Foundation
+import SwiftUI
 
+struct SavedLog : Codable {
+    var pageProgress: Int
+    var pageCount:Int
+    var pagesPerDay: [String : Int]
+}
 
-class BookLogData: ObservableObject {
+class BookLogStateController: ObservableObject {
+    
+    var key = "" {
+        didSet {
+            loadBookLog()
+            filename = "\(key)_log.json"
+        }
+    }
+    
+    var filename = ""
+    
+    private var fileManager = FileManager()
+    
     
     // total amount of pages
     @Published var pageCount: Int = 0
@@ -20,7 +38,6 @@ class BookLogData: ObservableObject {
     // on that particular day
     @Published var pagesPerDay : [String : Int] = [:]
     
-    init() {}
     
     func logPages(pages: Int) {
         
@@ -53,6 +70,7 @@ class BookLogData: ObservableObject {
         
         // update the total progress
         pageProgress += toAdd
+        saveBookLog()
     }
     
     func getDateAsString() -> String {
@@ -68,4 +86,24 @@ class BookLogData: ObservableObject {
         
         return "\(day)-\(month)-\(year)"
     }
+    
+    func loadBookLog() {
+        if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: filename) {
+            self.pagesPerDay = loaded.pagesPerDay
+            self.pageProgress = loaded.pageProgress
+            self.pageCount = loaded.pageCount
+        }
+    }
+    
+    func saveBookLog() {
+        fileManager.saveToJSON(filename: filename , object: SavedLog(pageProgress: self.pageProgress, pageCount: self.pageCount, pagesPerDay: self.pagesPerDay))
+    }
+    
+    func clearBookLog() {
+        fileManager.deleteFile(filename: filename)
+        self.pageProgress = 0
+        self.pagesPerDay = [:]
+    }
+    
+    
 }

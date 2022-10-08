@@ -11,10 +11,9 @@ struct BookLogScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
-    @EnvironmentObject var logBase: BookLogBase
+    @StateObject var state: BookLogStateController = BookLogStateController()
     
     let key: String
-
     
     var body: some View {
         
@@ -43,23 +42,31 @@ struct BookLogScreenView: View {
                     }.padding([.top, .bottom], 10)
                     
                     Section (header: Text("Log Data")) {
-                        Text("Page Count: \($logBase.getBookLog(key: key))")
+                        Text("Page Count: \(state.pageCount)")
                         
                         Stepper(onIncrement: {
-                            
+                            state.logPages(pages: 1)
                         
                             
                         }, onDecrement: {
-                            
+                            state.logPages(pages: -1)
                             
                             
                         }) {
-                            Text("Progress: \(logBase.getBookLog(key: key).pageProgress)")
+                            Text("Progress: \(state.pageProgress)")
                         }
                         
                     }.onAppear {
-                        logBase.getBookLog(key: key).pageCount = book.volumeInfo.pageCount
+                        state.pageCount = book.volumeInfo.pageCount
+                        state.key = key
                     }
+                
+                Section (header: Text("Persistence Options")) {
+                    Button(action: state.clearBookLog) {
+                           Label("Clear Logged Pages", systemImage: "xmark")
+                    }.foregroundColor(Color.red)
+                    
+                }
                     
                 
 

@@ -18,10 +18,6 @@ class LibraryBase: ObservableObject {
     // use these keys to access books
     @Published var library: [String] = []
     
-    // book key points to the book log data
-    // separate to ensure removing from library does not remove
-    // log data
-    @Published var log: [String : BookLogData] = [:]
     
     
     
@@ -36,8 +32,6 @@ class LibraryBase: ObservableObject {
         if !(library.contains(key)) {
             
             library.append(key)
-            log.updateValue(BookLogData(), forKey: key)
-            
             saveLibraryToFile()
         }
     }
@@ -91,22 +85,5 @@ class LibraryBase: ObservableObject {
     }
      */
     
-    func getBookLog(key: String) -> BookLogData {
-        if let bookLog = log[key] {
-            return bookLog
-        }
-        let bookLog = BookLogData()
-        log.updateValue(bookLog, forKey: key)
-        return bookLog
-    }
-    
-    func clearLog() {
-        
-        // empty the array
-        // and delete the json from file
-        
-        log = [:]
-        fileManager.deleteFile(filename: log_filename)
-    }
 
 }
