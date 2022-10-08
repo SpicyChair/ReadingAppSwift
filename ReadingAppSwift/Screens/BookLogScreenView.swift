@@ -63,11 +63,6 @@ struct BookLogScreenView: View {
                     log.pageCount = book.volumeInfo.pageCount
                     //print(log.pageCount)
                 }
-                
-                Section (header: Text("More Information")) {
-                    Text("\(book.volumeInfo.pageCount) pages")
-                    Text("Language: \(book.volumeInfo.language)")
-                }
 
             } else {
                 Text("Could not retrieve book information.")

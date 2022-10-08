@@ -42,8 +42,6 @@ class BookLogData: ObservableObject {
         } else {
             toAdd = pages
         }
-        
-
         // if an entry exists for today, add the new pages
         
         let dateAsString = getDateAsString()
