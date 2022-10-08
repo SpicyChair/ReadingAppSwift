@@ -8,25 +8,22 @@
 import Foundation
 import SwiftUI
 
-struct SavedLog : Codable {
-    var pageProgress: Int
-    var pageCount:Int
-    var pagesPerDay: [String : Int]
-}
-
 class BookLogStateController: ObservableObject {
     
     var key = "" {
+        // when the key is set by the view, the filename is generated
+        // and the data is loaded from the filename
         didSet {
-            loadBookLog()
             filename = "\(key)_log.json"
+            loadBookLog()
         }
     }
     
+    // filename is var as it will change once key changes
     var filename = ""
     
+    // allow persistence
     private var fileManager = FileManager()
-    
     
     // total amount of pages
     @Published var pageCount: Int = 0
@@ -87,6 +84,8 @@ class BookLogStateController: ObservableObject {
         return "\(day)-\(month)-\(year)"
     }
     
+    // methods for persisting book logs
+    
     func loadBookLog() {
         if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: filename) {
             self.pagesPerDay = loaded.pagesPerDay
@@ -103,6 +102,14 @@ class BookLogStateController: ObservableObject {
         fileManager.deleteFile(filename: filename)
         self.pageProgress = 0
         self.pagesPerDay = [:]
+    }
+    
+    // struct to facilitate encoding and decoding
+    
+    struct SavedLog : Codable {
+        var pageProgress: Int
+        var pageCount:Int
+        var pagesPerDay: [String : Int]
     }
     
     
