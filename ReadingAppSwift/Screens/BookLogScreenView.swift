@@ -45,10 +45,16 @@ struct BookLogScreenView: View {
                     
                     Section (header: Text("Log Data")) {
                         HStack (alignment: .center) {
-                            CircleProgressBar(progress: Double(state.pageProgress), maxProgress: Double(state.pageCount), color: Color.green, showPercent: true)
+                            
+                            // circular progress bar
+                            // cast variables to double
+                            
+                            CircleProgressBar(progress: state.pageProgress, maxProgress: state.pageCount, color: Color.green, showPercent: true)
                                 .frame(width: 100, height: 100)
-                                    
+                            
                             Spacer()
+                            
+                            // show details
                             VStack (alignment: .leading) {
                                 Text("Progress")
                                     .font(.system(size: 20, weight: .regular, design: .serif))
@@ -75,6 +81,7 @@ struct BookLogScreenView: View {
                                 .frame(maxWidth: Double.infinity)
                             Button("Set") {
                                 if let number = Int(pageProgressToLog) {
+                                    // if number in range 0 to state.pageCount
                                     if (0...state.pageCount ~= number) {
                                         state.setPageProgress(pages: number)
                                     }

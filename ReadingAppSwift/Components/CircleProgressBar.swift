@@ -10,10 +10,10 @@ import SwiftUI
 struct CircleProgressBar: View {
     
     //current progress
-    var progress: Double
+    var progress: Int
     
     //maximum possible progress
-    var maxProgress: Double
+    var maxProgress: Int
     
     var color: Color
     
@@ -27,7 +27,7 @@ struct CircleProgressBar: View {
                     lineWidth: 15
                 )
             Circle()
-                .trim(from: 0, to: (progress / maxProgress)) // 1
+                .trim(from: 0, to: (progress / maxProgress))
                 .stroke(
                     color,
                     style: StrokeStyle (
@@ -36,11 +36,13 @@ struct CircleProgressBar: View {
                     )
     
                 )
+            // rotate -90 degrees to start from the top
                 .rotationEffect(.degrees(-90))
+            // animate changes
                 .animation(.easeOut, value: progress)
             
             if showPercent {
-                Text("\(((progress / maxProgress) * 100), specifier: "%.1f")%")
+                Text("\(((Double(progress) / Double(maxProgress)) * 100), specifier: "%.1f")%")
                     .font(.system(size: 22, weight: .bold, design: .serif))
             }
             

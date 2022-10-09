@@ -16,6 +16,7 @@ struct HomeScreenView: View {
         NavigationView {
             Form {
                 HStack (alignment: .center) {
+                    // circle within a circle
                     ZStack {
                         CircleProgressBar(progress: 1, maxProgress: 5, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
@@ -23,7 +24,7 @@ struct HomeScreenView: View {
                             .frame(width: 70, height: 70)
                     }
                     
-                            
+                    // reading stats
                     
                     VStack (alignment: .leading) {
                         Text("Pages Read")

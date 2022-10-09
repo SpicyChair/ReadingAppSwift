@@ -72,6 +72,10 @@ class BookLogStateController: ObservableObject {
     
     func setPageProgress(pages: Int) {
         
+        // how many pages have actually been read
+        // eg. if pages = 40, and the user sets progress to 70
+        // 30 pages have been read
+        
         let toAdd = abs(pageProgress - pages)
         
         let dateAsString = getDateAsString()
