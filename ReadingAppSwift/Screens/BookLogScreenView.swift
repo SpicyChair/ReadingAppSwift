@@ -11,7 +11,9 @@ struct BookLogScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
-    @StateObject var state: BookLogStateController = BookLogStateController()
+    @StateObject private var state: BookLogStateController = BookLogStateController()
+    
+    @State private var pageProgressToLog: String = ""
     
     let key: String
     
@@ -20,8 +22,8 @@ struct BookLogScreenView: View {
         Form {
             if let book = cache.getBookDetail(key: key) {
                     VStack (alignment: .center) {
-                        HStack {
-                            BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 150, height: 225, cornerRadius: 10)
+                        HStack (alignment: .center) {
+                            BookCoverImage(coverImage: book.volumeInfo.coverImage, width: 120, height: 180, cornerRadius: 10)
                                 .padding([.trailing], 10)
                             
                             VStack (alignment: .leading) {
@@ -42,24 +44,52 @@ struct BookLogScreenView: View {
                     }.padding([.top, .bottom], 10)
                     
                     Section (header: Text("Log Data")) {
-                        Text("Page Count: \(state.pageCount)")
-                        
-                        Stepper(onIncrement: {
-                            state.logPages(pages: 1)
-                        
-                            
-                        }, onDecrement: {
-                            state.logPages(pages: -1)
-                            
-                            
-                        }) {
-                            Text("Progress: \(state.pageProgress)")
+                        HStack (alignment: .center) {
+                            CircleProgressBar(progress: Double(state.pageProgress), maxProgress: Double(state.pageCount), color: Color.green, showPercent: true)
+                                .frame(width: 100, height: 100)
+                                    
+                            Spacer()
+                            VStack (alignment: .leading) {
+                                Text("Progress")
+                                    .font(.system(size: 20, weight: .regular, design: .serif))
+                                    
+                                Text("\(state.pageProgress) / \(state.pageCount)")
+                                    .font(.system(size: 30, weight: .bold, design: .serif))
+                                Stepper(onIncrement: {
+                                    state.logPages(pages: 1)
+                                }, onDecrement: {
+                                    state.logPages(pages: -1)
+                                }) {
+                                    
+                                }.frame(width: 85)
+                            }
+                            .padding()
                         }
+                            .padding()
+                        
+                        
+                        
+                        HStack {
+                            TextField("Set Progress", text: $pageProgressToLog)
+                                .keyboardType(.numberPad)
+                                .frame(maxWidth: Double.infinity)
+                            Button("Set") {
+                                if let number = Int(pageProgressToLog) {
+                                    if (0...state.pageCount ~= number) {
+                                        state.setPageProgress(pages: number)
+                                    }
+                                }
+                            }.buttonStyle(.bordered)
+                            
+                        }
+                        
+                        
                         
                     }.onAppear {
                         state.pageCount = book.volumeInfo.pageCount
                         state.key = key
                     }
+                
                 
                 Section (header: Text("Persistence Options")) {
                     Button(action: state.clearBookLog) {
@@ -67,8 +97,6 @@ struct BookLogScreenView: View {
                     }.foregroundColor(Color.red)
                     
                 }
-                    
-                
 
             } else {
                 Text("Could not retrieve book information.")
@@ -77,6 +105,22 @@ struct BookLogScreenView: View {
         }
     .navigationTitle("About Book")
     }
+    
+    struct IncrementButton: View {
+            var incrementBy: Int
+            var text: String
+            
+            var body: some View {
+                Button(action: {
+                    //state.logPages(pages: incrementBy)
+                    }, label : {
+                        Text(text)
+                            .frame(maxWidth: .infinity)    // << !!
+                    }).buttonStyle(.bordered)
+            }
+        }
+    
+    
 }
 
 struct BookLogScreenView_Previews: PreviewProvider {

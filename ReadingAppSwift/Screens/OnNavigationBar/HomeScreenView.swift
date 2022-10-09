@@ -15,6 +15,33 @@ struct HomeScreenView: View {
     var body: some View {
         NavigationView {
             Form {
+                HStack (alignment: .center) {
+                    ZStack {
+                        CircleProgressBar(progress: 1, maxProgress: 5, color: Color.green, showPercent: false)
+                            .frame(width: 100, height: 100)
+                        CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
+                            .frame(width: 70, height: 70)
+                    }
+                    
+                            
+                    
+                    VStack (alignment: .leading) {
+                        Text("Pages Read")
+                            .font(.system(size: 16, weight: .regular, design: .serif))
+                            
+                        Text("60 / 100")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+                        Spacer()
+                        Text("Time Read")
+                            .font(.system(size: 16, weight: .regular, design: .serif))
+                            
+                        Text("10 / 50 min")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+   
+                    }
+                    .padding()
+                }
+                    .padding()
                 
                 Section (header: Text("Saved to Library")) {
                     

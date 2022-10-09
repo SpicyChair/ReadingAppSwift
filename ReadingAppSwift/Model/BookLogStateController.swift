@@ -26,7 +26,7 @@ class BookLogStateController: ObservableObject {
     private var fileManager = FileManager()
     
     // total amount of pages
-    @Published var pageCount: Int = 0
+    @Published var pageCount: Int = 1
     
     // total progress in pages
     @Published var pageProgress: Int = 0
@@ -69,6 +69,27 @@ class BookLogStateController: ObservableObject {
         pageProgress += toAdd
         saveBookLog()
     }
+    
+    func setPageProgress(pages: Int) {
+        
+        let toAdd = abs(pageProgress - pages)
+        
+        let dateAsString = getDateAsString()
+        
+        if let currentPages = pagesPerDay[dateAsString] {
+            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
+            
+        // else, create a new entry for today
+            
+        } else {
+            pagesPerDay.updateValue(toAdd, forKey: dateAsString)
+        }
+        
+        // update the total progress
+        pageProgress = pages
+        saveBookLog()
+    }
+    
     
     func getDateAsString() -> String {
         
