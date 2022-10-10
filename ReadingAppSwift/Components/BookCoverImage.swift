@@ -25,6 +25,8 @@ struct BookCoverImage: View {
             }
             
             // Book Cover
+            
+            // https://i.guim.co.uk/img/media/35426ac29e959093643705eb149e9779c23a30d8/0_262_3500_2100/master/3500.jpg?width=620&quality=85&dpr=1&s=none
             AsyncImage(url: URL(string: coverImage)) { image in
                 image.resizable()
             } placeholder: {

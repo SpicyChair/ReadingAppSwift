@@ -11,6 +11,7 @@ struct HomeScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
+    @StateObject var logStateController: BookLogStateController = BookLogStateController()
     
     var body: some View {
         NavigationView {
@@ -18,10 +19,12 @@ struct HomeScreenView: View {
                 HStack (alignment: .center) {
                     // circle within a circle
                     ZStack {
-                        CircleProgressBar(progress: 1, maxProgress: 5, color: Color.green, showPercent: false)
+                        CircleProgressBar(progress: logStateController.globalPageProgress, maxProgress: logStateController.globalPageGoal, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
+                        /*
                         CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
                             .frame(width: 70, height: 70)
+                         */
                     }
                     
                     // reading stats
@@ -30,14 +33,16 @@ struct HomeScreenView: View {
                         Text("Pages Read")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
-                        Text("60 / 100")
+                        Text("\(logStateController.globalPageProgress) / \(logStateController.globalPageGoal)")
                             .font(.system(size: 20, weight: .bold, design: .serif))
                         Spacer()
+                        /*
                         Text("Time Read")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
                         Text("10 / 50 min")
                             .font(.system(size: 20, weight: .bold, design: .serif))
+                         */
    
                     }
                     .padding()

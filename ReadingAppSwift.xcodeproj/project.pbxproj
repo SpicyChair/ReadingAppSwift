@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD412C4D28F482CE00739677 /* GlobalLogBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD412C4C28F482CE00739677 /* GlobalLogBase.swift */; };
 		FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */; };
 		FD4930B528E4D93900330E75 /* BookCardVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B428E4D93900330E75 /* BookCardVertical.swift */; };
 		FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD412C4C28F482CE00739677 /* GlobalLogBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLogBase.swift; sourceTree = "<group>"; };
 		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
 		FD4930B428E4D93900330E75 /* BookCardVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardVertical.swift; sourceTree = "<group>"; };
 		FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				FD5A39D728ED8FFA007DACD9 /* BookLogStateController.swift */,
+				FD412C4C28F482CE00739677 /* GlobalLogBase.swift */,
 				FDF5FC7C28DB1AA4008F80B1 /* Book */,
 				FD285D5028F1C39400647DE8 /* Search */,
 				FDD804DC28EB25E40081B28B /* LibraryBase.swift */,
@@ -395,6 +398,7 @@
 				FD5A39D528ED8A8E007DACD9 /* BookLogScreenView.swift in Sources */,
 				FD4EC68728D076EC00B99ED2 /* SearchScreenView.swift in Sources */,
 				FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */,
+				FD412C4D28F482CE00739677 /* GlobalLogBase.swift in Sources */,
 				FDE1875F28E2F818000100F2 /* BookSaleInfo.swift in Sources */,
 				FDD804DD28EB25E40081B28B /* LibraryBase.swift in Sources */,
 				FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */,

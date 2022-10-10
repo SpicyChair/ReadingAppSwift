@@ -14,13 +14,14 @@ class BookLogStateController: ObservableObject {
         // when the key is set by the view, the filename is generated
         // and the data is loaded from the filename
         didSet {
-            filename = "\(key)_log.json"
+            bookFilename = "\(key)_log.json"
             loadBookLog()
         }
     }
     
     // filename is var as it will change once key changes
-    var filename = ""
+    var bookFilename = ""
+    
     
     // allow persistence
     private var fileManager = FileManager()
@@ -36,6 +37,28 @@ class BookLogStateController: ObservableObject {
     @Published var pagesPerDay : [String : Int] = [:]
     
     
+    /*
+     GLOBAL LOG DATA PROPERTIES
+     */
+    
+    // the page goal
+    @Published var globalPageGoal: Int = 50
+    
+    // total progress in pages
+    @Published var globalPageProgress: Int = 0
+    
+    // dictionary of dates pointing to number of pages read
+    // on that particular day
+    @Published var globalPagesPerDay : [String : Int] = [:]
+    
+    // the filename to store global log data
+    var globalFilename = "global_log.json"
+    
+    init () {
+        loadGlobalBookLog()
+    }
+    
+
     func logPages(pages: Int) {
         
         // the amount of pages to add
@@ -67,7 +90,9 @@ class BookLogStateController: ObservableObject {
         
         // update the total progress
         pageProgress += toAdd
+        globalPageProgress += toAdd
         saveBookLog()
+        saveGlobalBookLog()
     }
     
     func setPageProgress(pages: Int) {
@@ -91,7 +116,9 @@ class BookLogStateController: ObservableObject {
         
         // update the total progress
         pageProgress = pages
+        globalPageProgress += toAdd
         saveBookLog()
+        saveGlobalBookLog()
     }
     
     
@@ -112,7 +139,7 @@ class BookLogStateController: ObservableObject {
     // methods for persisting book logs
     
     func loadBookLog() {
-        if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: filename) {
+        if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: bookFilename) {
             self.pagesPerDay = loaded.pagesPerDay
             self.pageProgress = loaded.pageProgress
             self.pageCount = loaded.pageCount
@@ -120,14 +147,39 @@ class BookLogStateController: ObservableObject {
     }
     
     func saveBookLog() {
-        fileManager.saveToJSON(filename: filename , object: SavedLog(pageProgress: self.pageProgress, pageCount: self.pageCount, pagesPerDay: self.pagesPerDay))
+        fileManager.saveToJSON(filename: bookFilename , object: SavedLog(pageProgress: self.pageProgress, pageCount: self.pageCount, pagesPerDay: self.pagesPerDay))
     }
     
     func clearBookLog() {
-        fileManager.deleteFile(filename: filename)
+        fileManager.deleteFile(filename: bookFilename)
         self.pageProgress = 0
         self.pagesPerDay = [:]
     }
+    
+    
+    
+    
+    // persistence of global logs
+    
+    func loadGlobalBookLog() {
+        if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: globalFilename) {
+            self.globalPagesPerDay = loaded.pagesPerDay
+            self.globalPageProgress = loaded.pageProgress
+            self.globalPageGoal = loaded.pageCount
+        }
+    }
+    
+    func saveGlobalBookLog() {
+        fileManager.saveToJSON(filename: globalFilename , object: SavedLog(pageProgress: self.globalPageProgress, pageCount: self.globalPageGoal, pagesPerDay: self.globalPagesPerDay))
+    }
+    
+    func clearGlobalBookLog() {
+        fileManager.deleteFile(filename: globalFilename)
+        self.globalPageProgress = 0
+        self.globalPagesPerDay = [:]
+    }
+    
+    
     
     // struct to facilitate encoding and decoding
     
@@ -136,6 +188,4 @@ class BookLogStateController: ObservableObject {
         var pageCount:Int
         var pagesPerDay: [String : Int]
     }
-    
-    
 }
