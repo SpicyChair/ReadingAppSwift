@@ -35,8 +35,10 @@ struct BookVolumeInfo: Codable, Hashable {
             self.coverImage = cover
         } else {
             // if not, get from API
-            self.coverImage = rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? ""
+            self.coverImage = "\(rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? "")?key=\(booksApiKey)"
+        
         }
+        print(self.coverImage)
     }
     
     //horrible-looking struct modelled one to one with the JSON data

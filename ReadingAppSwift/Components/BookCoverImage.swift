@@ -29,6 +29,7 @@ struct BookCoverImage: View {
                 image.resizable()
             } placeholder: {
                 //placeholder if the image fails to load
+                
                 Image(systemName: "xmark.octagon")
             }
         }

@@ -27,7 +27,7 @@ struct CircleProgressBar: View {
                     lineWidth: 15
                 )
             Circle()
-                .trim(from: 0, to: (progress / maxProgress))
+                .trim(from: 0, to: (Double(progress) / Double(maxProgress)))
                 .stroke(
                     color,
                     style: StrokeStyle (

@@ -8,6 +8,10 @@
 import Foundation
 
 class GoogleBooksAdapter {
+    
+
+    
+    
     // the base url for the google books api
     let baseUrl = "https://www.googleapis.com/books/v1"
     let responseLimit = 10
@@ -20,7 +24,7 @@ class GoogleBooksAdapter {
         
         // creates a path; addPercentEncoding allows for spaces in the search string
         // limit the fields to key, title, and author_name, and limit the number of responses
-        let path = "/volumes?q=\(search)&projection=full&maxResults=\(responseLimit)&fields=items"
+        let path = "/volumes?q=\(search)&projection=full&maxResults=\(responseLimit)&fields=items&key=\(booksApiKey)"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // the guard let means that this can fail - the else is executed on failure

@@ -20,6 +20,7 @@
 		FD550D9228EA2F3400E82168 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD550D9128EA2F3400E82168 /* FileManager.swift */; };
 		FD5A39D528ED8A8E007DACD9 /* BookLogScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */; };
 		FD5A39D828ED8FFA007DACD9 /* BookLogStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A39D728ED8FFA007DACD9 /* BookLogStateController.swift */; };
+		FD5A51FF28F466A2007EC025 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A51FE28F466A2007EC025 /* Constants.swift */; };
 		FD95343928D24FA100FF9274 /* BookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95343828D24FA100FF9274 /* BookCard.swift */; };
 		FD986E4D28D4DEA500F55DB9 /* BookDetailScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */; };
 		FD986E5128D4EE4800F55DB9 /* BookCoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */; };
@@ -71,6 +72,7 @@
 		FD550D9128EA2F3400E82168 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLogScreenView.swift; sourceTree = "<group>"; };
 		FD5A39D728ED8FFA007DACD9 /* BookLogStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLogStateController.swift; sourceTree = "<group>"; };
+		FD5A51FE28F466A2007EC025 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FD95343828D24FA100FF9274 /* BookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCard.swift; sourceTree = "<group>"; };
 		FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailScreenView.swift; sourceTree = "<group>"; };
 		FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverImage.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		FD4EC65828D0729A00B99ED2 /* ReadingAppSwift */ = {
 			isa = PBXGroup;
 			children = (
+				FD5A51FE28F466A2007EC025 /* Constants.swift */,
 				FD550D9028EA2F2100E82168 /* Extensions */,
 				FD4EC68528D0741200B99ED2 /* Components */,
 				FD4EC68428D0740500B99ED2 /* Model */,
@@ -399,6 +402,7 @@
 				FDE1875D28E2F7EE000100F2 /* BookVolumeInfo.swift in Sources */,
 				FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */,
 				FDF5FC7A28DB1A82008F80B1 /* BookDetailsModel.swift in Sources */,
+				FD5A51FF28F466A2007EC025 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
