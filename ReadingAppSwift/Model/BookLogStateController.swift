@@ -93,6 +93,7 @@ class BookLogStateController: ObservableObject {
         globalPageProgress += toAdd
         saveBookLog()
         saveGlobalBookLog()
+        print(globalPageProgress)
     }
     
     func setPageProgress(pages: Int) {
@@ -119,6 +120,7 @@ class BookLogStateController: ObservableObject {
         globalPageProgress += toAdd
         saveBookLog()
         saveGlobalBookLog()
+        print(globalPageProgress)
     }
     
     

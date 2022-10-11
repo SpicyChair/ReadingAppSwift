@@ -35,7 +35,7 @@ struct BookVolumeInfo: Codable, Hashable {
             self.coverImage = cover
         } else {
             // if not, get from API
-            self.coverImage = "\(rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? "")?key=\(booksApiKey)"
+            self.coverImage = "\(rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? "")?key=\(booksApiKey).png"
         
         }
         //print(self.coverImage)
