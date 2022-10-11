@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct BookCoverImage: View {
     var coverImage: String
@@ -26,7 +27,12 @@ struct BookCoverImage: View {
             
             // Book Cover
             
-        
+            KFImage.url(URL(string: coverImage))!)
+                .cache
+                
+                
+                
+            
             AsyncImage(url: URL(string: coverImage)) { image in
                 image.resizable()
             } placeholder: {
