@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class BookLogStateController: ObservableObject {
+class BookLogBase: ObservableObject {
     
     var key = "" {
         // when the key is set by the view, the filename is generated
@@ -21,6 +21,7 @@ class BookLogStateController: ObservableObject {
     
     // filename is var as it will change once key changes
     var bookFilename = ""
+    var lastRead = ""
     
     
     // allow persistence
@@ -93,7 +94,6 @@ class BookLogStateController: ObservableObject {
         globalPageProgress += toAdd
         saveBookLog()
         saveGlobalBookLog()
-        print(globalPageProgress)
     }
     
     func setPageProgress(pages: Int) {
@@ -102,7 +102,7 @@ class BookLogStateController: ObservableObject {
         // eg. if pages = 40, and the user sets progress to 70
         // 30 pages have been read
         
-        let toAdd = abs(pageProgress - pages)
+        let toAdd = pages - pageProgress
         
         let dateAsString = getDateAsString()
         
@@ -120,7 +120,6 @@ class BookLogStateController: ObservableObject {
         globalPageProgress += toAdd
         saveBookLog()
         saveGlobalBookLog()
-        print(globalPageProgress)
     }
     
     

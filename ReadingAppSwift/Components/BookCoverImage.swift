@@ -25,11 +25,6 @@ struct BookCoverImage: View {
                 Image(systemName: "xmark.octagon")
             }
             
-            // Book Cover
-            
-            KFImage.url(URL(string: coverImage))!)
-                .cache
-                
                 
                 
             

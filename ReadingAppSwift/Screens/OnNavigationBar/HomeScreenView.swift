@@ -11,7 +11,7 @@ struct HomeScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
-    @StateObject var logStateController: BookLogStateController = BookLogStateController()
+    @EnvironmentObject var bookLogBase: BookLogBase
     
     var body: some View {
         NavigationView {
@@ -19,7 +19,7 @@ struct HomeScreenView: View {
                 HStack (alignment: .center) {
                     // circle within a circle
                     ZStack {
-                        CircleProgressBar(progress: logStateController.globalPageProgress, maxProgress: logStateController.globalPageGoal, color: Color.green, showPercent: false)
+                        CircleProgressBar(progress: bookLogBase.globalPageProgress, maxProgress: bookLogBase.globalPageGoal, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
                         /*
                         CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
@@ -33,7 +33,7 @@ struct HomeScreenView: View {
                         Text("Pages Read")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
-                        Text("\(logStateController.globalPageProgress) / \(logStateController.globalPageGoal)")
+                        Text("\(bookLogBase.globalPageProgress) / \(bookLogBase.globalPageGoal)")
                             .font(.system(size: 20, weight: .bold, design: .serif))
                         Spacer()
                         /*
@@ -79,6 +79,7 @@ struct HomeScreenView: View {
                     Button(action: cache.clearCache) {
                            Label("Clear Cache", systemImage: "xmark")
                     }.foregroundColor(Color.red)
+                    
                 }
                 
             }.navigationTitle("Home")

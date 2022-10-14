@@ -11,11 +11,12 @@ struct BookLogScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
-    @StateObject private var state: BookLogStateController = BookLogStateController()
+    @EnvironmentObject private var state: BookLogBase
     
     @State private var pageProgressToLog: String = ""
     
     let key: String
+    
     
     var body: some View {
         
