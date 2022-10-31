@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD000C08291024F6003E18CB /* ChipTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C07291024F6003E18CB /* ChipTag.swift */; };
 		FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FD367DE628F56DC70073E95E /* Kingfisher */; };
 		FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */; };
 		FD4930B528E4D93900330E75 /* BookCardVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B428E4D93900330E75 /* BookCardVertical.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD000C07291024F6003E18CB /* ChipTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipTag.swift; sourceTree = "<group>"; };
 		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
 		FD4930B428E4D93900330E75 /* BookCardVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardVertical.swift; sourceTree = "<group>"; };
 		FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 				FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */,
 				FD4930B428E4D93900330E75 /* BookCardVertical.swift */,
 				FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */,
+				FD000C07291024F6003E18CB /* ChipTag.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				FD5A39D528ED8A8E007DACD9 /* BookLogScreenView.swift in Sources */,
 				FD4EC68728D076EC00B99ED2 /* SearchScreenView.swift in Sources */,
 				FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */,
+				FD000C08291024F6003E18CB /* ChipTag.swift in Sources */,
 				FDE1875F28E2F818000100F2 /* BookSaleInfo.swift in Sources */,
 				FDD804DD28EB25E40081B28B /* LibraryBase.swift in Sources */,
 				FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */,
