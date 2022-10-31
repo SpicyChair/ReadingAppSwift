@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FD000C08291024F6003E18CB /* ChipTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C07291024F6003E18CB /* ChipTag.swift */; };
+		FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0929103F53003E18CB /* StatisticsScreenView.swift */; };
+		FD000C0C291040EC003E18CB /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0B291040EC003E18CB /* BarChartView.swift */; };
 		FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FD367DE628F56DC70073E95E /* Kingfisher */; };
 		FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */; };
 		FD4930B528E4D93900330E75 /* BookCardVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B428E4D93900330E75 /* BookCardVertical.swift */; };
@@ -59,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		FD000C07291024F6003E18CB /* ChipTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipTag.swift; sourceTree = "<group>"; };
+		FD000C0929103F53003E18CB /* StatisticsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScreenView.swift; sourceTree = "<group>"; };
+		FD000C0B291040EC003E18CB /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
 		FD4930B428E4D93900330E75 /* BookCardVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardVertical.swift; sourceTree = "<group>"; };
 		FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +200,7 @@
 				FD5A39D628ED8B05007DACD9 /* OnNavigationBar */,
 				FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */,
 				FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */,
+				FD000C0929103F53003E18CB /* StatisticsScreenView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				FD4930B428E4D93900330E75 /* BookCardVertical.swift */,
 				FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */,
 				FD000C07291024F6003E18CB /* ChipTag.swift */,
+				FD000C0B291040EC003E18CB /* BarChartView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				FDEF339428D0FF2B005599BC /* SearchResults.swift in Sources */,
 				FD986E4D28D4DEA500F55DB9 /* BookDetailScreenView.swift in Sources */,
 				FD986E5128D4EE4800F55DB9 /* BookCoverImage.swift in Sources */,
+				FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */,
 				FD550D9228EA2F3400E82168 /* FileManager.swift in Sources */,
 				FDC893D428F2E46C00340B31 /* CircleProgressBar.swift in Sources */,
 				FDEF339628D1028A005599BC /* GoogleBooksAdapter.swift in Sources */,
@@ -412,6 +419,7 @@
 				FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */,
 				FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */,
 				FDE1875D28E2F7EE000100F2 /* BookVolumeInfo.swift in Sources */,
+				FD000C0C291040EC003E18CB /* BarChartView.swift in Sources */,
 				FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */,
 				FDF5FC7A28DB1A82008F80B1 /* BookDetailsModel.swift in Sources */,
 				FD5A51FF28F466A2007EC025 /* Constants.swift in Sources */,
