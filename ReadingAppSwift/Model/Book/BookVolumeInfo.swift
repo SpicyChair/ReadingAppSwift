@@ -17,6 +17,7 @@ struct BookVolumeInfo: Codable, Hashable {
     let coverImage: String
     let pageCount: Int
     let language: String
+    let categories: [String]
     
     init(from decoder: Decoder) throws {
         let rawBookDetails = try RawBookDetailsModel(from: decoder)
@@ -29,6 +30,16 @@ struct BookVolumeInfo: Codable, Hashable {
         self.pageCount = rawBookDetails.pageCount ?? 0
         self.language = rawBookDetails.language ?? "No language"
         
+        var categories: [String] =  []
+        
+        for category in rawBookDetails.categories ?? [] {
+            print(category)
+            for c in category.split(separator: "/") {
+                categories.append(c.capitalized)
+            }
+        }
+        
+        self.categories = categories
         
         if let cover = rawBookDetails.coverImage {
             // check if cover exists in storage
@@ -53,7 +64,7 @@ struct BookVolumeInfo: Codable, Hashable {
         
         // Properties to Allow for Decoding from JSON in Storage
         let coverImage: String?
-        // END
+        
         
         // ISBN numbers
         let industryIdentifiers: [IndustryIdentifiers]?

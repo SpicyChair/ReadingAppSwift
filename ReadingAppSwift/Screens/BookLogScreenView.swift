@@ -98,10 +98,25 @@ struct BookLogScreenView: View {
                         state.key = key
                     }
                 
+                NavigationLink {
+                    BookDetailScreenView(key: key)
+                } label: {
+                    Label("More Book Details", systemImage: "info.circle")
+                }
+                
                 
                 Section (header: Text("Persistence Options")) {
                     Button(action: state.clearBookLog) {
+                        // clear logged data without removing any data from the book log
                            Label("Clear Logged Pages", systemImage: "xmark")
+                    }.foregroundColor(Color.red)
+                    
+                    Button(action: {
+                        // remove the book from the library
+                        // this will keep any logged data
+                        library.removeBookFromLibrary(key: key)
+                    }) {
+                           Label("Remove From Library", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     
                 }

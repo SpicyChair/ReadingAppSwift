@@ -40,11 +40,20 @@ struct BookDetailScreenView: View {
                         //padding to top and bottom of the vstack
                         }.padding([.top, .bottom], 10)
                         
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 20) {
+                                ForEach(book.volumeInfo.categories, id: \.self) { category in
+                                    ChipTag(text: category, color: Color.gray)
+                                }
+                            }
+                        }
+                        
                         Section (header: Text("Description")) {
                             Text(book.volumeInfo.description)
                         }
                         
                         Section (header: Text("More Information")) {
+                            Text("Published \(book.volumeInfo.publishedDate)")
                             Text("\(book.volumeInfo.pageCount) pages")
                             Text("Language: \(book.volumeInfo.language)")
                         }
