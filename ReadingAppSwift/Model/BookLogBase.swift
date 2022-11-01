@@ -129,12 +129,14 @@ class BookLogBase: ObservableObject {
         // this is used as the key in the pagesPerDay dictionary
         
         let date = Date()
-        let calendar = Calendar.current
-        let day = calendar.component(.day, from: date)
-        let month = calendar.component(.month, from: date)
-        let year = calendar.component(.year, from: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        return "\(day)-\(month)-\(year)"
+        
+        // return string represenetation
+        return dateFormatter.string(from: date)
+        
+        // let date = dateFormatter.date(from: "2016-03-03")
     }
     
     // methods for persisting book logs

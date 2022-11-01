@@ -9,7 +9,18 @@ import SwiftUI
 
 struct StatisticsScreenView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                BarChartView(height: 400, data: [
+                    "1":1,
+                    "2":2,
+                    "3":3,
+                    "4":4,
+                    "5":5,
+                ])
+            }.navigationTitle("Statistics")
+        }
+        .navigationViewStyle(.stack)
     }
 }
 

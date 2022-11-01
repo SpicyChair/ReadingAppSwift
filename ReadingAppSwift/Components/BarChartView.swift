@@ -9,14 +9,14 @@ import SwiftUI
 
 struct BarChartView: View {
     
-    var height: Int
+    var height: Double
     var data: [String : Int]
     var largestValue: Int
+    var color: Color = .green
     
-    init(height: Int, data: [String: Int]) {
+    init(height: Double, data: [String: Int]) {
         self.height = height
         self.data = data
-        
         self.largestValue = data.values.max() ?? 0
         
     }
@@ -26,8 +26,24 @@ struct BarChartView: View {
         ScrollView(.horizontal) {
             HStack(spacing: 20) {
                 
+                ForEach(data.sorted(by: <), id: \.key) { key, value in
+                    let barHeight: Double = (Double(value) / Double(largestValue) * (height * 0.8))
+                    let barWidth: Double = 10
+                    Spacer()
+                    VStack (alignment: .center) {
+                        Text(key)
+                            .rotationEffect(Angle(degrees: 180))
+                        RoundedRectangle(cornerRadius: 25)
+                            .size(width: barWidth, height: barHeight)
+                            .fill(.green)
+
+                    }.rotationEffect(Angle(degrees: 180))
+
+                }
+                
+                
             }
-        }
+        }.frame(height: height)
     }
 }
 

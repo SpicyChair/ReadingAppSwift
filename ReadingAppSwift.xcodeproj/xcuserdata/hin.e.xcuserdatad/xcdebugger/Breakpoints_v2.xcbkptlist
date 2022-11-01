@@ -180,5 +180,53 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65854C64-A429-44D0-8D35-25C8DA705C2A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReadingAppSwift/Components/BarChartView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "65854C64-A429-44D0-8D35-25C8DA705C2A - 81ee666d78ad9399"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Swift.Int) -&gt; SwiftUI.VStack&lt;&lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;(key: Swift.String, value: Swift.Int)&gt;, Swift.String, SwiftUI.VStack&lt;&lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt; in closure #1 () -&gt; SwiftUI.HStack&lt;SwiftUI.ForEach&lt;Swift.Array&lt;(key: Swift.String, value: Swift.Int)&gt;, Swift.String, SwiftUI.VStack&lt;&lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt;&gt; in ReadingAppSwift.BarChartView.body.getter : some"
+                  moduleName = "ReadingAppSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hin.e/Desktop/ReadingAppSwift/ReadingAppSwift/Components/BarChartView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  uuid = "65854C64-A429-44D0-8D35-25C8DA705C2A - a6206aca7b55f6f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0 in closure #1 (Swift.String, Swift.Int) -&gt; SwiftUI.VStack&lt;&lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;(key: Swift.String, value: Swift.Int)&gt;, Swift.String, SwiftUI.VStack&lt;&lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt; in closure #1 () -&gt; SwiftUI.HStack&lt;SwiftUI.ForEach&lt;Swift.Array&lt;(key: Swift.String, value: Swift.Int)&gt;, Swift.String, SwiftUI.VStack&lt;&lt;&lt;opaque return type of SwiftUI.Shape.size(width: CoreGraphics.CGFloat, height: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;&gt;&gt; in ReadingAppSwift.BarChartView.body.getter : some"
+                  moduleName = "ReadingAppSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hin.e/Desktop/ReadingAppSwift/ReadingAppSwift/Components/BarChartView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "151">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

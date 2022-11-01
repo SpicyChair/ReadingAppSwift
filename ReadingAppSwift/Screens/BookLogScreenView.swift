@@ -90,6 +90,12 @@ struct BookLogScreenView: View {
                             }.buttonStyle(.bordered)
                             
                         }
+                        NavigationLink {
+                            StatisticsScreenView()
+                        } label: {
+                            Label("Statistics", systemImage: "info.circle")
+                        }
+                        
                         
                         
                         
@@ -103,6 +109,8 @@ struct BookLogScreenView: View {
                 } label: {
                     Label("More Book Details", systemImage: "info.circle")
                 }
+                
+                
                 
                 
                 Section (header: Text("Persistence Options")) {
