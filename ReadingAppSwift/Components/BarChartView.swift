@@ -26,9 +26,9 @@ struct BarChartView: View {
         ScrollView(.horizontal) {
             HStack(spacing: 20) {
                 
-                ForEach(data.sorted(by: <), id: \.key) { key, value in
+                ForEach(data.sorted(by: >), id: \.key) { key, value in
                     let barHeight: Double = (Double(value) / Double(largestValue) * (height * 0.8))
-                    let barWidth: Double = 10
+                    let barWidth: Double = 25
                     Spacer()
                     VStack (alignment: .center) {
                         Text(key)
@@ -36,6 +36,7 @@ struct BarChartView: View {
                         RoundedRectangle(cornerRadius: 25)
                             .size(width: barWidth, height: barHeight)
                             .fill(.green)
+                            .animation(.easeOut, value: 1)
 
                     }.rotationEffect(Angle(degrees: 180))
 

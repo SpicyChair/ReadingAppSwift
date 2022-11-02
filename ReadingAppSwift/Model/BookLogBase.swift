@@ -130,7 +130,7 @@ class BookLogBase: ObservableObject {
         
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "dd-MM-yy"
         
         
         // return string represenetation

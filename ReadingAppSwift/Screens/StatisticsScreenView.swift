@@ -8,24 +8,32 @@
 import SwiftUI
 
 struct StatisticsScreenView: View {
+    
+    var data: [String : Int] = [
+        "01-11-22":1,
+        "02-11-22":2,
+        "03-11-22":3,
+        "04-11-22":4,
+        "05-11-22":5,
+    ]
+    
     var body: some View {
-        NavigationView {
-            Form {
-                BarChartView(height: 400, data: [
-                    "1":1,
-                    "2":2,
-                    "3":3,
-                    "4":4,
-                    "5":5,
-                ])
+        
+Form {
+                BarChartView(height: 400, data: data)
             }.navigationTitle("Statistics")
-        }
-        .navigationViewStyle(.stack)
+ 
     }
 }
 
 struct StatisticsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsScreenView()
+        StatisticsScreenView(data: [
+            "01-11-22":1,
+            "02-11-22":2,
+            "03-11-22":3,
+            "04-11-22":4,
+            "05-11-22":5,
+        ])
     }
 }

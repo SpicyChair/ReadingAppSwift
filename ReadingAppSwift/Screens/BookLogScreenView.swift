@@ -90,11 +90,13 @@ struct BookLogScreenView: View {
                             }.buttonStyle(.bordered)
                             
                         }
+                        /*
                         NavigationLink {
-                            StatisticsScreenView()
+                            StatisticsScreenView()//data: state.pagesPerDay)
                         } label: {
                             Label("Statistics", systemImage: "info.circle")
                         }
+                         */
                         
                         
                         

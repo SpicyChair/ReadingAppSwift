@@ -21,10 +21,10 @@ struct HomeScreenView: View {
                     ZStack {
                         CircleProgressBar(progress: bookLogBase.globalPageProgress, maxProgress: bookLogBase.globalPageGoal, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
-                        /*
+                        
                         CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
                             .frame(width: 70, height: 70)
-                         */
+                         
                     }
                     
                     // reading stats
@@ -36,13 +36,13 @@ struct HomeScreenView: View {
                         Text("\(bookLogBase.globalPageProgress) / \(bookLogBase.globalPageGoal)")
                             .font(.system(size: 20, weight: .bold, design: .serif))
                         Spacer()
-                        /*
+                        
                         Text("Time Read")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
-                        Text("10 / 50 min")
+                        Text("30 / 50 min")
                             .font(.system(size: 20, weight: .bold, design: .serif))
-                         */
+                         
    
                     }
                     .padding()
@@ -80,6 +80,9 @@ struct HomeScreenView: View {
                            Label("Clear Cache", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     
+                    Button(action: bookLogBase.clearGlobalBookLog) {
+                           Label("Clear Global Log Data", systemImage: "book.closed")
+                    }.foregroundColor(Color.red)
                 }
                 
             }.navigationTitle("Home")
