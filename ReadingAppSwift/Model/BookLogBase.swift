@@ -56,6 +56,7 @@ class BookLogBase: ObservableObject {
     var globalFilename = "global_log.json"
     
     init () {
+        globalFilename = "\(getDateAsString())_global.json"
         loadGlobalBookLog()
     }
     

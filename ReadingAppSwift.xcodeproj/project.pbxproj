@@ -29,6 +29,8 @@
 		FD95343928D24FA100FF9274 /* BookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95343828D24FA100FF9274 /* BookCard.swift */; };
 		FD986E4D28D4DEA500F55DB9 /* BookDetailScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */; };
 		FD986E5128D4EE4800F55DB9 /* BookCoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */; };
+		FDAE3A6B29194C5600DE088D /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAE3A6A29194C5600DE088D /* Recommendations.swift */; };
+		FDAE3A70291958C600DE088D /* StopWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAE3A6F291958C600DE088D /* StopWords.swift */; };
 		FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB690D828DB7625004F17BF /* CacheBase.swift */; };
 		FDC893D428F2E46C00340B31 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */; };
 		FDD804DD28EB25E40081B28B /* LibraryBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD804DC28EB25E40081B28B /* LibraryBase.swift */; };
@@ -85,6 +87,8 @@
 		FD95343828D24FA100FF9274 /* BookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCard.swift; sourceTree = "<group>"; };
 		FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailScreenView.swift; sourceTree = "<group>"; };
 		FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverImage.swift; sourceTree = "<group>"; };
+		FDAE3A6A29194C5600DE088D /* Recommendations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
+		FDAE3A6F291958C600DE088D /* StopWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWords.swift; sourceTree = "<group>"; };
 		FDB690D828DB7625004F17BF /* CacheBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheBase.swift; sourceTree = "<group>"; };
 		FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		FDD804DC28EB25E40081B28B /* LibraryBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBase.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 		FD4EC68428D0740500B99ED2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FDAE3A6C2919557000DE088D /* Recommendations */,
 				FDF5FC7C28DB1AA4008F80B1 /* Book */,
 				FD285D5028F1C39400647DE8 /* Search */,
 				FDD804DC28EB25E40081B28B /* LibraryBase.swift */,
@@ -251,6 +256,15 @@
 				FDEF338D28D0F307005599BC /* DiscoverScreenView.swift */,
 			);
 			path = OnNavigationBar;
+			sourceTree = "<group>";
+		};
+		FDAE3A6C2919557000DE088D /* Recommendations */ = {
+			isa = PBXGroup;
+			children = (
+				FDAE3A6A29194C5600DE088D /* Recommendations.swift */,
+				FDAE3A6F291958C600DE088D /* StopWords.swift */,
+			);
+			path = Recommendations;
 			sourceTree = "<group>";
 		};
 		FDF5FC7C28DB1AA4008F80B1 /* Book */ = {
@@ -412,6 +426,7 @@
 				FD5A39D828ED8FFA007DACD9 /* BookLogBase.swift in Sources */,
 				FD95343928D24FA100FF9274 /* BookCard.swift in Sources */,
 				FDEF338A28D0F276005599BC /* HomeScreenView.swift in Sources */,
+				FDAE3A70291958C600DE088D /* StopWords.swift in Sources */,
 				FD4930B528E4D93900330E75 /* BookCardVertical.swift in Sources */,
 				FDEF338E28D0F307005599BC /* DiscoverScreenView.swift in Sources */,
 				FD5A39D528ED8A8E007DACD9 /* BookLogScreenView.swift in Sources */,
@@ -420,6 +435,7 @@
 				FD000C08291024F6003E18CB /* ChipTag.swift in Sources */,
 				FDE1875F28E2F818000100F2 /* BookSaleInfo.swift in Sources */,
 				FDD804DD28EB25E40081B28B /* LibraryBase.swift in Sources */,
+				FDAE3A6B29194C5600DE088D /* Recommendations.swift in Sources */,
 				FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */,
 				FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */,
 				FDE1875D28E2F7EE000100F2 /* BookVolumeInfo.swift in Sources */,

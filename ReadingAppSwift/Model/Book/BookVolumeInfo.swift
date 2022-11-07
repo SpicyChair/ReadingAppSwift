@@ -33,7 +33,7 @@ struct BookVolumeInfo: Codable, Hashable {
         var categories: [String] =  []
         
         for category in rawBookDetails.categories ?? [] {
-            print(category)
+            //print(category)
             for c in category.split(separator: "/") {
                 categories.append(c.capitalized)
             }

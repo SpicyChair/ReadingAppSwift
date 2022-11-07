@@ -58,4 +58,19 @@ extension FileManager {
             print("Could not delete file \(filename)")
         }
     }
+    
+    func resetApp() {
+        // DANGER!!
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let userPath = paths[0]
+        
+        do {
+            try self.removeItem(at: userPath)
+        } catch {
+            print("Could not reset app.")
+        }
+        
+        
+        
+    }
 }

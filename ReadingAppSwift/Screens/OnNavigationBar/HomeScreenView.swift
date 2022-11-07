@@ -83,6 +83,13 @@ struct HomeScreenView: View {
                     Button(action: bookLogBase.clearGlobalBookLog) {
                            Label("Clear Global Log Data", systemImage: "book.closed")
                     }.foregroundColor(Color.red)
+                    
+                    Button(action: {
+                        let manager: FileManager = FileManager()
+                        manager.resetApp()
+                    }) {
+                           Label("Reset App (Needs App Restart)", systemImage: "trash")
+                    }.foregroundColor(Color.red)
                 }
                 
             }.navigationTitle("Home")
