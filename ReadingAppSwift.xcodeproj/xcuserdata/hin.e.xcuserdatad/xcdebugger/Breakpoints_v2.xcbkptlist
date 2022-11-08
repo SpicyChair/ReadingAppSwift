@@ -238,8 +238,8 @@
             filePath = "ReadingAppSwift/Model/Recommendations/Recommendations.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "Recommendations"
             landmarkType = "3">
          </BreakpointContent>

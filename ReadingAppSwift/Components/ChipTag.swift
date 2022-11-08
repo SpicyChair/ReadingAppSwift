@@ -9,19 +9,16 @@ import SwiftUI
 
 struct ChipTag: View {
     
-    //current progress
     var text: String
-    
-    var color: Color
     
     var body: some View {
         Text(text)
             .padding(8)
             .overlay(
-                           RoundedRectangle(cornerRadius: 20)
-                               .strokeBorder()
-                               .foregroundColor(.gray)
-                       )
+                RoundedRectangle(cornerRadius: 20)
+                   .strokeBorder()
+                    .foregroundColor(.gray)
+                )
     }
 }
 

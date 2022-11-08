@@ -11,6 +11,7 @@ struct BookDetailScreenView: View {
     
     var key: String
     @EnvironmentObject var cache:CacheBase
+    let tagger: Recommendations = Recommendations()
     
     var body: some View {
 
@@ -41,10 +42,18 @@ struct BookDetailScreenView: View {
                         }.padding([.top, .bottom], 10)
                         
                         ScrollView(.horizontal) {
-                            HStack(spacing: 20) {
-                                ForEach(book.volumeInfo.categories, id: \.self) { category in
-                                    ChipTag(text: category, color: Color.gray)
+                            
+                            HStack(spacing: 10) {
+                                
+                                // get the book category
+                                // and then create a new array by adding on the most
+                                // frequent key words inside the description
+                                
+                                ForEach(book.volumeInfo.categories + tagger.tagAndGetTopN(text: book.volumeInfo.description, n: 3) , id: \.self) { category in
+                                    ChipTag(text: category)
                                 }
+                                
+                                
                             }
                         }
                         
