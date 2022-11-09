@@ -9,12 +9,11 @@ import Foundation
 
 class DiscoverScreenStateController: ObservableObject {
     
-    
-    
     let recommender: Recommendations = Recommendations()
     var text: String = ""
     
     func getTags() -> [String] {
         return recommender.tagAndGetTopN(text: text, n: 10)
     }
+    
 }

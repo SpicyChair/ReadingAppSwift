@@ -30,14 +30,14 @@ struct HomeScreenView: View {
                     // reading stats
                     
                     VStack (alignment: .leading) {
-                        Text("Pages Read")
+                        Text("Pages Read Today")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
                         Text("\(bookLogBase.globalPageProgress) / \(bookLogBase.globalPageGoal)")
                             .font(.system(size: 20, weight: .bold, design: .serif))
                         Spacer()
                         
-                        Text("Time Read")
+                        Text("Time Read Today")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
                         Text("30 / 50 min")

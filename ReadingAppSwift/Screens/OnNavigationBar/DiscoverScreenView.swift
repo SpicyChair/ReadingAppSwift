@@ -11,27 +11,27 @@ struct DiscoverScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
-    
-    @State var loaded = false
-    
     @StateObject var state: DiscoverScreenStateController = DiscoverScreenStateController()
     
     
-    
+    @State var loaded: Bool = false
+
     var body: some View {
         NavigationView {
             Form {
-                if loaded {
+                if loaded && !(library.library.isEmpty) {
+                    // create new chiptag per each tag
                     ForEach(state.getTags(), id: \.self) { tag in
                         ChipTag(text: tag)
                     }
+                } else {
+                    Text("Add books to your library to start getting recommendations")
                 }
                 
-                
             }.navigationTitle("Discover")
+            
+            // go through each book in the library and append it to the full text
                 .onAppear(perform: {
-                    
-                    loaded = false
                     
                     for key in library.library {
                         //access library keys
@@ -43,8 +43,10 @@ struct DiscoverScreenView: View {
                         }
                         
                     }
-                    loaded = true
                     
+                    // set loaded to true - then recommendation system can be used
+                    
+                    loaded = true
                 })
         }
         .navigationViewStyle(.stack)
@@ -56,3 +58,6 @@ struct DiscoverScreenView_Previews: PreviewProvider {
         DiscoverScreenView()
     }
 }
+
+// @State var loaded = false
+// loaded = true

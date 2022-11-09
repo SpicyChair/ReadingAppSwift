@@ -10,7 +10,6 @@ import NaturalLanguage
 
 class Recommendations {
     
-    
     let tagger: NLTagger = NLTagger(tagSchemes: [.lexicalClass])
     
     // options to be used with the tagger
@@ -72,8 +71,5 @@ class Recommendations {
         
         return results
     }
-    
-    // STOP WORDS
-    
-    
+
 }
