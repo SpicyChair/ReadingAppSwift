@@ -13,9 +13,10 @@ struct BookCardVertical: View {
     var title: String
     var authors: [String]
     var cover: String
+    var navToDetails: Bool = false
     
     var body: some View {
-        NavigationLink(destination: BookLogScreenView(key: key)) {
+        NavigationLink(destination: navToDetails ? AnyView(BookDetailScreenView(key: key)) : AnyView(BookLogScreenView(key: key))) {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 15)

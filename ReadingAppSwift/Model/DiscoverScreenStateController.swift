@@ -13,7 +13,7 @@ class DiscoverScreenStateController: ObservableObject {
     var text: String = ""
     
     func getTags() -> [String] {
-        return recommender.tagAndGetTopN(text: text, n: 10)
+        return recommender.tagAndGetTopN(text: text, n: 5)
     }
     
 }

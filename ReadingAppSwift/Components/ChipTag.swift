@@ -12,13 +12,17 @@ struct ChipTag: View {
     var text: String
     
     var body: some View {
-        Text(text)
-            .padding(8)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                   .strokeBorder()
-                    .foregroundColor(.gray)
-                )
+        NavigationLink (destination: SearchScreenView(searchText: text)){
+            Text(text)
+                .padding(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                       .strokeBorder()
+                        .foregroundColor(.gray)
+                    )
+        }
+        
+            
     }
 }
 

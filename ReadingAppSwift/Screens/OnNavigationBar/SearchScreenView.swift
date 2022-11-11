@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchScreenView: View {
-    @State private var searchText = ""
+    @State var searchText = ""
     @StateObject private var state = SearchStateController()
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
@@ -23,10 +23,11 @@ struct SearchScreenView: View {
                     text: $searchText
                 )
                 .onSubmit {
-                    if (!searchText.isEmpty) {
-                        state.searchFor = searchText
-                    }
+                    search()
                     
+                }
+                .onAppear{
+                    search()
                 }
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
@@ -59,6 +60,12 @@ struct SearchScreenView: View {
         }
         .navigationViewStyle(.stack)
         
+    }
+    
+    func search() {
+        if (!searchText.isEmpty) {
+            state.searchFor = searchText
+        }
     }
 }
 

@@ -19,11 +19,46 @@ struct DiscoverScreenView: View {
     var body: some View {
         NavigationView {
             Form {
+                Section {
+                    VStack (alignment: .leading) {
+                        Text("Because you read")
+                            .font(.system(size: 16, weight: .regular, design: .serif))
+                            
+                        Text("A Walk in The Woods")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+                        
+                    }
+                    
+                    BookScroller(searchFor: "Bill Bryson", excludingKey: "")
+                }
+                
+                
+                
                 if loaded && !(library.library.isEmpty) {
                     // create new chiptag per each tag
-                    ForEach(state.getTags(), id: \.self) { tag in
-                        ChipTag(text: tag)
+                    
+                    Section {
+                        VStack (alignment: .leading) {
+                            Text("Because you read")
+                                .font(.system(size: 16, weight: .regular, design: .serif))
+                                
+                            Text("A Walk in The Woods")
+                                .font(.system(size: 20, weight: .bold, design: .serif))
+                            
+                        }
+                        
+                        BookScroller(searchFor: "Walk", excludingKey: "")
                     }
+                    
+                    
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(state.getTags(), id: \.self) { tag in
+                                ChipTag(text: tag)
+                            }
+                        }
+                    }
+                     
                 } else {
                     Text("Add books to your library to start getting recommendations")
                 }

@@ -64,10 +64,14 @@ class Recommendations {
         
         var results: [String] = []
         
-        for (tag, _) in sorted[..<n] {
-            
-            results.append(tag.capitalized)
+        if sorted.count > n {
+            for (tag, _) in sorted[..<n] {
+                
+                results.append(tag.capitalized)
+            }
         }
+        
+        
         
         return results
     }
