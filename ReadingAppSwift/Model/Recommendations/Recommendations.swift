@@ -64,7 +64,7 @@ class Recommendations {
         
         var results: [String] = []
         
-        if sorted.count > n {
+        if sorted.count >= n {
             for (tag, _) in sorted[..<n] {
                 
                 results.append(tag.capitalized)
@@ -75,5 +75,59 @@ class Recommendations {
         
         return results
     }
+    
+    
+    // T needs to conform to hashable so that it can be used in the count dict
+    func countAndGetTopN <T : Hashable> (arr: [T], n: Int) -> [T] {
+        
+        var count:[T: Int] = [:]
+        
+        for item in arr {
+            // count the items in the array
+            // if item doesnt exist already, create new K:V pair
+            count[item] = (count[item] ?? 0) + 1
+        }
+        
+        // sorted returns a tuple array
+        
+        let sorted = count.sorted(by: { $0.1 > $1.1 })
+        
+        // get first n elements
+        
+        var results: [T] = []
+        
+        if sorted.count >= n {
+            for (item, _) in sorted[..<n] {
+                
+                results.append(item)
+            }
+        }
+        
+        return results
+    }
+    
+    func getMostFrequentAuthor(library: [BookDetailsModel]) -> String {
+        
+        var authors: [String] = []
+        
+        for book in library {
+            authors.append(contentsOf: book.volumeInfo.authors)
+        }
+        
+        return countAndGetTopN(arr: authors, n: 1)[0]
+    }
+    
+    func getMostFrequentGenre(library: [BookDetailsModel]) -> String {
+        var genres: [String] = []
+        
+        for book in library {
+            
+            genres.append(contentsOf: book.volumeInfo.categories)
+        }
+        
+        return countAndGetTopN(arr: genres, n: 1)[0]
+    }
 
 }
+
+

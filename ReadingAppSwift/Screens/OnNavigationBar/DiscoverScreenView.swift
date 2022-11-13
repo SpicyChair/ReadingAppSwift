@@ -13,51 +13,58 @@ struct DiscoverScreenView: View {
     @EnvironmentObject var library: LibraryBase
     @StateObject var state: DiscoverScreenStateController = DiscoverScreenStateController()
     
-    
+    // property which is updated when recommendations are generated fully
     @State var loaded: Bool = false
-
+    
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    VStack (alignment: .leading) {
-                        Text("Because you read")
-                            .font(.system(size: 16, weight: .regular, design: .serif))
-                            
-                        Text("A Walk in The Woods")
-                            .font(.system(size: 20, weight: .bold, design: .serif))
-                        
-                    }
-                    
-                    BookScroller(searchFor: "Bill Bryson", excludingKey: "")
-                }
-                
-                
+                // only load UI once recommendations have finished loading
+                // and there is a library to recommend from
                 
                 if loaded && !(library.library.isEmpty) {
                     // create new chiptag per each tag
                     
                     Section {
                         VStack (alignment: .leading) {
-                            Text("Because you read")
-                                .font(.system(size: 16, weight: .regular, design: .serif))
+                            Text("Because you're a fan of")
+                                .font(.system(size: 17, weight: .regular, design: .serif))
                                 
-                            Text("A Walk in The Woods")
+                            Text(state.mostFrequentAuthor)
                                 .font(.system(size: 20, weight: .bold, design: .serif))
                             
                         }
                         
-                        BookScroller(searchFor: "Walk", excludingKey: "")
+                        BookScroller(searchFor: state.mostFrequentAuthor, excludingKey: "")
+                        
                     }
                     
+                    Section {
+                        VStack (alignment: .leading) {
+                            Text("Because you like")
+                                .font(.system(size: 17, weight: .regular, design: .serif))
+                                
+                            Text(state.mostFrequentGenre)
+                                .font(.system(size: 20, weight: .bold, design: .serif))
+                                
+                            
+                        }
+                        
+                        BookScroller(searchFor: state.mostFrequentGenre, excludingKey: "")
+                    }
                     
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(state.getTags(), id: \.self) { tag in
-                                ChipTag(text: tag)
+                    Section {
+                        Text("Your most frequent categories")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(state.getDescriptionTags(), id: \.self) { tag in
+                                    ChipTag(text: tag)
+                                }
                             }
                         }
                     }
+                    
                      
                 } else {
                     Text("Add books to your library to start getting recommendations")
@@ -67,6 +74,10 @@ struct DiscoverScreenView: View {
             
             // go through each book in the library and append it to the full text
                 .onAppear(perform: {
+                    
+                    // get the most frequent author and genre
+                    
+                    state.getMostFrequentAuthorAndGenre(library: Array(cache.books.values))
                     
                     for key in library.library {
                         //access library keys
@@ -78,7 +89,7 @@ struct DiscoverScreenView: View {
                         }
                         
                     }
-                    
+
                     // set loaded to true - then recommendation system can be used
                     
                     loaded = true

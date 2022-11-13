@@ -10,10 +10,22 @@ import Foundation
 class DiscoverScreenStateController: ObservableObject {
     
     let recommender: Recommendations = Recommendations()
-    var text: String = ""
+    @Published var text: String = ""
     
-    func getTags() -> [String] {
+    @Published var mostFrequentAuthor = ""
+    @Published var mostFrequentGenre = ""
+    
+    func getMostFrequentAuthorAndGenre(library: [BookDetailsModel]) {
+        mostFrequentAuthor = recommender.getMostFrequentAuthor(library: library)
+        mostFrequentGenre = recommender.getMostFrequentGenre(library: library)
+    }
+    
+    func getDescriptionTags() -> [String] {
         return recommender.tagAndGetTopN(text: text, n: 5)
     }
     
+    
+    
+    
+
 }

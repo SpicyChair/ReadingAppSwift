@@ -12,6 +12,7 @@ struct ChipTag: View {
     var text: String
     
     var body: some View {
+        // go to search screen with search text
         NavigationLink (destination: SearchScreenView(searchText: text)){
             Text(text)
                 .padding(8)
