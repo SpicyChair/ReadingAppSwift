@@ -103,6 +103,7 @@ struct BookLogScreenView: View {
                         
                     }.onAppear {
                         state.pageCount = book.volumeInfo.pageCount
+                        print(key)
                         state.key = key
                     }
                 

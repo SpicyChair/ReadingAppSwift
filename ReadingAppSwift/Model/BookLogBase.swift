@@ -70,7 +70,6 @@ class BookLogBase: ObservableObject {
         if (pageProgress + pages >= pageCount) {
             toAdd = pageCount - pageProgress
             
-            
         // pages read can never be negative!
         } else if (pageProgress + pages < 0){
             toAdd = pageProgress * (-1)
@@ -147,6 +146,10 @@ class BookLogBase: ObservableObject {
             self.pagesPerDay = loaded.pagesPerDay
             self.pageProgress = loaded.pageProgress
             self.pageCount = loaded.pageCount
+        } else {
+            self.pagesPerDay = [:]
+            self.pageProgress = 0
+            saveBookLog()
         }
     }
     
