@@ -30,6 +30,10 @@ struct NavigationBarScreen: View {
                 .tabItem {
                     Label("Social", systemImage: "person.3")
                 }
+            FirebaseLoginScreen()
+                .tabItem {
+                    Label("Profile", systemImage: "person")
+                }
         }
         .environmentObject(libraryBase)
         .environmentObject(cacheBase)

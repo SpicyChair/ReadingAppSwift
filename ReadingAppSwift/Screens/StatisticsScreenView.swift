@@ -19,7 +19,7 @@ struct StatisticsScreenView: View {
     
     var body: some View {
         
-Form {
+            Form {
                 BarChartView(height: 400, data: data)
             }.navigationTitle("Statistics")
  
