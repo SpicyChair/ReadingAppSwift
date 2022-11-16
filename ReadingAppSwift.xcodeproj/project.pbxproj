@@ -10,6 +10,7 @@
 		FD000C08291024F6003E18CB /* ChipTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C07291024F6003E18CB /* ChipTag.swift */; };
 		FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0929103F53003E18CB /* StatisticsScreenView.swift */; };
 		FD000C0C291040EC003E18CB /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0B291040EC003E18CB /* BarChartView.swift */; };
+		FD0A5EB2292566BC00194A1E /* FirestoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */; };
 		FD0B040629111BD900F93464 /* DailyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0B040529111BD900F93464 /* DailyProgress.swift */; };
 		FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FD367DE628F56DC70073E95E /* Kingfisher */; };
 		FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */; };
@@ -73,6 +74,7 @@
 		FD000C07291024F6003E18CB /* ChipTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipTag.swift; sourceTree = "<group>"; };
 		FD000C0929103F53003E18CB /* StatisticsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScreenView.swift; sourceTree = "<group>"; };
 		FD000C0B291040EC003E18CB /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAdapter.swift; sourceTree = "<group>"; };
 		FD0B040529111BD900F93464 /* DailyProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProgress.swift; sourceTree = "<group>"; };
 		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
 		FD4930B428E4D93900330E75 /* BookCardVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardVertical.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				FD4EC68428D0740500B99ED2 /* Model */,
 				FD4EC68328D073F700B99ED2 /* Screens */,
 				FDEF339528D1028A005599BC /* GoogleBooksAdapter.swift */,
+				FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */,
 				FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */,
 				FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */,
 				FD4EC65D28D0729D00B99ED2 /* Assets.xcassets */,
@@ -237,7 +240,6 @@
 				FDB690D828DB7625004F17BF /* CacheBase.swift */,
 				FD5A39D728ED8FFA007DACD9 /* BookLogBase.swift */,
 				FD0B040529111BD900F93464 /* DailyProgress.swift */,
-				FD70E11A291A649600A1904A /* DiscoverScreenStateController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +283,7 @@
 			children = (
 				FDAE3A6A29194C5600DE088D /* Recommendations.swift */,
 				FDAE3A6F291958C600DE088D /* StopWords.swift */,
+				FD70E11A291A649600A1904A /* DiscoverScreenStateController.swift */,
 			);
 			path = Recommendations;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				FD0B040629111BD900F93464 /* DailyProgress.swift in Sources */,
 				FDEF339428D0FF2B005599BC /* SearchResults.swift in Sources */,
 				FD986E4D28D4DEA500F55DB9 /* BookDetailScreenView.swift in Sources */,
+				FD0A5EB2292566BC00194A1E /* FirestoreAdapter.swift in Sources */,
 				FD986E5128D4EE4800F55DB9 /* BookCoverImage.swift in Sources */,
 				FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */,
 				FD550D9228EA2F3400E82168 /* FileManager.swift in Sources */,

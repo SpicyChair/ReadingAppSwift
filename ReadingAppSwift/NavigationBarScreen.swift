@@ -11,6 +11,7 @@ struct NavigationBarScreen: View {
     let cacheBase: CacheBase = CacheBase()
     let libraryBase: LibraryBase = LibraryBase()
     let bookLogBase: BookLogBase = BookLogBase()
+    let firestoreAdapter: FirestoreAdapter = FirestoreAdapter()
     
     var body: some View {
         TabView {
@@ -38,7 +39,8 @@ struct NavigationBarScreen: View {
         .environmentObject(libraryBase)
         .environmentObject(cacheBase)
         .environmentObject(bookLogBase)
-        
+        .environmentObject(firestoreAdapter)
+
     }
 }
 

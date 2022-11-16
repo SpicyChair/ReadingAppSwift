@@ -13,6 +13,9 @@ struct FirebaseLoginScreen: View {
     @State private var email = ""
     @State private var password = ""
     @State private var isSignedIn = false
+    @EnvironmentObject var firestoreAdapter: FirestoreAdapter
+    
+    @EnvironmentObject var library: LibraryBase
     
     var body: some View {
         NavigationView {
@@ -39,8 +42,7 @@ struct FirebaseLoginScreen: View {
                     
                 }
             }
-        
-        
+
         )
     }
 
@@ -114,6 +116,12 @@ struct FirebaseLoginScreen: View {
                  logout()
              }) {
                 Text("Log Out")
+            }
+            
+            Button(action: {
+                firestoreAdapter.writeToFirestore(key: "library", value: library.library)
+            }) {
+                Text("Sync data")
             }
             
             Section ("Warning"){
