@@ -81,18 +81,24 @@ struct HomeScreenView: View {
                     }.foregroundColor(Color.red)
                     
                     Button(action: bookLogBase.clearGlobalBookLog) {
-                           Label("Clear Global Log Data", systemImage: "book.closed")
+                           Label("Clear Global Log Data", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     
+                }
+                
+                
+                Section ("Warning! Needs app restart") {
                     Button(action: {
                         let manager: FileManager = FileManager()
                         manager.resetApp()
                     }) {
-                           Label("Reset App (Needs App Restart)", systemImage: "trash")
+                           Label("Reset App", systemImage: "trash")
                     }.foregroundColor(Color.red)
                 }
-                
             }.navigationTitle("Home")
+            
+            
+            
         }
         .navigationViewStyle(.stack)
     }
