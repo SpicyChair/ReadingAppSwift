@@ -26,9 +26,27 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
-    func readFromFirestore(docPath: String) {
+    func readLibraryFromFirestore() {
         if let user = Auth.auth().currentUser {
-            let dbUser = db.collection("users")
+            // get the reference to the users collection of firestore
+            let dbUserRef = db.collection("users").document(user.uid)
+            
+            dbUserRef.getDocument { document, error in
+                // if error occurs
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                // else continue
+                
+                if let document = document {
+                    let data = document.data()
+                    let library = data?["library"] as? [String] ?? []
+                    
+                    print(library)
+                }
+            }
             
         }
     }

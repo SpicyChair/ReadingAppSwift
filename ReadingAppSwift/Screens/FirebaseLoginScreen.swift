@@ -45,8 +45,14 @@ struct FirebaseLoginScreen: View {
 
         )
     }
-
     
+    /*
+     LOGIN SCREEN
+     
+     DISPLAYS IF USER IS LOGGED OUT
+     */
+
+
     
     var loginScreen :  some View {
     
@@ -54,7 +60,7 @@ struct FirebaseLoginScreen: View {
             Section {
                 // VStack with account promotional stuff
                 VStack (alignment: .leading){
-                    Text("Create a free account to...")
+                    Text("Create a free account to")
                         .font(.system(size: 17, weight: .regular, design: .serif))
                     Text(
                     """
@@ -63,8 +69,6 @@ struct FirebaseLoginScreen: View {
                     - Enter reading challenges
                     """
                     ).font(.system(size: 20, weight: .bold, design: .serif))
-                    Text("...and more!")
-                        .font(.system(size: 17, weight: .regular, design: .serif))
                 }
                 
             }
@@ -98,6 +102,11 @@ struct FirebaseLoginScreen: View {
         
         
     }
+    /*
+     PROFILE SCREEN
+     
+     DISPLAYS IF USER IS LOGGED IN
+     */
     
     var profileScreen :  some View {
     
@@ -122,6 +131,12 @@ struct FirebaseLoginScreen: View {
                 firestoreAdapter.writeToFirestore(key: "library", value: library.library)
             }) {
                 Text("Sync data")
+            }
+            
+            Button(action: {
+                firestoreAdapter.readLibraryFromFirestore()
+            }) {
+                Text("Read data")
             }
             
             Section ("Warning"){
