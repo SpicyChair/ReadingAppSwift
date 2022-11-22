@@ -29,6 +29,7 @@ class FirestoreAdapter : ObservableObject {
         // generic function to support any type
         if let user = Auth.auth().currentUser {
             let dbUser = db.collection("users")
+            // use the user's uid as document name
             dbUser.document(user.uid).setData(
                 [
                     key : value,
@@ -38,7 +39,10 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
-    func readLibraryFromFirestore() {
+    func readLibraryFromFirestore() -> [String] {
+        // return empty array if error / Firestore entry empty
+        var library: [String] = []
+        
         if let user = Auth.auth().currentUser {
             // get the reference to the users collection of firestore
             let dbUserRef = db.collection("users").document(user.uid)
@@ -47,20 +51,21 @@ class FirestoreAdapter : ObservableObject {
                 // if error occurs
                 if let error = error {
                     print(error)
-                    return
                 }
                 
                 // else continue
                 
                 if let document = document {
                     let data = document.data()
-                    let library = data?["library"] as? [String] ?? []
-                    
+                    // get library as a string array
+                    library = data?["library"] as? [String] ?? []
                     print(library)
+                    
                 }
             }
-            
         }
+        //print(library)
+        return library
     }
     
     func login(email: String, password: String) {

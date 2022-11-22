@@ -111,17 +111,20 @@ struct ProfileScreen: View {
                 Text("Log Out")
             }
             
-            Button(action: {
-                adapter.writeToFirestore(key: "library", value: library.library)
-            }) {
-                Text("Sync data")
+            Section("Sync Data") {
+                Button(action: {
+                    adapter.writeToFirestore(key: "library", value: library.library)
+                }) {
+                    Text("Backup data")
+                }
+                
+                Button(action: {
+                    library.library = adapter.readLibraryFromFirestore()
+                }) {
+                    Text("Overwrite local data with backup")
+                }
             }
             
-            Button(action: {
-                adapter.readLibraryFromFirestore()
-            }) {
-                Text("Read data")
-            }
             
             Section ("Warning"){
                 Button(action: {
