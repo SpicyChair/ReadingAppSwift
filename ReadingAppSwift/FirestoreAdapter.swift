@@ -59,12 +59,13 @@ class FirestoreAdapter : ObservableObject {
                     let data = document.data()
                     // get library as a string array
                     library = data?["library"] as? [String] ?? []
+                    
                     print(library)
                     
                 }
             }
         }
-        //print(library)
+        print(library)
         return library
     }
     
