@@ -31,7 +31,7 @@ struct NavigationBarScreen: View {
                 .tabItem {
                     Label("Social", systemImage: "person.3")
                 }
-            FirebaseLoginScreen()
+            ProfileScreen()
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }

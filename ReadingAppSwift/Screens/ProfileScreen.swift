@@ -8,19 +8,20 @@
 import SwiftUI
 import Firebase
 
-struct FirebaseLoginScreen: View {
+struct ProfileScreen: View {
     
     @State private var email = ""
     @State private var password = ""
-    @State private var isSignedIn = false
-    @EnvironmentObject var firestoreAdapter: FirestoreAdapter
+    //@State private var isSignedIn = false
     
+    // environment objects 
+    @EnvironmentObject var adapter: FirestoreAdapter
     @EnvironmentObject var library: LibraryBase
     
     var body: some View {
         NavigationView {
             // if the user is signed in, show them their details
-            if isSignedIn {
+            if adapter.isSignedIn {
                 profileScreen
             } else {
                 // else prompt them to sign in or create an account
@@ -28,22 +29,7 @@ struct FirebaseLoginScreen: View {
             }
         }
         .navigationViewStyle(.stack)
-        
-        
-        .onAppear(perform: {
-                // when the navigationview appears, check if the user is signed in
-                Auth.auth().addStateDidChangeListener { auth, user in
-                    if let user = user {
-                        print("User is logged in as \(user.email!)")
-                        isSignedIn = true
-                    } else {
-                        print("User is logged out!")
-                    }
-                    
-                }
-            }
-
-        )
+    
     }
     
     /*
@@ -51,8 +37,6 @@ struct FirebaseLoginScreen: View {
      
      DISPLAYS IF USER IS LOGGED OUT
      */
-
-
     
     var loginScreen :  some View {
     
@@ -84,7 +68,7 @@ struct FirebaseLoginScreen: View {
                 SecureField("Password", text: $password)
                  
                  Button(action: {
-                      login()
+                     adapter.login(email: email, password: password)
                   }) {
                      Text("Sign in")
                  }
@@ -92,7 +76,7 @@ struct FirebaseLoginScreen: View {
 
             Section ("No account?") {
                 Button(action: {
-                     register()
+                    adapter.register(email: email, password: password)
                  }) {
                     Text("Register")
                 }
@@ -122,26 +106,26 @@ struct FirebaseLoginScreen: View {
             }
             
             Button(action: {
-                 logout()
+                adapter.logout()
              }) {
                 Text("Log Out")
             }
             
             Button(action: {
-                firestoreAdapter.writeToFirestore(key: "library", value: library.library)
+                adapter.writeToFirestore(key: "library", value: library.library)
             }) {
                 Text("Sync data")
             }
             
             Button(action: {
-                firestoreAdapter.readLibraryFromFirestore()
+                adapter.readLibraryFromFirestore()
             }) {
                 Text("Read data")
             }
             
             Section ("Warning"){
                 Button(action: {
-                     deleteAccount()
+                    adapter.deleteAccount()
                  }) {
                     Text("Delete account")
                 }.foregroundColor(Color.red)
@@ -152,59 +136,7 @@ struct FirebaseLoginScreen: View {
         }.navigationTitle("Profile")
         
     }
-    
-    
-    
-    func login() {
-           // use firebase to attempt sign in
-           Auth.auth().signIn(withEmail: email, password: password) { result, error in
-               if error != nil {
-                   print(error?.localizedDescription ?? "")
-               } else {
-                   print("Success! Logged in as \(email)")
-                   isSignedIn = true
-               }
-           }
-    }
-    
-    func logout() {
-        // get instance of firebase
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            isSignedIn = false
-        } catch let error {
-            print("Error signing out:\n\(error)")
-            
-        }
-    }
-    
-    func register() {
-        // use firebase to attempt to register and sign in
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-            } else {
-                print("Success! Registered as \(email)")
-            }
-        }
-    }
-    
-    func deleteAccount() {
-        // attempt to delete the currently logged in account
-        if let user = Auth.auth().currentUser {
-            user.delete { error in
-                if let error = error {
-                    print("\(error)")
-                } else {
-                    print("Deleted account successfully")
-                    isSignedIn = false
-                }
-                
-            }
-        }
-    }
+
 }
 
 
@@ -212,6 +144,6 @@ struct FirebaseLoginScreen: View {
 
 struct FirebaseLoginScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FirebaseLoginScreen()
+        ProfileScreen()
     }
 }

@@ -43,7 +43,7 @@
 		FDEB6EBC292412FF00DCB9B1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FDEB6EBB292412FF00DCB9B1 /* FirebaseAuth */; };
 		FDEB6EBE292412FF00DCB9B1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FDEB6EBD292412FF00DCB9B1 /* FirebaseFirestore */; };
 		FDEB6EC0292412FF00DCB9B1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FDEB6EBF292412FF00DCB9B1 /* FirebaseFirestoreSwift */; };
-		FDEB6EC2292414F400DCB9B1 /* FirebaseLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEB6EC1292414F400DCB9B1 /* FirebaseLoginScreen.swift */; };
+		FDEB6EC2292414F400DCB9B1 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEB6EC1292414F400DCB9B1 /* ProfileScreen.swift */; };
 		FDEF338A28D0F276005599BC /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF338928D0F276005599BC /* HomeScreenView.swift */; };
 		FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF338B28D0F284005599BC /* SocialScreenView.swift */; };
 		FDEF338E28D0F307005599BC /* DiscoverScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF338D28D0F307005599BC /* DiscoverScreenView.swift */; };
@@ -106,7 +106,7 @@
 		FDD804DC28EB25E40081B28B /* LibraryBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBase.swift; sourceTree = "<group>"; };
 		FDE1875C28E2F7EE000100F2 /* BookVolumeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVolumeInfo.swift; sourceTree = "<group>"; };
 		FDE1875E28E2F818000100F2 /* BookSaleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSaleInfo.swift; sourceTree = "<group>"; };
-		FDEB6EC1292414F400DCB9B1 /* FirebaseLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLoginScreen.swift; sourceTree = "<group>"; };
+		FDEB6EC1292414F400DCB9B1 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		FDEF338928D0F276005599BC /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		FDEF338B28D0F284005599BC /* SocialScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialScreenView.swift; sourceTree = "<group>"; };
 		FDEF338D28D0F307005599BC /* DiscoverScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverScreenView.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 				FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */,
 				FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */,
 				FD000C0929103F53003E18CB /* StatisticsScreenView.swift */,
-				FDEB6EC1292414F400DCB9B1 /* FirebaseLoginScreen.swift */,
+				FDEB6EC1292414F400DCB9B1 /* ProfileScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				FDC893D428F2E46C00340B31 /* CircleProgressBar.swift in Sources */,
 				FDEF339628D1028A005599BC /* GoogleBooksAdapter.swift in Sources */,
 				FDEF339228D0FC34005599BC /* SearchStateController.swift in Sources */,
-				FDEB6EC2292414F400DCB9B1 /* FirebaseLoginScreen.swift in Sources */,
+				FDEB6EC2292414F400DCB9B1 /* ProfileScreen.swift in Sources */,
 				FD4EC68928D07FC000B99ED2 /* NavigationBarScreen.swift in Sources */,
 				FD5A39D828ED8FFA007DACD9 /* BookLogBase.swift in Sources */,
 				FD95343928D24FA100FF9274 /* BookCard.swift in Sources */,

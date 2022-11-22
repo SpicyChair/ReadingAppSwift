@@ -12,6 +12,18 @@ import Firebase
 class FirestoreAdapter : ObservableObject {
     
     var db = Firestore.firestore()
+    @Published var isSignedIn = false
+    
+    init() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                print("User is logged in as \(user.email!)")
+                self.isSignedIn = true
+            } else {
+                print("User is logged out!")
+            }
+        }
+    }
     
     func writeToFirestore<T>(key: String, value: T) {
         // generic function to support any type
@@ -51,6 +63,54 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
+    func login(email: String, password: String) {
+           // use firebase to attempt sign in
+           Auth.auth().signIn(withEmail: email, password: password) { result, error in
+               if error != nil {
+                   print(error?.localizedDescription ?? "")
+               } else {
+                   print("Success! Logged in as \(email)")
+                   self.isSignedIn = true
+               }
+           }
+    }
     
+    func logout() {
+        // get instance of firebase
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            isSignedIn = false
+        } catch let error {
+            print("Error signing out:\n\(error)")
+            
+        }
+    }
     
+    func register(email: String, password: String) {
+        // use firebase to attempt to register and sign in
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+            } else {
+                print("Success! Registered as \(email)")
+            }
+        }
+    }
+    
+    func deleteAccount() {
+        // attempt to delete the currently logged in account
+        if let user = Auth.auth().currentUser {
+            user.delete { error in
+                if let error = error {
+                    print("\(error)")
+                } else {
+                    print("Deleted account successfully")
+                    self.isSignedIn = false
+                }
+                
+            }
+        }
+    }
 }
