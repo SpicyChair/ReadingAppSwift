@@ -114,12 +114,13 @@ struct ProfileScreen: View {
             Section("Sync Data") {
                 Button(action: {
                     adapter.writeToFirestore(key: "library", value: library.library)
+                    
                 }) {
                     Text("Backup data")
                 }
                 
                 Button(action: {
-                    library.library = adapter.readLibraryFromFirestore()
+                    adapter.readLibraryFromFirestore(library: library)
                 }) {
                     Text("Overwrite local data with backup")
                 }

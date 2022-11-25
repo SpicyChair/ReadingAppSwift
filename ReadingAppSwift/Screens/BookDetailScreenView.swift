@@ -48,8 +48,9 @@ struct BookDetailScreenView: View {
                                 // get the book category
                                 // and then create a new array by adding on the most
                                 // frequent key words inside the description
+                            
                                 
-                                ForEach(book.volumeInfo.categories + tagger.tagAndGetTopN(text: book.volumeInfo.description, n: 3) , id: \.self) { category in
+                                ForEach(book.volumeInfo.categories , id: \.self) { category in
                                     ChipTag(text: category)
                                 }
                                 
@@ -65,6 +66,7 @@ struct BookDetailScreenView: View {
                             Text("Published \(book.volumeInfo.publishedDate)")
                             Text("\(book.volumeInfo.pageCount) pages")
                             Text("Language: \(book.volumeInfo.language)")
+                            
                         }
 
                     } else {

@@ -35,7 +35,11 @@ class GoogleBooksAdapter {
             completion(nil)
             return
         }
-        //print(url.self)
+        
+        
+        
+        
+        
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {

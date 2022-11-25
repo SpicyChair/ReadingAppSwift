@@ -86,16 +86,8 @@ struct HomeScreenView: View {
                     
                 }
                 
-                
-                Section ("Warning! Needs app restart") {
-                    Button(action: {
-                        let manager: FileManager = FileManager()
-                        manager.resetApp()
-                    }) {
-                           Label("Reset App", systemImage: "trash")
-                    }.foregroundColor(Color.red)
-                }
             }.navigationTitle("Home")
+                 
             
             
             

@@ -16,12 +16,29 @@ class DiscoverScreenStateController: ObservableObject {
     @Published var mostFrequentGenre = ""
     
     func getMostFrequentAuthorAndGenre(library: [BookDetailsModel]) {
-        mostFrequentAuthor = recommender.getMostFrequentAuthor(library: library)
-        mostFrequentGenre = recommender.getMostFrequentGenre(library: library)
+        
+        
+        
+        var authors: [String] = []
+        var genres: [String] = []
+        
+        for book in library {
+            authors.append(contentsOf: book.volumeInfo.authors)
+            genres.append(contentsOf: book.volumeInfo.categories)
+        }
+        
+        self.mostFrequentAuthor = recommender.countAndGetTopN(arr: authors, n: 1)[0]
+        self.mostFrequentGenre = recommender.countAndGetTopN(arr: genres, n: 1)[0]
     }
     
     func getDescriptionTags() -> [String] {
         return recommender.tagAndGetTopN(text: text, n: 5)
+    }
+    
+    func reset() {
+        mostFrequentAuthor = ""
+        mostFrequentGenre = ""
+        text = ""
     }
     
     

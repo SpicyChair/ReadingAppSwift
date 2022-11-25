@@ -10,6 +10,29 @@ import SwiftUI
 
 class BookLogBase: ObservableObject {
     
+    
+    var log : [String : SavedLog] = [:]
+    
+    var cache: CacheBase?
+    
+    func setup(cache: CacheBase) {
+        self.cache = cache
+    }
+    
+    func checkLogForKey(key: String) {
+        if log[key] == nil {
+            if let book = cache?.getBookDetail(key: key) {
+                log[key] = SavedLog(pageProgress: 0, pageCount: book.volumeInfo.pageCount, pagesPerDay: [:])
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     var key = "" {
         // when the key is set by the view, the filename is generated
         // and the data is loaded from the filename
@@ -21,10 +44,41 @@ class BookLogBase: ObservableObject {
     
     // filename is var as it will change once key changes
     var bookFilename = ""
-    var lastRead = ""
+    
+    func logPagesNew(pages: Int, key: String) {
+            
+        checkLogForKey(key: key)
+            
+        if let bookLog = log[key] {
+            // the amount of pages to add
+            var toAdd = 0
+            
+            // pages read can never be greater than the amount of pages in the book
+            if (bookLog.pageProgress + pages >= bookLog.pageCount) {
+                toAdd = bookLog.pageCount - bookLog.pageProgress
+                
+            // pages read can never be negative!
+            } else if (bookLog.pageProgress + pages < 0){
+                toAdd = bookLog.pageProgress * (-1)
+            } else {
+                toAdd = pages
+            }
+            
+            log[key]?.pageProgress += toAdd
+        }
+    }
+    
+    func setPagesNew(pages: Int, key: String) {
+        
+        checkLogForKey(key: key)
+            
+        if let bookLog = log[key] {
+            log[key]?.pageProgress = pages
+        }
+    }
     
     
-    // allow persistence
+    // for persistence
     private var fileManager = FileManager()
     
     // total amount of pages
@@ -62,6 +116,7 @@ class BookLogBase: ObservableObject {
     
 
     func logPages(pages: Int) {
+    
         
         // the amount of pages to add
         var toAdd = 0
@@ -143,7 +198,7 @@ class BookLogBase: ObservableObject {
     
     func loadBookLog() {
         if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: bookFilename) {
-            self.pagesPerDay = loaded.pagesPerDay
+            self.pagesPerDay = loaded.pagesPerDay ?? [:]
             self.pageProgress = loaded.pageProgress
             self.pageCount = loaded.pageCount
         } else {
@@ -170,7 +225,7 @@ class BookLogBase: ObservableObject {
     
     func loadGlobalBookLog() {
         if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: globalFilename) {
-            self.globalPagesPerDay = loaded.pagesPerDay
+            self.globalPagesPerDay = loaded.pagesPerDay ?? [:]
             self.globalPageProgress = loaded.pageProgress
             self.globalPageGoal = loaded.pageCount
         }
@@ -193,6 +248,6 @@ class BookLogBase: ObservableObject {
     struct SavedLog : Codable {
         var pageProgress: Int
         var pageCount:Int
-        var pagesPerDay: [String : Int]
+        var pagesPerDay: [String : Int]?
     }
 }
