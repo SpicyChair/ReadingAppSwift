@@ -10,40 +10,34 @@ import SwiftUI
 
 class BookLogBase: ObservableObject {
     
+    // for persistence
+    private var fileManager = FileManager()
     
-    var log : [String : SavedLog] = [:]
+    
+    @State var log : [String : SavedLog] = [:]
     
     var cache: CacheBase?
     
+    let filename = "log.json"
+    
     func setup(cache: CacheBase) {
         self.cache = cache
+        loadBookLogNew()
     }
     
     func checkLogForKey(key: String) {
+        
+        log.updateValue(SavedLog(pageProgress: 0, pageCount: 12, pagesPerDay: [:]), forKey: key)
+        
         if log[key] == nil {
             if let book = cache?.getBookDetail(key: key) {
-                log[key] = SavedLog(pageProgress: 0, pageCount: book.volumeInfo.pageCount, pagesPerDay: [:])
+                log.updateValue(SavedLog(pageProgress: 0, pageCount: book.volumeInfo.pageCount, pagesPerDay: [:]), forKey: key)
+
+                //saveBookLogNew()
             }
         }
+        saveBookLogNew()
     }
-    
-    
-    
-    
-    
-    
-    
-    var key = "" {
-        // when the key is set by the view, the filename is generated
-        // and the data is loaded from the filename
-        didSet {
-            bookFilename = "\(key)_log.json"
-            loadBookLog()
-        }
-    }
-    
-    // filename is var as it will change once key changes
-    var bookFilename = ""
     
     func logPagesNew(pages: Int, key: String) {
             
@@ -71,15 +65,48 @@ class BookLogBase: ObservableObject {
     func setPagesNew(pages: Int, key: String) {
         
         checkLogForKey(key: key)
-            
+        
         if let bookLog = log[key] {
+            //let toAdd = pages - bookLog.pageProgress
             log[key]?.pageProgress = pages
         }
     }
     
+    func loadBookLogNew() {
+        if let loaded: [String : SavedLog] = fileManager.loadJSONFromFile(filename: "log.json") {
+            self.log = loaded
+        }
+    }
     
-    // for persistence
-    private var fileManager = FileManager()
+    func saveBookLogNew() {
+        fileManager.saveToJSON(filename: filename , object: self.log)
+    }
+    
+    func clearBookLogNew(key: String) {
+        self.log.removeValue(forKey: key)
+    }
+    
+    func clearAllLogData() {
+        fileManager.deleteFile(filename: filename)
+        self.log = [:]
+    }
+    
+    func getPageProgress(key: String) -> Int {
+        if let bookLog = log[key] {
+            return bookLog.pageProgress
+        }
+        return 0
+    }
+    
+    func getPageCount(key: String) -> Int {
+        if let bookLog = log[key] {
+            return bookLog.pageCount
+        }
+        return 0
+    }
+    
+    
+    /*
     
     // total amount of pages
     @Published var pageCount: Int = 1
@@ -243,11 +270,6 @@ class BookLogBase: ObservableObject {
     
     
     
-    // struct to facilitate encoding and decoding
     
-    struct SavedLog : Codable {
-        var pageProgress: Int
-        var pageCount:Int
-        var pagesPerDay: [String : Int]?
-    }
+     */
 }

@@ -19,8 +19,11 @@ struct HomeScreenView: View {
                 HStack (alignment: .center) {
                     // circle within a circle
                     ZStack {
+                        /*
                         CircleProgressBar(progress: bookLogBase.globalPageProgress, maxProgress: bookLogBase.globalPageGoal, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
+                         */
+                        CircleProgressBar(progress: 20, maxProgress: 30, color: Color.green, showPercent: false)
                         
                         CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
                             .frame(width: 70, height: 70)
@@ -33,7 +36,7 @@ struct HomeScreenView: View {
                         Text("Pages Read Today")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
-                        Text("\(bookLogBase.globalPageProgress) / \(bookLogBase.globalPageGoal)")
+                        Text("20/30")
                             .font(.system(size: 20, weight: .bold, design: .serif))
                         Spacer()
                         
@@ -80,8 +83,8 @@ struct HomeScreenView: View {
                            Label("Clear Cache", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     
-                    Button(action: bookLogBase.clearGlobalBookLog) {
-                           Label("Clear Global Log Data", systemImage: "xmark")
+                    Button(action: bookLogBase.clearAllLogData) {
+                           Label("Clear All Log Data", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     
                 }
