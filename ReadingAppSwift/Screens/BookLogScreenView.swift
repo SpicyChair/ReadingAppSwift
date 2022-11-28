@@ -50,7 +50,11 @@ struct BookLogScreenView: View {
                             // circular progress bar
                             // cast variables to double
                             
+<<<<<<< HEAD
                             CircleProgressBar(progress: state.pageProgress, maxProgress: state.pageProgress, color: Color.green, showPercent: true)
+=======
+                            CircleProgressBar(progress: state.pageProgress, maxProgress: state.pageCount, color: Color.green, showPercent: true)
+>>>>>>> parent of 076ab74 (i dont even know what is going on)
                                 .frame(width: 100, height: 100)
                             
                             Spacer()
@@ -60,7 +64,7 @@ struct BookLogScreenView: View {
                                 Text("Progress")
                                     .font(.system(size: 20, weight: .regular, design: .serif))
                                     
-                                Text("\(state.getPageProgress(key: key)) / \(state.getPageCount(key: key))")
+                                Text("\(state.pageProgress) / \(state.pageCount)")
                                     .font(.system(size: 30, weight: .bold, design: .serif))
                                 Stepper(onIncrement: {
                                     state.logPages(pages: 1)
@@ -83,14 +87,12 @@ struct BookLogScreenView: View {
                             Button("Set") {
                                 if let number = Int(pageProgressToLog) {
                                     // if number in range 0 to state.pageCount
-                                    if (0...state.getPageCount(key: key) ~= number) {
-                                        state.setPagesNew(pages: number, key: key)
+                                    if (0...state.pageCount ~= number) {
+                                        state.setPageProgress(pages: number)
                                     }
                                 }
                             }.buttonStyle(.bordered)
                             
-                        }.onAppear {
-                            state.checkLogForKey(key: key)
                         }
                         /*
                         NavigationLink {
@@ -103,6 +105,10 @@ struct BookLogScreenView: View {
                         
                         
                         
+                    }.onAppear {
+                        state.pageCount = book.volumeInfo.pageCount
+                        print(key)
+                        state.key = key
                     }
                 
                 NavigationLink {
@@ -115,10 +121,7 @@ struct BookLogScreenView: View {
                 
                 
                 Section (header: Text("Persistence Options")) {
-                    Button(action:{
-                        state.clearBookLogNew(key: key)
-                        
-                    }) {
+                    Button(action: state.clearBookLog) {
                         // clear logged data without removing any data from the book log
                            Label("Clear Logged Pages", systemImage: "xmark")
                     }.foregroundColor(Color.red)

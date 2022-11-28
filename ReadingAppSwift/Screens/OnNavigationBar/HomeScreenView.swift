@@ -19,11 +19,8 @@ struct HomeScreenView: View {
                 HStack (alignment: .center) {
                     // circle within a circle
                     ZStack {
-                        /*
                         CircleProgressBar(progress: bookLogBase.globalPageProgress, maxProgress: bookLogBase.globalPageGoal, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
-                         */
-                        CircleProgressBar(progress: 20, maxProgress: 30, color: Color.green, showPercent: false)
                         
                         CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
                             .frame(width: 70, height: 70)
@@ -36,7 +33,7 @@ struct HomeScreenView: View {
                         Text("Pages Read Today")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
-                        Text("20/30")
+                        Text("\(bookLogBase.globalPageProgress) / \(bookLogBase.globalPageGoal)")
                             .font(.system(size: 20, weight: .bold, design: .serif))
                         Spacer()
                         
@@ -84,7 +81,11 @@ struct HomeScreenView: View {
                     }.foregroundColor(Color.red)
                     
                     Button(action: bookLogBase.clearGlobalBookLog) {
+<<<<<<< HEAD
                            Label("Clear All Log Data", systemImage: "xmark")
+=======
+                           Label("Clear Global Log Data", systemImage: "xmark")
+>>>>>>> parent of 076ab74 (i dont even know what is going on)
                     }.foregroundColor(Color.red)
                     
                 }

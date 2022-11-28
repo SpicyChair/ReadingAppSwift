@@ -158,8 +158,8 @@
             filePath = "ReadingAppSwift/Screens/OnNavigationBar/HomeScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "ReadingAppSwift/Screens/OnNavigationBar/HomeScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -326,6 +326,7 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< HEAD
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
@@ -394,5 +395,7 @@
 >>>>>>> parent of df25542 (do some stuff and fix up book log)
 =======
 >>>>>>> parent of df25542 (do some stuff and fix up book log)
+=======
+>>>>>>> parent of 076ab74 (i dont even know what is going on)
    </Breakpoints>
 </Bucket>

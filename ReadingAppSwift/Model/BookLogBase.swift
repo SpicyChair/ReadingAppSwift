@@ -10,18 +10,83 @@ import SwiftUI
 
 class BookLogBase: ObservableObject {
     
-    // for persistence
-    private var fileManager = FileManager()
     
-    
-    @State var log : [String : SavedLog] = [:]
+    var log : [String : SavedLog] = [:]
     
     var cache: CacheBase?
     
+<<<<<<< HEAD
     let filename = "log.json"
     
 
 
+=======
+    func setup(cache: CacheBase) {
+        self.cache = cache
+    }
+    
+    func checkLogForKey(key: String) {
+        if log[key] == nil {
+            if let book = cache?.getBookDetail(key: key) {
+                log[key] = SavedLog(pageProgress: 0, pageCount: book.volumeInfo.pageCount, pagesPerDay: [:])
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    var key = "" {
+        // when the key is set by the view, the filename is generated
+        // and the data is loaded from the filename
+        didSet {
+            bookFilename = "\(key)_log.json"
+            loadBookLog()
+        }
+    }
+    
+    // filename is var as it will change once key changes
+    var bookFilename = ""
+    
+    func logPagesNew(pages: Int, key: String) {
+            
+        checkLogForKey(key: key)
+            
+        if let bookLog = log[key] {
+            // the amount of pages to add
+            var toAdd = 0
+            
+            // pages read can never be greater than the amount of pages in the book
+            if (bookLog.pageProgress + pages >= bookLog.pageCount) {
+                toAdd = bookLog.pageCount - bookLog.pageProgress
+                
+            // pages read can never be negative!
+            } else if (bookLog.pageProgress + pages < 0){
+                toAdd = bookLog.pageProgress * (-1)
+            } else {
+                toAdd = pages
+            }
+            
+            log[key]?.pageProgress += toAdd
+        }
+    }
+    
+    func setPagesNew(pages: Int, key: String) {
+        
+        checkLogForKey(key: key)
+            
+        if let bookLog = log[key] {
+            log[key]?.pageProgress = pages
+        }
+    }
+    
+    
+    // for persistence
+    private var fileManager = FileManager()
+>>>>>>> parent of 076ab74 (i dont even know what is going on)
     
     // total amount of pages
     @Published var pageCount: Int = 1
@@ -183,10 +248,21 @@ class BookLogBase: ObservableObject {
     }
     
     
+<<<<<<< HEAD
     struct SavedLog : Codable {
         var pageProgress: Int
         var pageCount:Int
         var pagesPerDay: [String : Int]
     }
 
+=======
+    
+    // struct to facilitate encoding and decoding
+    
+    struct SavedLog : Codable {
+        var pageProgress: Int
+        var pageCount:Int
+        var pagesPerDay: [String : Int]?
+    }
+>>>>>>> parent of 076ab74 (i dont even know what is going on)
 }
