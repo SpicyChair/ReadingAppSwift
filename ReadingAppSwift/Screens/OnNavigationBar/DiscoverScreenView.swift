@@ -75,7 +75,24 @@ struct DiscoverScreenView: View {
             // go through each book in the library and append it to the full text
                 .onAppear(perform: {
                     
-                    refreshRecommendations()
+                    if !(library.library.isEmpty) {
+                        // get the most frequent author and genre
+                        
+                        state.getMostFrequentAuthorAndGenre(library: Array(cache.books.values))
+                        
+                        for key in library.library {
+                            //access library keys
+                            
+                            if let book = cache.getBookDetail(key: key) {
+                                //then access the env object cache
+                                
+                                state.text += book.volumeInfo.description
+                            }
+                            
+                        }
+
+                        
+                    }
                     
                     // set loaded to true - then recommendation system can be used
                     
@@ -84,34 +101,7 @@ struct DiscoverScreenView: View {
                     
                 })
         }
-        .refreshable {
-            refreshRecommendations()
-        }
         .navigationViewStyle(.stack)
-    }
-    
-    func refreshRecommendations() {
-        state.reset()
-        if !(library.library.isEmpty) {
-            // get the most frequent author and genre
-            
-            
-            var books : [BookDetailsModel] = []
-            
-            for key in library.library {
-                //access library keys
-                
-                if let book = cache.getBookDetail(key: key) {
-                    //then access the env object cache
-                    
-                    state.text += book.volumeInfo.description
-                    books.append(book)
-                }
-                
-            }
-            state.getMostFrequentAuthorAndGenre(library: books)
-            
-        }
     }
 }
 

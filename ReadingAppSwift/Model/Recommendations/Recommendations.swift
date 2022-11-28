@@ -18,8 +18,6 @@ class Recommendations {
     let taggerOptions: NLTagger.Options = [.omitPunctuation, .omitWhitespace, .omitOther, .joinNames, .joinContractions]
     
     
-    
-    
     func tagAndGetTopN(text: String, n: Int) -> [String] {
         
         // count of all the words in the string
@@ -42,7 +40,7 @@ class Recommendations {
                     let c = "\(text[tokenRange])".lowercased()
                     
                     
-                    if !(stop_words.contains(c)) && c.count > 2 {
+                    if !(stop_words.contains(c)) {
                         
                         // if not existing
                         // create a new entry with value 1
@@ -108,6 +106,28 @@ class Recommendations {
         return results
     }
     
+    func getMostFrequentAuthor(library: [BookDetailsModel]) -> String {
+        
+        var authors: [String] = []
+        
+        for book in library {
+            authors.append(contentsOf: book.volumeInfo.authors)
+        }
+        
+        return countAndGetTopN(arr: authors, n: 1)[0]
+    }
+    
+    func getMostFrequentGenre(library: [BookDetailsModel]) -> String {
+        var genres: [String] = []
+        
+        for book in library {
+            
+            genres.append(contentsOf: book.volumeInfo.categories)
+        }
+        
+        return countAndGetTopN(arr: genres, n: 1)[0]
+    }
+
 }
 
 

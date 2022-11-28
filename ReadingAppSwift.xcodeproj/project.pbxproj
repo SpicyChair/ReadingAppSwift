@@ -10,7 +10,6 @@
 		FD000C08291024F6003E18CB /* ChipTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C07291024F6003E18CB /* ChipTag.swift */; };
 		FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0929103F53003E18CB /* StatisticsScreenView.swift */; };
 		FD000C0C291040EC003E18CB /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0B291040EC003E18CB /* BarChartView.swift */; };
-		FD0311F7292FEED7003D57E3 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FD0311F6292FEED7003D57E3 /* PromiseKit */; };
 		FD0A5EB2292566BC00194A1E /* FirestoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */; };
 		FD0B040629111BD900F93464 /* DailyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0B040529111BD900F93464 /* DailyProgress.swift */; };
 		FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FD367DE628F56DC70073E95E /* Kingfisher */; };
@@ -124,7 +123,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD0311F7292FEED7003D57E3 /* PromiseKit in Frameworks */,
 				FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */,
 				FDEB6EBC292412FF00DCB9B1 /* FirebaseAuth in Frameworks */,
 				FDEB6EBE292412FF00DCB9B1 /* FirebaseFirestore in Frameworks */,
@@ -324,7 +322,6 @@
 				FDEB6EBB292412FF00DCB9B1 /* FirebaseAuth */,
 				FDEB6EBD292412FF00DCB9B1 /* FirebaseFirestore */,
 				FDEB6EBF292412FF00DCB9B1 /* FirebaseFirestoreSwift */,
-				FD0311F6292FEED7003D57E3 /* PromiseKit */,
 			);
 			productName = ReadingAppSwift;
 			productReference = FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */;
@@ -401,7 +398,6 @@
 			packageReferences = (
 				FD367DE528F56DC60073E95E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				FDEB6EBA292412FF00DCB9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				FD0311F5292FEED7003D57E3 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = FD4EC65728D0729A00B99ED2 /* Products */;
 			projectDirPath = "";
@@ -803,14 +799,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FD0311F5292FEED7003D57E3 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		FD367DE528F56DC60073E95E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -830,11 +818,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FD0311F6292FEED7003D57E3 /* PromiseKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FD0311F5292FEED7003D57E3 /* XCRemoteSwiftPackageReference "PromiseKit" */;
-			productName = PromiseKit;
-		};
 		FD367DE628F56DC70073E95E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FD367DE528F56DC60073E95E /* XCRemoteSwiftPackageReference "Kingfisher" */;

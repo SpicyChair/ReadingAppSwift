@@ -10,6 +10,7 @@ import SwiftUI
 
 class BookLogBase: ObservableObject {
     
+<<<<<<< HEAD
     // for persistence
     private var fileManager = FileManager()
     
@@ -71,6 +72,20 @@ class BookLogBase: ObservableObject {
             log[key]?.pageProgress = pages
         }
     }
+=======
+    var key = "" {
+        // when the key is set by the view, the filename is generated
+        // and the data is loaded from the filename
+        didSet {
+            bookFilename = "\(key)_log.json"
+            loadBookLog()
+        }
+    }
+    
+    // filename is var as it will change once key changes
+    var bookFilename = ""
+    var lastRead = ""
+>>>>>>> parent of df25542 (do some stuff and fix up book log)
     
     func loadBookLogNew() {
         if let loaded: [String : SavedLog] = fileManager.loadJSONFromFile(filename: "log.json") {
@@ -78,6 +93,7 @@ class BookLogBase: ObservableObject {
         }
     }
     
+<<<<<<< HEAD
     func saveBookLogNew() {
         fileManager.saveToJSON(filename: filename , object: self.log)
     }
@@ -107,6 +123,10 @@ class BookLogBase: ObservableObject {
     
     
     /*
+=======
+    // allow persistence
+    private var fileManager = FileManager()
+>>>>>>> parent of df25542 (do some stuff and fix up book log)
     
     // total amount of pages
     @Published var pageCount: Int = 1
@@ -143,7 +163,6 @@ class BookLogBase: ObservableObject {
     
 
     func logPages(pages: Int) {
-    
         
         // the amount of pages to add
         var toAdd = 0
@@ -225,7 +244,7 @@ class BookLogBase: ObservableObject {
     
     func loadBookLog() {
         if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: bookFilename) {
-            self.pagesPerDay = loaded.pagesPerDay ?? [:]
+            self.pagesPerDay = loaded.pagesPerDay
             self.pageProgress = loaded.pageProgress
             self.pageCount = loaded.pageCount
         } else {
@@ -252,7 +271,7 @@ class BookLogBase: ObservableObject {
     
     func loadGlobalBookLog() {
         if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: globalFilename) {
-            self.globalPagesPerDay = loaded.pagesPerDay ?? [:]
+            self.globalPagesPerDay = loaded.pagesPerDay
             self.globalPageProgress = loaded.pageProgress
             self.globalPageGoal = loaded.pageCount
         }
@@ -271,5 +290,13 @@ class BookLogBase: ObservableObject {
     
     
     
+<<<<<<< HEAD
      */
+=======
+    struct SavedLog : Codable {
+        var pageProgress: Int
+        var pageCount:Int
+        var pagesPerDay: [String : Int]
+    }
+>>>>>>> parent of df25542 (do some stuff and fix up book log)
 }

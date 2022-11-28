@@ -45,9 +45,9 @@ struct BookScroller: View {
         }
         .padding([.top, .bottom], 10)
         .onAppear(perform: {
-            
-            state.searchFor = self.searchFor
-            
+            if state.results.isEmpty {
+                state.searchFor = self.searchFor
+            }
         })
     }
 }

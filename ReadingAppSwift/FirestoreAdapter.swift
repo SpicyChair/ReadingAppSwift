@@ -13,7 +13,6 @@ class FirestoreAdapter : ObservableObject {
     
     var db = Firestore.firestore()
     @Published var isSignedIn = false
-    @Published var libraryFromFirebase:[String] = []
     
     init() {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -40,8 +39,9 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
-    func readLibraryFromFirestore(library: LibraryBase) {
+    func readLibraryFromFirestore() -> [String] {
         // return empty array if error / Firestore entry empty
+        var library: [String] = []
         
         if let user = Auth.auth().currentUser {
             // get the reference to the users collection of firestore
@@ -58,13 +58,15 @@ class FirestoreAdapter : ObservableObject {
                 if let document = document {
                     let data = document.data()
                     // get library as a string array
-                    let firebaseLibrary = data?["library"] as? [String] ?? []
-
-                    library.library = firebaseLibrary
-                    library.saveLibraryToFile()
+                    library = data?["library"] as? [String] ?? []
+                    
+                    print(library)
+                    
                 }
             }
         }
+        print(library)
+        return library
     }
     
     func login(email: String, password: String) {

@@ -30,13 +30,16 @@ struct BookVolumeInfo: Codable, Hashable {
         self.pageCount = rawBookDetails.pageCount ?? 0
         self.language = rawBookDetails.language ?? "No language"
         
-        // automatically generate category tags
+        var categories: [String] =  []
         
-        let recommender = Recommendations()
+        for category in rawBookDetails.categories ?? [] {
+            //print(category)
+            for c in category.split(separator: "/") {
+                categories.append(c.capitalized)
+            }
+        }
         
-       
-        self.categories = rawBookDetails.categories ?? recommender.tagAndGetTopN(text: description, n: 3)
-
+        self.categories = categories
         
         if let cover = rawBookDetails.coverImage {
             // check if cover exists in storage
@@ -46,6 +49,7 @@ struct BookVolumeInfo: Codable, Hashable {
             self.coverImage = "\(rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? "")?key=\(booksApiKey).png"
         
         }
+        //print(self.coverImage)
     }
     
     //horrible-looking struct modelled one to one with the JSON data
@@ -69,7 +73,8 @@ struct BookVolumeInfo: Codable, Hashable {
             let type: String?
             let identifier: String?
         }
-    
+        // forward slash divided tags / categories
+        // will be split
         let categories: [String]?
         
         let imageLinks: ImageLinks?
