@@ -10,7 +10,6 @@ import SwiftUI
 
 class BookLogBase: ObservableObject {
     
-<<<<<<< HEAD
     // for persistence
     private var fileManager = FileManager()
     
@@ -20,6 +19,8 @@ class BookLogBase: ObservableObject {
     var cache: CacheBase?
     
     let filename = "log.json"
+    
+    /*
     
     func setup(cache: CacheBase) {
         self.cache = cache
@@ -72,7 +73,6 @@ class BookLogBase: ObservableObject {
             log[key]?.pageProgress = pages
         }
     }
-=======
     var key = "" {
         // when the key is set by the view, the filename is generated
         // and the data is loaded from the filename
@@ -85,15 +85,13 @@ class BookLogBase: ObservableObject {
     // filename is var as it will change once key changes
     var bookFilename = ""
     var lastRead = ""
->>>>>>> parent of df25542 (do some stuff and fix up book log)
-    
+   
     func loadBookLogNew() {
         if let loaded: [String : SavedLog] = fileManager.loadJSONFromFile(filename: "log.json") {
             self.log = loaded
         }
     }
     
-<<<<<<< HEAD
     func saveBookLogNew() {
         fileManager.saveToJSON(filename: filename , object: self.log)
     }
@@ -120,13 +118,13 @@ class BookLogBase: ObservableObject {
         }
         return 0
     }
+     */
     
     
-    /*
-=======
+
     // allow persistence
     private var fileManager = FileManager()
->>>>>>> parent of df25542 (do some stuff and fix up book log)
+
     
     // total amount of pages
     @Published var pageCount: Int = 1
@@ -288,15 +286,10 @@ class BookLogBase: ObservableObject {
     }
     
     
-    
-    
-<<<<<<< HEAD
-     */
-=======
     struct SavedLog : Codable {
         var pageProgress: Int
         var pageCount:Int
         var pagesPerDay: [String : Int]
     }
->>>>>>> parent of df25542 (do some stuff and fix up book log)
+
 }
