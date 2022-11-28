@@ -83,7 +83,7 @@ struct HomeScreenView: View {
                            Label("Clear Cache", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     
-                    Button(action: bookLogBase.clearGlobalBookLog()) {
+                    Button(action: bookLogBase.clearGlobalBookLog) {
                            Label("Clear All Log Data", systemImage: "xmark")
                     }.foregroundColor(Color.red)
                     

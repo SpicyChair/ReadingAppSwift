@@ -309,6 +309,7 @@
          </BreakpointContent>
       </BreakpointProxy>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
@@ -389,6 +390,8 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+=======
+>>>>>>> parent of df25542 (do some stuff and fix up book log)
 =======
 >>>>>>> parent of df25542 (do some stuff and fix up book log)
    </Breakpoints>

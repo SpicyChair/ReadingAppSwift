@@ -50,7 +50,7 @@ struct BookLogScreenView: View {
                             // circular progress bar
                             // cast variables to double
                             
-                            CircleProgressBar(progress: state.getPageProgress(key: key), maxProgress: state.getPageCount(key: key), color: Color.green, showPercent: true)
+                            CircleProgressBar(progress: state.pageProgress, maxProgress: state.pageProgress, color: Color.green, showPercent: true)
                                 .frame(width: 100, height: 100)
                             
                             Spacer()
@@ -63,9 +63,9 @@ struct BookLogScreenView: View {
                                 Text("\(state.getPageProgress(key: key)) / \(state.getPageCount(key: key))")
                                     .font(.system(size: 30, weight: .bold, design: .serif))
                                 Stepper(onIncrement: {
-                                    state.logPagesNew(pages: 1, key: key)
+                                    state.logPages(pages: 1)
                                 }, onDecrement: {
-                                    state.logPagesNew(pages: -1, key: key)
+                                    state.logPages(pages: -1)
                                 }) {
                                     
                                 }.frame(width: 85)

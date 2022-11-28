@@ -40,9 +40,6 @@ struct NavigationBarScreen: View {
         .environmentObject(cacheBase)
         .environmentObject(bookLogBase)
         .environmentObject(firestoreAdapter)
-        .onAppear {
-            bookLogBase.setup(cache: cacheBase)
-        }
 
     }
 }
