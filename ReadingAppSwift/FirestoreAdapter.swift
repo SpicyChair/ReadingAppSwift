@@ -67,6 +67,64 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
+    func readLogsFromFirebase(bookLogBase: BookLogBase) {
+        
+        let fileManager = FileManager()
+        
+        // return empty array if error / Firestore entry empty
+        
+        if let user = Auth.auth().currentUser {
+            // get the reference to the users collection of firestore
+            let dbUserRef = db.collection("users").document(user.uid)
+            
+            dbUserRef.getDocument { document, error in
+                // if error occurs
+                if let error = error {
+                    print(error)
+                }
+                
+                // else continue
+                
+                if let document = document {
+                    let data = document.data()
+                    // get global page progress and goal as an int
+                    let globalPageProgress = data?["globalPageProgress"] as? Int ?? 0
+                    let globalPageGoal = data?["globalPageProgress"] as? Int ?? 50
+                    // load logged books
+                    let loggedBooks = data?["loggedBooks"] as? [String] ?? []
+                    
+                    bookLogBase.globalPageProgress = globalPageProgress
+                    bookLogBase.globalPageGoal = globalPageGoal
+                    bookLogBase.loggedBooks = loggedBooks
+                    
+                    
+                    // go through each file and then save it locally
+                    for file in loggedBooks {
+                        if let d : SavedLog = data?["\(file)_log.json"] as? SavedLog {
+                            fileManager.saveToJSON(filename: "\(file)_log.json" , object: d)
+                        }
+                    }
+
+                    
+                }
+            }
+        }
+    }
+    
+    func writeLogDataToFireBase(bookLogBase: BookLogBase) {
+        let fileManager = FileManager()
+        
+        for file in bookLogBase.loggedBooks {
+            
+            // load each file from local and then write to firebase
+            
+            if let data: SavedLog = fileManager.loadJSONFromFile(filename: "\(file)_log.json") {
+                writeToFirestore(key: "\(file)_log.json", value: data)
+            }
+            
+        }
+    }
+    
     func login(email: String, password: String) {
            // use firebase to attempt sign in
            Auth.auth().signIn(withEmail: email, password: password) { result, error in

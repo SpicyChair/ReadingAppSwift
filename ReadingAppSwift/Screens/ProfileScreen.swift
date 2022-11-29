@@ -17,6 +17,7 @@ struct ProfileScreen: View {
     // environment objects 
     @EnvironmentObject var adapter: FirestoreAdapter
     @EnvironmentObject var library: LibraryBase
+    @EnvironmentObject var bookLogBase: BookLogBase
     
     var body: some View {
         NavigationView {
@@ -110,10 +111,11 @@ struct ProfileScreen: View {
              }) {
                 Text("Log Out")
             }
-            
+            //TODO: FIX
             Section("Sync Data") {
                 Button(action: {
                     adapter.writeToFirestore(key: "library", value: library.library)
+                    adapter.writeLogDataToFireBase(bookLogBase: bookLogBase)
                     
                 }) {
                     Text("Backup data")
@@ -121,6 +123,7 @@ struct ProfileScreen: View {
                 
                 Button(action: {
                     adapter.readLibraryFromFirestore(library: library)
+                    adapter.readLogsFromFirebase(bookLogBase: bookLogBase)
                 }) {
                     Text("Overwrite local data with backup")
                 }
