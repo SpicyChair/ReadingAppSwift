@@ -10,6 +10,8 @@ import SwiftUI
 struct NavigationBarScreen: View {
     let cacheBase: CacheBase = CacheBase()
     let libraryBase: LibraryBase = LibraryBase()
+    let bookLogBase: BookLogBase = BookLogBase()
+    let firestoreAdapter: FirestoreAdapter = FirestoreAdapter()
     
     var body: some View {
         TabView {
@@ -29,10 +31,16 @@ struct NavigationBarScreen: View {
                 .tabItem {
                     Label("Social", systemImage: "person.3")
                 }
+            ProfileScreen()
+                .tabItem {
+                    Label("Profile", systemImage: "person")
+                }
         }
         .environmentObject(libraryBase)
         .environmentObject(cacheBase)
-        
+        .environmentObject(bookLogBase)
+        .environmentObject(firestoreAdapter)
+
     }
 }
 

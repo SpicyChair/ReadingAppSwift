@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD285D5228F1D78B00647DE8 /* BookLogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD285D5128F1D78B00647DE8 /* BookLogData.swift */; };
+		FD000C08291024F6003E18CB /* ChipTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C07291024F6003E18CB /* ChipTag.swift */; };
+		FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0929103F53003E18CB /* StatisticsScreenView.swift */; };
+		FD000C0C291040EC003E18CB /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD000C0B291040EC003E18CB /* BarChartView.swift */; };
+		FD0311F7292FEED7003D57E3 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = FD0311F6292FEED7003D57E3 /* PromiseKit */; };
+		FD0A5EB2292566BC00194A1E /* FirestoreAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */; };
+		FD0B040629111BD900F93464 /* DailyProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0B040529111BD900F93464 /* DailyProgress.swift */; };
+		FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FD367DE628F56DC70073E95E /* Kingfisher */; };
 		FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */; };
 		FD4930B528E4D93900330E75 /* BookCardVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4930B428E4D93900330E75 /* BookCardVertical.swift */; };
 		FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */; };
@@ -20,14 +26,26 @@
 		FD4EC68928D07FC000B99ED2 /* NavigationBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */; };
 		FD550D9228EA2F3400E82168 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD550D9128EA2F3400E82168 /* FileManager.swift */; };
 		FD5A39D528ED8A8E007DACD9 /* BookLogScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */; };
-		FD5A39D828ED8FFA007DACD9 /* BookLogStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A39D728ED8FFA007DACD9 /* BookLogStateController.swift */; };
+		FD5A39D828ED8FFA007DACD9 /* BookLogBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A39D728ED8FFA007DACD9 /* BookLogBase.swift */; };
+		FD5A51FF28F466A2007EC025 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A51FE28F466A2007EC025 /* Constants.swift */; };
+		FD70E11B291A649600A1904A /* DiscoverScreenStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD70E11A291A649600A1904A /* DiscoverScreenStateController.swift */; };
+		FD803976291EA5DC003B5068 /* BookScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD803975291EA5DC003B5068 /* BookScroller.swift */; };
+		FD83BB172936807700D56193 /* SavedGlobalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD83BB162936807700D56193 /* SavedGlobalLog.swift */; };
 		FD95343928D24FA100FF9274 /* BookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95343828D24FA100FF9274 /* BookCard.swift */; };
 		FD986E4D28D4DEA500F55DB9 /* BookDetailScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */; };
 		FD986E5128D4EE4800F55DB9 /* BookCoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */; };
+		FDAC37DD2927BA5C00D7D1D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDAC37DC2927BA5C00D7D1D2 /* GoogleService-Info.plist */; };
+		FDAE3A6B29194C5600DE088D /* Recommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAE3A6A29194C5600DE088D /* Recommendations.swift */; };
+		FDAE3A70291958C600DE088D /* StopWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAE3A6F291958C600DE088D /* StopWords.swift */; };
 		FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB690D828DB7625004F17BF /* CacheBase.swift */; };
+		FDC893D428F2E46C00340B31 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */; };
 		FDD804DD28EB25E40081B28B /* LibraryBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD804DC28EB25E40081B28B /* LibraryBase.swift */; };
 		FDE1875D28E2F7EE000100F2 /* BookVolumeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE1875C28E2F7EE000100F2 /* BookVolumeInfo.swift */; };
 		FDE1875F28E2F818000100F2 /* BookSaleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE1875E28E2F818000100F2 /* BookSaleInfo.swift */; };
+		FDEB6EBC292412FF00DCB9B1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FDEB6EBB292412FF00DCB9B1 /* FirebaseAuth */; };
+		FDEB6EBE292412FF00DCB9B1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FDEB6EBD292412FF00DCB9B1 /* FirebaseFirestore */; };
+		FDEB6EC0292412FF00DCB9B1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FDEB6EBF292412FF00DCB9B1 /* FirebaseFirestoreSwift */; };
+		FDEB6EC2292414F400DCB9B1 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEB6EC1292414F400DCB9B1 /* ProfileScreen.swift */; };
 		FDEF338A28D0F276005599BC /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF338928D0F276005599BC /* HomeScreenView.swift */; };
 		FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF338B28D0F284005599BC /* SocialScreenView.swift */; };
 		FDEF338E28D0F307005599BC /* DiscoverScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF338D28D0F307005599BC /* DiscoverScreenView.swift */; };
@@ -55,7 +73,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FD285D5128F1D78B00647DE8 /* BookLogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLogData.swift; sourceTree = "<group>"; };
+		FD000C07291024F6003E18CB /* ChipTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipTag.swift; sourceTree = "<group>"; };
+		FD000C0929103F53003E18CB /* StatisticsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScreenView.swift; sourceTree = "<group>"; };
+		FD000C0B291040EC003E18CB /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAdapter.swift; sourceTree = "<group>"; };
+		FD0B040529111BD900F93464 /* DailyProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProgress.swift; sourceTree = "<group>"; };
 		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
 		FD4930B428E4D93900330E75 /* BookCardVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardVertical.swift; sourceTree = "<group>"; };
 		FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,14 +93,23 @@
 		FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarScreen.swift; sourceTree = "<group>"; };
 		FD550D9128EA2F3400E82168 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLogScreenView.swift; sourceTree = "<group>"; };
-		FD5A39D728ED8FFA007DACD9 /* BookLogStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLogStateController.swift; sourceTree = "<group>"; };
+		FD5A39D728ED8FFA007DACD9 /* BookLogBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookLogBase.swift; sourceTree = "<group>"; };
+		FD5A51FE28F466A2007EC025 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FD70E11A291A649600A1904A /* DiscoverScreenStateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverScreenStateController.swift; sourceTree = "<group>"; };
+		FD803975291EA5DC003B5068 /* BookScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookScroller.swift; sourceTree = "<group>"; };
+		FD83BB162936807700D56193 /* SavedGlobalLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedGlobalLog.swift; sourceTree = "<group>"; };
 		FD95343828D24FA100FF9274 /* BookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCard.swift; sourceTree = "<group>"; };
 		FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailScreenView.swift; sourceTree = "<group>"; };
 		FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverImage.swift; sourceTree = "<group>"; };
+		FDAC37DC2927BA5C00D7D1D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FDAE3A6A29194C5600DE088D /* Recommendations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendations.swift; sourceTree = "<group>"; };
+		FDAE3A6F291958C600DE088D /* StopWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWords.swift; sourceTree = "<group>"; };
 		FDB690D828DB7625004F17BF /* CacheBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheBase.swift; sourceTree = "<group>"; };
+		FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		FDD804DC28EB25E40081B28B /* LibraryBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBase.swift; sourceTree = "<group>"; };
 		FDE1875C28E2F7EE000100F2 /* BookVolumeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVolumeInfo.swift; sourceTree = "<group>"; };
 		FDE1875E28E2F818000100F2 /* BookSaleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSaleInfo.swift; sourceTree = "<group>"; };
+		FDEB6EC1292414F400DCB9B1 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		FDEF338928D0F276005599BC /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		FDEF338B28D0F284005599BC /* SocialScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialScreenView.swift; sourceTree = "<group>"; };
 		FDEF338D28D0F307005599BC /* DiscoverScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverScreenView.swift; sourceTree = "<group>"; };
@@ -93,6 +124,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0311F7292FEED7003D57E3 /* PromiseKit in Frameworks */,
+				FD367DE728F56DC70073E95E /* Kingfisher in Frameworks */,
+				FDEB6EBC292412FF00DCB9B1 /* FirebaseAuth in Frameworks */,
+				FDEB6EBE292412FF00DCB9B1 /* FirebaseFirestore in Frameworks */,
+				FDEB6EC0292412FF00DCB9B1 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,14 +181,17 @@
 		FD4EC65828D0729A00B99ED2 /* ReadingAppSwift */ = {
 			isa = PBXGroup;
 			children = (
+				FD5A51FE28F466A2007EC025 /* Constants.swift */,
 				FD550D9028EA2F2100E82168 /* Extensions */,
 				FD4EC68528D0741200B99ED2 /* Components */,
 				FD4EC68428D0740500B99ED2 /* Model */,
 				FD4EC68328D073F700B99ED2 /* Screens */,
 				FDEF339528D1028A005599BC /* GoogleBooksAdapter.swift */,
+				FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */,
 				FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */,
 				FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */,
 				FD4EC65D28D0729D00B99ED2 /* Assets.xcassets */,
+				FDAC37DC2927BA5C00D7D1D2 /* GoogleService-Info.plist */,
 				FD4EC65F28D0729D00B99ED2 /* Preview Content */,
 			);
 			path = ReadingAppSwift;
@@ -189,6 +228,8 @@
 				FD5A39D628ED8B05007DACD9 /* OnNavigationBar */,
 				FD986E4C28D4DEA400F55DB9 /* BookDetailScreenView.swift */,
 				FD5A39D428ED8A8E007DACD9 /* BookLogScreenView.swift */,
+				FD000C0929103F53003E18CB /* StatisticsScreenView.swift */,
+				FDEB6EC1292414F400DCB9B1 /* ProfileScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -196,12 +237,14 @@
 		FD4EC68428D0740500B99ED2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FD5A39D728ED8FFA007DACD9 /* BookLogStateController.swift */,
-				FD285D5128F1D78B00647DE8 /* BookLogData.swift */,
+				FD83BB162936807700D56193 /* SavedGlobalLog.swift */,
+				FDAE3A6C2919557000DE088D /* Recommendations */,
 				FDF5FC7C28DB1AA4008F80B1 /* Book */,
 				FD285D5028F1C39400647DE8 /* Search */,
 				FDD804DC28EB25E40081B28B /* LibraryBase.swift */,
 				FDB690D828DB7625004F17BF /* CacheBase.swift */,
+				FD5A39D728ED8FFA007DACD9 /* BookLogBase.swift */,
+				FD0B040529111BD900F93464 /* DailyProgress.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +256,10 @@
 				FD986E5028D4EE4800F55DB9 /* BookCoverImage.swift */,
 				FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */,
 				FD4930B428E4D93900330E75 /* BookCardVertical.swift */,
+				FDC893D328F2E46C00340B31 /* CircleProgressBar.swift */,
+				FD000C07291024F6003E18CB /* ChipTag.swift */,
+				FD000C0B291040EC003E18CB /* BarChartView.swift */,
+				FD803975291EA5DC003B5068 /* BookScroller.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -234,6 +281,16 @@
 				FDEF338D28D0F307005599BC /* DiscoverScreenView.swift */,
 			);
 			path = OnNavigationBar;
+			sourceTree = "<group>";
+		};
+		FDAE3A6C2919557000DE088D /* Recommendations */ = {
+			isa = PBXGroup;
+			children = (
+				FDAE3A6A29194C5600DE088D /* Recommendations.swift */,
+				FDAE3A6F291958C600DE088D /* StopWords.swift */,
+				FD70E11A291A649600A1904A /* DiscoverScreenStateController.swift */,
+			);
+			path = Recommendations;
 			sourceTree = "<group>";
 		};
 		FDF5FC7C28DB1AA4008F80B1 /* Book */ = {
@@ -262,6 +319,13 @@
 			dependencies = (
 			);
 			name = ReadingAppSwift;
+			packageProductDependencies = (
+				FD367DE628F56DC70073E95E /* Kingfisher */,
+				FDEB6EBB292412FF00DCB9B1 /* FirebaseAuth */,
+				FDEB6EBD292412FF00DCB9B1 /* FirebaseFirestore */,
+				FDEB6EBF292412FF00DCB9B1 /* FirebaseFirestoreSwift */,
+				FD0311F6292FEED7003D57E3 /* PromiseKit */,
+			);
 			productName = ReadingAppSwift;
 			productReference = FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */;
 			productType = "com.apple.product-type.application";
@@ -334,6 +398,11 @@
 				Base,
 			);
 			mainGroup = FD4EC64D28D0729A00B99ED2;
+			packageReferences = (
+				FD367DE528F56DC60073E95E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FDEB6EBA292412FF00DCB9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FD0311F5292FEED7003D57E3 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+			);
 			productRefGroup = FD4EC65728D0729A00B99ED2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -351,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD4EC66128D0729D00B99ED2 /* Preview Assets.xcassets in Resources */,
+				FDAC37DD2927BA5C00D7D1D2 /* GoogleService-Info.plist in Resources */,
 				FD4EC65E28D0729D00B99ED2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,29 +446,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0B040629111BD900F93464 /* DailyProgress.swift in Sources */,
 				FDEF339428D0FF2B005599BC /* SearchResults.swift in Sources */,
 				FD986E4D28D4DEA500F55DB9 /* BookDetailScreenView.swift in Sources */,
+				FD0A5EB2292566BC00194A1E /* FirestoreAdapter.swift in Sources */,
 				FD986E5128D4EE4800F55DB9 /* BookCoverImage.swift in Sources */,
+				FD000C0A29103F53003E18CB /* StatisticsScreenView.swift in Sources */,
 				FD550D9228EA2F3400E82168 /* FileManager.swift in Sources */,
+				FDC893D428F2E46C00340B31 /* CircleProgressBar.swift in Sources */,
 				FDEF339628D1028A005599BC /* GoogleBooksAdapter.swift in Sources */,
 				FDEF339228D0FC34005599BC /* SearchStateController.swift in Sources */,
+				FDEB6EC2292414F400DCB9B1 /* ProfileScreen.swift in Sources */,
 				FD4EC68928D07FC000B99ED2 /* NavigationBarScreen.swift in Sources */,
-				FD5A39D828ED8FFA007DACD9 /* BookLogStateController.swift in Sources */,
+				FD5A39D828ED8FFA007DACD9 /* BookLogBase.swift in Sources */,
 				FD95343928D24FA100FF9274 /* BookCard.swift in Sources */,
 				FDEF338A28D0F276005599BC /* HomeScreenView.swift in Sources */,
+				FDAE3A70291958C600DE088D /* StopWords.swift in Sources */,
 				FD4930B528E4D93900330E75 /* BookCardVertical.swift in Sources */,
 				FDEF338E28D0F307005599BC /* DiscoverScreenView.swift in Sources */,
-				FD285D5228F1D78B00647DE8 /* BookLogData.swift in Sources */,
 				FD5A39D528ED8A8E007DACD9 /* BookLogScreenView.swift in Sources */,
 				FD4EC68728D076EC00B99ED2 /* SearchScreenView.swift in Sources */,
+				FD83BB172936807700D56193 /* SavedGlobalLog.swift in Sources */,
 				FD4EC65A28D0729A00B99ED2 /* ReadingAppSwiftApp.swift in Sources */,
+				FD000C08291024F6003E18CB /* ChipTag.swift in Sources */,
+				FD70E11B291A649600A1904A /* DiscoverScreenStateController.swift in Sources */,
 				FDE1875F28E2F818000100F2 /* BookSaleInfo.swift in Sources */,
 				FDD804DD28EB25E40081B28B /* LibraryBase.swift in Sources */,
+				FDAE3A6B29194C5600DE088D /* Recommendations.swift in Sources */,
 				FDB690D928DB7625004F17BF /* CacheBase.swift in Sources */,
 				FDEF338C28D0F284005599BC /* SocialScreenView.swift in Sources */,
 				FDE1875D28E2F7EE000100F2 /* BookVolumeInfo.swift in Sources */,
+				FD000C0C291040EC003E18CB /* BarChartView.swift in Sources */,
 				FD4930B328E4C61B00330E75 /* AddToLibraryButton.swift in Sources */,
 				FDF5FC7A28DB1A82008F80B1 /* BookDetailsModel.swift in Sources */,
+				FD803976291EA5DC003B5068 /* BookScroller.swift in Sources */,
+				FD5A51FF28F466A2007EC025 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +801,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FD0311F5292FEED7003D57E3 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		FD367DE528F56DC60073E95E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		FDEB6EBA292412FF00DCB9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD0311F6292FEED7003D57E3 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD0311F5292FEED7003D57E3 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+		FD367DE628F56DC70073E95E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD367DE528F56DC60073E95E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		FDEB6EBB292412FF00DCB9B1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDEB6EBA292412FF00DCB9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FDEB6EBD292412FF00DCB9B1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDEB6EBA292412FF00DCB9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FDEB6EBF292412FF00DCB9B1 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDEB6EBA292412FF00DCB9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD4EC64E28D0729A00B99ED2 /* Project object */;
 }

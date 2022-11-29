@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct BookCoverImage: View {
     var coverImage: String
@@ -14,6 +15,9 @@ struct BookCoverImage: View {
     var cornerRadius: Float
     
     var body: some View {
+        
+        let url = URL(string: coverImage)
+        
         // ZStack for Book Cover
         ZStack (alignment: .center) {
             
@@ -24,13 +28,10 @@ struct BookCoverImage: View {
                 Image(systemName: "xmark.octagon")
             }
             
-            // Book Cover
-            AsyncImage(url: URL(string: coverImage)) { image in
-                image.resizable()
-            } placeholder: {
-                //placeholder if the image fails to load
-                Image(systemName: "xmark.octagon")
-            }
+            KFImage(url)
+                .resizable()
+                .cacheOriginalImage()
+
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
         .cornerRadius(CGFloat(cornerRadius))

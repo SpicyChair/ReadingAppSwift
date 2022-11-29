@@ -10,27 +10,56 @@ import XCTest
 
 class ReadingAppSwiftTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    
+    func testRecommendationsTagAndGetTopNWithOnlyNounInput () throws {
+        
+        // test the tagging feature
+        // the input will be only noun input and will not contain any stopwords
+        
+        let recommender: Recommendations = Recommendations()
+        
+        let text = "Recommendation Recommendation Automated Test Test Recommendation Recommendation Automated Test Recommendation Recommendation Automated Test"
+        
+        let expected = ["Recommendation", "Test"]
+        
+        let response = recommender.tagAndGetTopN(text: text, n: 2)
+        
+        
+        XCTAssert(response == expected)
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
+    
+    func testRecommendationsTagAndGetTopNWithMixedInput() throws {
+        
+        // test the tagging feature
+        // the input will be contain stopwords
+        
+        let recommender: Recommendations = Recommendations()
+        
+        let text = "The The The The The The The Recommendation The Test Test"
+        let expected = ["Test", "Recommendation"]
+        
+        let response = recommender.tagAndGetTopN(text: text, n: 2)
+        
+        
+        XCTAssert(response == expected)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
+    
+    func testRecommendationsGetTopN() throws {
+        
+        // test the tagging feature
+        // the input will be contain stopwords
+        
+        let recommender: Recommendations = Recommendations()
+        
+        let authors = ["Bill Bryson", "Bill Bryson", "Bill Bryson","Ted Chiang","Hans Rosling", "Hans Rosling"]
+        let expected = ["Bill Bryson", "Hans Rosling", "Ted Chiang"]
+        
+        let response = recommender.countAndGetTopN(arr: authors, n: 3)
+        
+        XCTAssert(response == expected)
 
+    }
 }

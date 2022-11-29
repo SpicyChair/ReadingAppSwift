@@ -17,6 +17,7 @@ struct BookVolumeInfo: Codable, Hashable {
     let coverImage: String
     let pageCount: Int
     let language: String
+    let categories: [String]
     
     init(from decoder: Decoder) throws {
         let rawBookDetails = try RawBookDetailsModel(from: decoder)
@@ -29,13 +30,21 @@ struct BookVolumeInfo: Codable, Hashable {
         self.pageCount = rawBookDetails.pageCount ?? 0
         self.language = rawBookDetails.language ?? "No language"
         
+        // automatically generate category tags
+        
+        let recommender = Recommendations()
+        
+       
+        self.categories = rawBookDetails.categories ?? recommender.tagAndGetTopN(text: description, n: 3)
+
         
         if let cover = rawBookDetails.coverImage {
             // check if cover exists in storage
             self.coverImage = cover
         } else {
             // if not, get from API
-            self.coverImage = rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? ""
+            self.coverImage = "\(rawBookDetails.imageLinks?.thumbnail?.replacingOccurrences(of: "http", with: "https") ?? "")?key=\(booksApiKey).png"
+        
         }
     }
     
@@ -51,7 +60,7 @@ struct BookVolumeInfo: Codable, Hashable {
         
         // Properties to Allow for Decoding from JSON in Storage
         let coverImage: String?
-        // END
+        
         
         // ISBN numbers
         let industryIdentifiers: [IndustryIdentifiers]?
@@ -60,8 +69,7 @@ struct BookVolumeInfo: Codable, Hashable {
             let type: String?
             let identifier: String?
         }
-        // forward slash divided tags / categories
-        // will be split
+    
         let categories: [String]?
         
         let imageLinks: ImageLinks?

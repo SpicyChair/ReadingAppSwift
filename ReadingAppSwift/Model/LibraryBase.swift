@@ -18,10 +18,6 @@ class LibraryBase: ObservableObject {
     // use these keys to access books
     @Published var library: [String] = []
     
-    
-    
-    
-    
     let fileManager: FileManager = FileManager()
     let library_filename = "library.json"
     let log_filename = "book_log.json"
@@ -70,20 +66,6 @@ class LibraryBase: ObservableObject {
         fileManager.deleteFile(filename: library_filename)
 
     }
-    
-    
-    // methods for handling logs
-    /*
-    func saveLogToFile() {
-        fileManager.saveToJSON(filename: log_filename, object: log)
-    }
-    
-    func loadLogFromFile() {
-        if let loaded: [String: BookLogData] = fileManager.loadJSONFromFile(filename: log_filename) {
-            log = loaded
-        }
-    }
-     */
     
 
 }

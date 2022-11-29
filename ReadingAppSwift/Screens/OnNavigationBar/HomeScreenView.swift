@@ -11,10 +11,43 @@ struct HomeScreenView: View {
     
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
+    @EnvironmentObject var bookLogBase: BookLogBase
     
     var body: some View {
         NavigationView {
             Form {
+                HStack (alignment: .center) {
+                    // circle within a circle
+                    ZStack {
+                        CircleProgressBar(progress: bookLogBase.globalPageProgress, maxProgress: bookLogBase.globalPageGoal, color: Color.green, showPercent: false)
+                            .frame(width: 100, height: 100)
+                        
+                        CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
+                            .frame(width: 70, height: 70)
+                         
+                    }
+                    
+                    // reading stats
+                    
+                    VStack (alignment: .leading) {
+                        Text("Pages Read Today")
+                            .font(.system(size: 16, weight: .regular, design: .serif))
+                            
+                        Text("\(bookLogBase.globalPageProgress) / \(bookLogBase.globalPageGoal)")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+                        Spacer()
+                        
+                        Text("Time Read Today")
+                            .font(.system(size: 16, weight: .regular, design: .serif))
+                            
+                        Text("30 / 50 min")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+                         
+   
+                    }
+                    .padding()
+                }
+                    .padding()
                 
                 Section (header: Text("Saved to Library")) {
                     
@@ -46,9 +79,18 @@ struct HomeScreenView: View {
                     Button(action: cache.clearCache) {
                            Label("Clear Cache", systemImage: "xmark")
                     }.foregroundColor(Color.red)
+                    
+                    Button(action: bookLogBase.clearGlobalBookLog) {
+                           Label("Clear Global Log Data", systemImage: "xmark")
+                    }.foregroundColor(Color.red)
+                    
                 }
                 
             }.navigationTitle("Home")
+                 
+            
+            
+            
         }
         .navigationViewStyle(.stack)
     }
