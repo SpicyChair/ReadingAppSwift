@@ -31,11 +31,9 @@ class FirestoreAdapter : ObservableObject {
         if let user = Auth.auth().currentUser {
             let dbUser = db.collection("users")
             // use the user's uid as document name
-            dbUser.document(user.uid).setData(
-                [
-                    key : value,
-                ]
-            )
+            
+            dbUser.document(user.uid).setData([key : value], merge: true)
+        
             
         }
     }
@@ -89,7 +87,7 @@ class FirestoreAdapter : ObservableObject {
                     let data = document.data()
                     // get global page progress and goal as an int
                     let globalPageProgress = data?["globalPageProgress"] as? Int ?? 0
-                    let globalPageGoal = data?["globalPageProgress"] as? Int ?? 50
+                    let globalPageGoal = data?["globalPageGoal"] as? Int ?? 50
                     // load logged books
                     let loggedBooks = data?["loggedBooks"] as? [String] ?? []
                     
@@ -100,8 +98,9 @@ class FirestoreAdapter : ObservableObject {
                     
                     // go through each file and then save it locally
                     for file in loggedBooks {
-                        if let d : SavedLog = data?["\(file)_log.json"] as? SavedLog {
-                            fileManager.saveToJSON(filename: "\(file)_log.json" , object: d)
+                        if let pages : Int = data?["\(file)_log"] as? Int {
+                            
+                            fileManager.saveToJSON(filename: "\(file)_log.json" , object: pages)
                         }
                     }
 
@@ -111,15 +110,31 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
+    func deleteFirestoreData() {
+        if let user = Auth.auth().currentUser {
+            // get the reference to the users collection of firestore
+            let dbUserRef = db.collection("users").document(user.uid)
+            
+            dbUserRef.delete()
+            
+        }
+    }
+    
     func writeLogDataToFireBase(bookLogBase: BookLogBase) {
+
+        
         let fileManager = FileManager()
+        
+        writeToFirestore(key: "globalPageProgress", value: bookLogBase.globalPageProgress)
+        writeToFirestore(key: "globalPageGoal", value: bookLogBase.globalPageGoal)
+        writeToFirestore(key: "loggedBooks", value: bookLogBase.loggedBooks)
         
         for file in bookLogBase.loggedBooks {
             
             // load each file from local and then write to firebase
             
-            if let data: SavedLog = fileManager.loadJSONFromFile(filename: "\(file)_log.json") {
-                writeToFirestore(key: "\(file)_log.json", value: data)
+            if let data: Int = fileManager.loadJSONFromFile(filename: "\(file)_log.json") {
+                writeToFirestore(key: "\(file)_log", value: data)
             }
             
         }

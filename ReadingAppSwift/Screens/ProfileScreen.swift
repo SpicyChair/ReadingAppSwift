@@ -114,6 +114,7 @@ struct ProfileScreen: View {
             //TODO: FIX
             Section("Sync Data") {
                 Button(action: {
+                    adapter.deleteFirestoreData()
                     adapter.writeToFirestore(key: "library", value: library.library)
                     adapter.writeLogDataToFireBase(bookLogBase: bookLogBase)
                     
@@ -137,6 +138,11 @@ struct ProfileScreen: View {
                     Text("Delete account")
                 }.foregroundColor(Color.red)
                 
+                Button(action: {
+                    adapter.deleteFirestoreData()
+                 }) {
+                    Text("Delete synced data")
+                }.foregroundColor(Color.red)
             }
             
             

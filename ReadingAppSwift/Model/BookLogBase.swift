@@ -43,10 +43,6 @@ class BookLogBase: ObservableObject {
     // total progress in pages
     @Published var pageProgress: Int = 0
     
-    // dictionary of dates pointing to number of pages read
-    // on that particular day
-    @Published var pagesPerDay : [String : Int] = [:]
-    
     
     /*
      GLOBAL LOG DATA PROPERTIES
@@ -88,17 +84,7 @@ class BookLogBase: ObservableObject {
         }
         // if an entry exists for today, add the new pages
         
-        let dateAsString = getDateAsString()
-        
-        if let currentPages = pagesPerDay[dateAsString] {
-            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
-            
-        // else, create a new entry for today
-            
-        } else {
-            pagesPerDay.updateValue(toAdd, forKey: dateAsString)
-        }
-        
+    
         // update the total progress
         pageProgress += toAdd
         globalPageProgress += toAdd
@@ -113,17 +99,6 @@ class BookLogBase: ObservableObject {
         // 30 pages have been read
         
         let toAdd = pages - pageProgress
-        
-        let dateAsString = getDateAsString()
-        
-        if let currentPages = pagesPerDay[dateAsString] {
-            pagesPerDay.updateValue(currentPages + toAdd, forKey: dateAsString)
-            
-        // else, create a new entry for today
-            
-        } else {
-            pagesPerDay.updateValue(toAdd, forKey: dateAsString)
-        }
         
         // update the total progress
         pageProgress = pages
@@ -145,25 +120,21 @@ class BookLogBase: ObservableObject {
         
         // return string represenetation
         return dateFormatter.string(from: date)
-        
-        // let date = dateFormatter.date(from: "2016-03-03")
+
     }
     
     // methods for persisting book logs
     
     func loadBookLog() {
-        if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: bookFilename) {
-            self.pagesPerDay = loaded.pagesPerDay ?? [:]
-            self.pageProgress = loaded.pageProgress
-            self.pageCount = loaded.pageCount
+        if let loaded: Int = fileManager.loadJSONFromFile(filename: bookFilename) {
+            self.pageProgress = loaded
         } else {
             self.pageProgress = 0
-            self.pagesPerDay = [:]
         }
     }
     
     func saveBookLog() {
-        fileManager.saveToJSON(filename: bookFilename , object: SavedLog(pageProgress: self.pageProgress, pageCount: self.pageCount, pagesPerDay: self.pagesPerDay))
+        fileManager.saveToJSON(filename: bookFilename , object: self.pageProgress)
     }
     
     func clearBookLog() {
@@ -171,7 +142,6 @@ class BookLogBase: ObservableObject {
         // remove the key from the logged books array
         self.loggedBooks = self.loggedBooks.filter {$0 != key}
         self.pageProgress = 0
-        self.pagesPerDay = [:]
     }
     
     // persistence of global logs
@@ -180,10 +150,9 @@ class BookLogBase: ObservableObject {
         
         // load local saved data
         
-        if let loaded: SavedLog = fileManager.loadJSONFromFile(filename: globalFilename) {
-            self.globalPagesPerDay = loaded.pagesPerDay ?? [:]
+        if let loaded: SavedGlobalLog = fileManager.loadJSONFromFile(filename: globalFilename) {
             self.globalPageProgress = loaded.pageProgress
-            self.globalPageGoal = loaded.pageCount
+            self.globalPageGoal = loaded.pageGoal
         }
     
         if let loadedLoggedBooks: [String] = fileManager.loadJSONFromFile(filename: loggedBooksFilename) {
@@ -195,11 +164,9 @@ class BookLogBase: ObservableObject {
         
         // save data locally
         
-        fileManager.saveToJSON(filename: globalFilename , object: SavedLog(pageProgress: self.globalPageProgress, pageCount: self.globalPageGoal, pagesPerDay: self.globalPagesPerDay))
+        fileManager.saveToJSON(filename: globalFilename , object: SavedGlobalLog(pageProgress: self.globalPageProgress, pageGoal: self.globalPageGoal))
         // saveToJSON is a generic function!
         fileManager.saveToJSON(filename: loggedBooksFilename, object: loggedBooks)
-        
-        print(loggedBooks)
     }
     
     func clearGlobalBookLog() {

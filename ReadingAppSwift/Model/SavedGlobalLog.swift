@@ -8,8 +8,8 @@
 import Foundation
 
 
-struct SavedLog : Codable {
+struct SavedGlobalLog : Codable {
     var pageProgress: Int
-    var pageCount:Int
+    var pageGoal: Int
     var pagesPerDay: [String : Int]?
 }

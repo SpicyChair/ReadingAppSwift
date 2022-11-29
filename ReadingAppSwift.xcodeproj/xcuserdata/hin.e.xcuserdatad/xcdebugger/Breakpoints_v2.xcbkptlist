@@ -334,9 +334,25 @@
             filePath = "ReadingAppSwift/FirestoreAdapter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "writeLogDataToFireBase(bookLogBase:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B0F6873-E45E-4FB5-A615-7C85D7CA5CD3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReadingAppSwift/FirestoreAdapter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "readLogsFromFirebase(bookLogBase:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
