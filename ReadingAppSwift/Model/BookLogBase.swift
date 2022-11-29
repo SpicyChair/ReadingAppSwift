@@ -20,8 +20,11 @@ class BookLogBase: ObservableObject {
     }
     
     func checkLogForKey(key: String) {
+        // check if the log dict contains the key
         if log[key] == nil {
+            // get book from cache
             if let book = cache?.getBookDetail(key: key) {
+                // update the value of the dict
                 log[key] = SavedLog(pageProgress: 0, pageCount: book.volumeInfo.pageCount, pagesPerDay: [:])
             }
         }
