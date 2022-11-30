@@ -14,6 +14,7 @@ class FirestoreAdapter : ObservableObject {
     var db = Firestore.firestore()
     @Published var isSignedIn = false
     @Published var libraryFromFirebase:[String] = []
+    @Published var challenges: [Challenge] = []
     
     init() {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -31,7 +32,7 @@ class FirestoreAdapter : ObservableObject {
         if let user = Auth.auth().currentUser {
             let dbUser = db.collection("users")
             // use the user's uid as document name
-            
+            // merge is true to not overwrite the document
             dbUser.document(user.uid).setData([key : value], merge: true)
         
             
@@ -139,6 +140,66 @@ class FirestoreAdapter : ObservableObject {
             
         }
     }
+    
+    
+    func createChallenge(title: String, description: String) {
+        if let user = Auth.auth().currentUser {
+            // access the challenges collection
+            let challengeRef = db.collection("challenges").document(title)
+            
+            // merge is true to not overwrite the document
+            challengeRef.setData(["description" : description, "title" : title, "createdBy" : user.uid], merge: true)
+        }
+    }
+    
+    func getChallenges() {
+        
+        var loadedChallenges: [Challenge] = []
+        
+        db.collection("challenges").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    
+                    
+                    let title = data["title"] as? String ?? ""
+                    let description = data["description"] as? String ?? ""
+                    // load logged books
+                    let createdBy = data["createdBy"] as? String ?? ""
+                    
+                    let challenge = Challenge(title: title, description: description, createdBy: createdBy)
+                    
+                    loadedChallenges.append(challenge)
+
+                }
+            }
+        }
+        
+        self.challenges = loadedChallenges
+
+    }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // account management options
     
     func login(email: String, password: String) {
            // use firebase to attempt sign in
