@@ -10,35 +10,67 @@ import SwiftUI
 struct SocialScreenView: View {
     
     @EnvironmentObject var adapter: FirestoreAdapter
+    @State private var showingSheet = false
+    @State private var title = ""
+    @State private var description = ""
     
     var body: some View {
         NavigationView {
             Form {
-                List {
-                    ForEach(adapter.challenges, id: \.self) { challenge in
+                if !adapter.challenges.isEmpty {
+                    List {
+                        ForEach(adapter.challenges, id: \.self) { challenge in
+                            
+                            ChallengeCard(challenge: challenge)
+                        }
                         
-                        VStack (alignment: .leading){
-                            Text(challenge.title)
-                            Text(challenge.description)
-                            Text(challenge.createdBy)
+                    }
+                }
+                
+
+            }
+            .refreshable {
+                adapter.getChallenges()
+            }
+            .toolbar {
+                Button("Add") {
+                    self.showingSheet = true
+                }
+            }
+            .onAppear {
+                adapter.getChallenges()
+            }
+            .navigationViewStyle(.stack)
+            .navigationTitle("Social")
+                .sheet(isPresented: $showingSheet) {
+            
+                    Form {
+                        Text("Add Challenge")
+                            .font(.system(size: 20, weight: .bold, design: .serif))
+
+                        TextField("Title", text: $title)
+                                .disableAutocorrection(true)
+                        
+                        Text("Add a Description")
+                            .foregroundColor(.gray)
+                        TextEditor(text: $description)
+
+                        Button(action: {
+                            adapter.createChallenge(title: title, description: description)
+                            // reset values of title and description
+                            self.title = ""
+                            self.description = ""
+                            // hide the sheet
+                            self.showingSheet = false
+                          }) {
+                             Text("Create Challenge")
+                              
+                          }
                         }
                     }
-                    
-                }.onAppear(perform: adapter.getChallenges)
-                Button(action: {
-                    adapter.getChallenges()
-                 }) {
-                    Text("Get Challenge")
+
                 }
-                Button(action: {
-                    adapter.createChallenge(title: "Book Challenge", description: "Read read read read!!")
-                 }) {
-                    Text("Create Challenge")
-                }
-            }.navigationTitle("Social")
-        }
-        .navigationViewStyle(.stack)
-    }
+            }
 }
 
 struct SocialScreenView_Previews: PreviewProvider {

@@ -14,6 +14,7 @@ class FirestoreAdapter : ObservableObject {
     var db = Firestore.firestore()
     @Published var isSignedIn = false
     @Published var libraryFromFirebase:[String] = []
+    
     @Published var challenges: [Challenge] = []
     
     init() {
@@ -100,12 +101,9 @@ class FirestoreAdapter : ObservableObject {
                     // go through each file and then save it locally
                     for file in loggedBooks {
                         if let pages : Int = data?["\(file)_log"] as? Int {
-                            
                             fileManager.saveToJSON(filename: "\(file)_log.json" , object: pages)
                         }
                     }
-
-                    
                 }
             }
         }
@@ -145,40 +143,38 @@ class FirestoreAdapter : ObservableObject {
     func createChallenge(title: String, description: String) {
         if let user = Auth.auth().currentUser {
             // access the challenges collection
-            let challengeRef = db.collection("challenges").document(title)
+            let uid = UUID().uuidString
+            let challengeRef = db.collection("challenges").document(uid)
             
             // merge is true to not overwrite the document
-            challengeRef.setData(["description" : description, "title" : title, "createdBy" : user.uid], merge: true)
+            // UUID is used to create a unique key
+            challengeRef.setData(["description" : description, "title" : title, "createdBy" : user.uid, "uid" : uid], merge: true)
         }
     }
     
     func getChallenges() {
-        
-        var loadedChallenges: [Challenge] = []
-        
-        db.collection("challenges").getDocuments() { (querySnapshot, err) in
+        // reset challenges to reflect firestore and clear stale data
+        self.challenges = []
+            
+        self.db.collection("challenges").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    
-                    
+                    // extract each field
                     let title = data["title"] as? String ?? ""
                     let description = data["description"] as? String ?? ""
-                    // load logged books
                     let createdBy = data["createdBy"] as? String ?? ""
-                    
-                    let challenge = Challenge(title: title, description: description, createdBy: createdBy)
-                    
-                    loadedChallenges.append(challenge)
-
+                    let uid = data["uid"] as? String ?? ""
+                    // create new Challenge object
+                    let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid)
+                    // append Challenge object to array
+                    self.challenges.append(challenge)
                 }
             }
-        }
         
-        self.challenges = loadedChallenges
-
+        }
     }
     
     

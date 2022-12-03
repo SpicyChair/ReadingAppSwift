@@ -14,4 +14,7 @@ struct Challenge : Hashable {
     // variable of user's UID - only the user who has created the challenge
     // can edit the challenge
     var createdBy: String
+    
+    // the challenge's UID to identify each challenge
+    var uid: String
 }
