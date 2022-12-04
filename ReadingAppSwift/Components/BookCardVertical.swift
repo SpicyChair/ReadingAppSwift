@@ -32,6 +32,7 @@ struct BookCardVertical: View {
                             .lineLimit(2)
                             .truncationMode(.tail)
                             .multilineTextAlignment(.leading)
+                        
                         Text(authors.first ?? "" )
                     }
                     

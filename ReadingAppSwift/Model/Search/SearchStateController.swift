@@ -26,7 +26,7 @@ class SearchStateController: ObservableObject  {
         let results = results?.map {
             return $0
         }
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.results = results ?? []
         }
         

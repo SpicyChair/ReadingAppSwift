@@ -14,6 +14,10 @@ class FirestoreAdapter : ObservableObject {
     var db = Firestore.firestore()
     @Published var isSignedIn = false
     @Published var libraryFromFirebase:[String] = []
+    @Published var challenges: [Challenge] = []
+    @Published var username: String = ""
+    
+    @Published var users : [String : User] = [:]
     
     init() {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -26,12 +30,14 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
+    
+    
     func writeToFirestore<T>(key: String, value: T) {
         // generic function to support any type
         if let user = Auth.auth().currentUser {
             let dbUser = db.collection("users")
             // use the user's uid as document name
-            
+            // merge is true to not overwrite the document
             dbUser.document(user.uid).setData([key : value], merge: true)
         
             
@@ -99,12 +105,9 @@ class FirestoreAdapter : ObservableObject {
                     // go through each file and then save it locally
                     for file in loggedBooks {
                         if let pages : Int = data?["\(file)_log"] as? Int {
-                            
                             fileManager.saveToJSON(filename: "\(file)_log.json" , object: pages)
                         }
                     }
-
-                    
                 }
             }
         }
@@ -112,10 +115,20 @@ class FirestoreAdapter : ObservableObject {
     
     func deleteFirestoreData() {
         if let user = Auth.auth().currentUser {
+            
+            
+            // restore the user name after deletion
+            self.getSelfName()
+            let name: String = self.username
+            
             // get the reference to the users collection of firestore
             let dbUserRef = db.collection("users").document(user.uid)
+           
             
             dbUserRef.delete()
+            
+            // restore the user name after deletion
+            self.setName(name: name)
             
         }
     }
@@ -139,6 +152,97 @@ class FirestoreAdapter : ObservableObject {
             
         }
     }
+    
+    func setName(name: String) {
+        self.writeToFirestore(key: "name", value: name)
+    }
+    
+    func getSelfName() {
+        if let user = Auth.auth().currentUser {
+            // get the reference to the users collection of firestore
+            let dbUserRef = db.collection("users").document(user.uid)
+            
+            dbUserRef.getDocument { document, error in
+                // if error occurs
+                if let error = error {
+                    print(error)
+                }
+                
+                // else continue
+                
+                if let document = document {
+                    let data = document.data()
+                    self.username = data?["name"] as? String ?? ""
+                }
+            }
+        }
+    }
+    
+    func getUsers() {
+        // reset users to reflect firestore and clear stale data
+        self.users = [:]
+            
+        self.db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    
+                    // extract each field
+                    let name = data["name"] as? String ?? "Anonymous"
+                    let uid = document.documentID
+                    // create new user object
+                    let user = User(name: name, uid: uid)
+                    // append user object to dictionary
+                    self.users.updateValue(user, forKey: uid)
+                }
+            }
+        
+        }
+    }
+    
+    
+    func createChallenge(title: String, description: String) {
+        if let user = Auth.auth().currentUser {
+            // access the challenges collection
+            let uid = UUID().uuidString
+            let challengeRef = db.collection("challenges").document(uid)
+            
+            // merge is true to not overwrite the document
+            // UUID is used to create a unique key
+            challengeRef.setData(["description" : description, "title" : title, "createdBy" : user.uid, "uid" : uid], merge: true)
+        }
+    }
+    
+    func getChallenges() {
+        // reset challenges to reflect firestore and clear stale data
+        self.challenges = []
+            
+        self.db.collection("challenges").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    // extract each field
+                    let title = data["title"] as? String ?? ""
+                    let description = data["description"] as? String ?? ""
+                    let createdBy = data["createdBy"] as? String ?? ""
+                    let uid = data["uid"] as? String ?? ""
+                    // create new Challenge object
+                    let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid)
+                    // append Challenge object to array
+                    self.challenges.append(challenge)
+                }
+            }
+        
+        }
+    }
+    
+    
+
+    // account management options
     
     func login(email: String, password: String) {
            // use firebase to attempt sign in
@@ -165,12 +269,13 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
-    func register(email: String, password: String) {
+    func register(email: String, password: String, name: String) {
         // use firebase to attempt to register and sign in
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
                 print(error?.localizedDescription ?? "")
             } else {
+                self.setName(name: name)
                 print("Success! Registered as \(email)")
             }
         }
