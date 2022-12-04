@@ -12,7 +12,12 @@ struct ProfileScreen: View {
     
     @State private var email = ""
     @State private var password = ""
+    @State private var name = ""
     //@State private var isSignedIn = false
+    
+    @State private var showingSheet = false
+    @State private var registering = false
+    
     
     // environment objects 
     @EnvironmentObject var adapter: FirestoreAdapter
@@ -59,31 +64,67 @@ struct ProfileScreen: View {
             }
             
             Section ("Already have an account?") {
-                // no need for autocap. and autocorrection in a user's email
-                TextField("Email", text: $email)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                
-                
-                // SecureField hides the text
-                SecureField("Password", text: $password)
-                 
-                 Button(action: {
-                     adapter.login(email: email, password: password)
-                  }) {
-                     Text("Sign in")
-                 }
+                Button(action: {
+                    // the user is not making a new account
+                    self.registering = false
+                    self.showingSheet = true
+                 }) {
+                    Text("Sign in")
+                }
+
             }
 
             Section ("No account?") {
                 Button(action: {
-                    adapter.register(email: email, password: password)
+                    // the user IS making a new account
+                    self.registering = true
+                    self.showingSheet = true
+                    
                  }) {
                     Text("Register")
                 }
             }
              
         }.navigationTitle("Log In")
+            .sheet(isPresented: $showingSheet) {
+                Form {
+                    // only show if the user is registering
+                    if (registering) {
+                        TextField("Enter your name", text: $name)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                    }
+                    
+                    // no need for autocap. and autocorrection in a user's email
+                    TextField("Email", text: $email)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                    
+                    
+                    // SecureField hides the text
+                    SecureField("Password", text: $password)
+                    
+                    // if the user is registering, then register with name
+                    // close the sheet afterwards
+                    
+                    if (registering) {
+                        Button(action: {
+                            adapter.register(email: email, password: password, name: name)
+                            self.showingSheet = false
+                         }) {
+                            Text("Register")
+                        }
+                    } else {
+                        Button(action: {
+                            adapter.login(email: email, password: password)
+                            self.showingSheet = false
+                         }) {
+                            Text("Sign in")
+                        }
+                    }
+                    
+                }
+            }
         
         
     }
@@ -111,12 +152,26 @@ struct ProfileScreen: View {
              }) {
                 Text("Log Out")
             }
-            //TODO: FIX
+            
+            Section ("Change Username") {
+                HStack {
+                    TextField("Set Username", text: $adapter.username)
+                        .frame(maxWidth: Double.infinity)
+                    Button("Set") {
+                        adapter.setName(name: adapter.username)
+                    }.buttonStyle(.bordered)
+                    
+                }
+            }.onAppear (
+                perform: adapter.getSelfName
+            )
+            
             Section("Sync Data") {
                 Button(action: {
                     adapter.deleteFirestoreData()
                     adapter.writeToFirestore(key: "library", value: library.library)
                     adapter.writeLogDataToFireBase(bookLogBase: bookLogBase)
+                    
                     
                 }) {
                     Text("Backup data")

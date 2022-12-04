@@ -29,7 +29,14 @@ struct SocialScreenView: View {
                 
 
             }
+            // get challenges when view appears
+            // or user pulls down
             .refreshable {
+                adapter.getUsers()
+                adapter.getChallenges()
+            }
+            .onAppear {
+                adapter.getUsers()
                 adapter.getChallenges()
             }
             .toolbar {
@@ -37,12 +44,9 @@ struct SocialScreenView: View {
                     self.showingSheet = true
                 }
             }
-            .onAppear {
-                adapter.getChallenges()
-            }
             .navigationViewStyle(.stack)
             .navigationTitle("Social")
-                .sheet(isPresented: $showingSheet) {
+            .sheet(isPresented: $showingSheet) {
             
                     Form {
                         Text("Add Challenge")
@@ -51,7 +55,7 @@ struct SocialScreenView: View {
                         TextField("Title", text: $title)
                                 .disableAutocorrection(true)
                         
-                        Text("Add a Description")
+                        Text("Add a description below!")
                             .foregroundColor(.gray)
                         TextEditor(text: $description)
 
@@ -60,8 +64,10 @@ struct SocialScreenView: View {
                             // reset values of title and description
                             self.title = ""
                             self.description = ""
-                            // hide the sheet
+                            // hide the sheet and refresh
                             self.showingSheet = false
+                            adapter.getChallenges()
+                            adapter.getUsers()
                           }) {
                              Text("Create Challenge")
                               

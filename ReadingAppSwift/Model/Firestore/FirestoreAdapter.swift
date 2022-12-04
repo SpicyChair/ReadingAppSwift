@@ -14,8 +14,10 @@ class FirestoreAdapter : ObservableObject {
     var db = Firestore.firestore()
     @Published var isSignedIn = false
     @Published var libraryFromFirebase:[String] = []
-    
     @Published var challenges: [Challenge] = []
+    @Published var username: String = ""
+    
+    @Published var users : [String : User] = [:]
     
     init() {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -27,6 +29,8 @@ class FirestoreAdapter : ObservableObject {
             }
         }
     }
+    
+    
     
     func writeToFirestore<T>(key: String, value: T) {
         // generic function to support any type
@@ -111,10 +115,20 @@ class FirestoreAdapter : ObservableObject {
     
     func deleteFirestoreData() {
         if let user = Auth.auth().currentUser {
+            
+            
+            // restore the user name after deletion
+            self.getSelfName()
+            let name: String = self.username
+            
             // get the reference to the users collection of firestore
             let dbUserRef = db.collection("users").document(user.uid)
+           
             
             dbUserRef.delete()
+            
+            // restore the user name after deletion
+            self.setName(name: name)
             
         }
     }
@@ -136,6 +150,55 @@ class FirestoreAdapter : ObservableObject {
                 writeToFirestore(key: "\(file)_log", value: data)
             }
             
+        }
+    }
+    
+    func setName(name: String) {
+        self.writeToFirestore(key: "name", value: name)
+    }
+    
+    func getSelfName() {
+        if let user = Auth.auth().currentUser {
+            // get the reference to the users collection of firestore
+            let dbUserRef = db.collection("users").document(user.uid)
+            
+            dbUserRef.getDocument { document, error in
+                // if error occurs
+                if let error = error {
+                    print(error)
+                }
+                
+                // else continue
+                
+                if let document = document {
+                    let data = document.data()
+                    self.username = data?["name"] as? String ?? ""
+                }
+            }
+        }
+    }
+    
+    func getUsers() {
+        // reset users to reflect firestore and clear stale data
+        self.users = [:]
+            
+        self.db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    
+                    // extract each field
+                    let name = data["name"] as? String ?? "Anonymous"
+                    let uid = document.documentID
+                    // create new user object
+                    let user = User(name: name, uid: uid)
+                    // append user object to dictionary
+                    self.users.updateValue(user, forKey: uid)
+                }
+            }
+        
         }
     }
     
@@ -179,22 +242,6 @@ class FirestoreAdapter : ObservableObject {
     
     
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // account management options
     
     func login(email: String, password: String) {
@@ -222,12 +269,13 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
-    func register(email: String, password: String) {
+    func register(email: String, password: String, name: String) {
         // use firebase to attempt to register and sign in
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
                 print(error?.localizedDescription ?? "")
             } else {
+                self.setName(name: name)
                 print("Success! Registered as \(email)")
             }
         }

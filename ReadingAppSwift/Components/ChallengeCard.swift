@@ -10,14 +10,15 @@ import SwiftUI
 struct ChallengeCard: View {
     
     var challenge: Challenge
+    @EnvironmentObject var adapter: FirestoreAdapter
     
     var body: some View {
         NavigationLink(destination: ChallengeScreenView(challenge: challenge)) {
             VStack (alignment: .leading){
             Text(challenge.title)
                 .font(.system(size: 19, weight: .bold, design: .serif))
-            //Text(challenge.description)
-            Text("By \(challenge.createdBy)")
+            // get the username from the adapter dictionary
+                Text("By \(adapter.users[challenge.createdBy]?.name ?? "Anonymous")")
                 .font(.system(size: 15, weight: .regular, design: .serif))
             }
         }

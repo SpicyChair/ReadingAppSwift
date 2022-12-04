@@ -10,14 +10,16 @@ import SwiftUI
 struct ChallengeScreenView: View {
     
     var challenge: Challenge
+    @EnvironmentObject var adapter: FirestoreAdapter
     
     var body: some View {
         Form {
             Section {
                 Text(challenge.title)
-                Text(challenge.createdBy)
+                    .font(.system(size: 25, weight: .bold, design: .serif))
+                Text("By \(adapter.users[challenge.createdBy]?.name ?? "Anonymous")")
+                    .font(.system(size: 17, weight: .regular, design: .serif))
             }
-            
             Section("Details") {
                 Text(challenge.description)
             }
