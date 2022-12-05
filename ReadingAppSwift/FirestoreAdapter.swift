@@ -230,8 +230,10 @@ class FirestoreAdapter : ObservableObject {
                     let description = data["description"] as? String ?? ""
                     let createdBy = data["createdBy"] as? String ?? ""
                     let uid = data["uid"] as? String ?? ""
+                    let users = data["users"] as? [String] ?? []
+                    
                     // create new Challenge object
-                    let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid)
+                    let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid, users: users)
                     // append Challenge object to array
                     self.challenges.append(challenge)
                 }
@@ -239,6 +241,50 @@ class FirestoreAdapter : ObservableObject {
         
         }
     }
+    
+    func toggleUserInChallenge(uid: String) {
+        
+        // toggles whether the user is participating in the challenge or not
+        // ie
+        // if user not in challenge, join
+        // else, leave the challenge
+        
+        if let user = Auth.auth().currentUser {
+            // get the reference to the challenges collection of firestore
+            let challengeRef = db.collection("challenges").document(uid)
+            
+            
+            challengeRef.getDocument { document, error in
+                // if error occurs
+                if let error = error {
+                    print(error)
+                }
+                
+                // else continue
+                
+                if let document = document {
+                    let data = document.data()
+                    
+                    // get the users property of the challenge
+                    var challengeUsers = data?["users"] as? [String] ?? []
+                    
+                    // if the user is already in the challenge
+                    if challengeUsers.contains(user.uid) {
+                        // remove the user
+                        challengeUsers = challengeUsers.filter {$0 != user.uid}
+                    } else {
+                        // else append the user
+                        challengeUsers.append(user.uid)
+                    }
+                    // set the updated list of users
+                    // merge is true to not overwrite the document
+                    challengeRef.setData(["users" : challengeUsers], merge: true)
+                    
+                }
+            }
+        }
+    }
+
     
     
 

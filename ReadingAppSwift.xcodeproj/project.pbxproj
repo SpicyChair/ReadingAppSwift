@@ -193,6 +193,7 @@
 				FD4EC68428D0740500B99ED2 /* Model */,
 				FD4EC68328D073F700B99ED2 /* Screens */,
 				FDEF339528D1028A005599BC /* GoogleBooksAdapter.swift */,
+				FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */,
 				FD4EC68828D07FC000B99ED2 /* NavigationBarScreen.swift */,
 				FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */,
 				FD4EC65D28D0729D00B99ED2 /* Assets.xcassets */,
@@ -303,7 +304,6 @@
 		FDC08C9229376B5F00061D57 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
-				FD0A5EB1292566BC00194A1E /* FirestoreAdapter.swift */,
 				FDCACC0329376CE600DABB41 /* Challenge.swift */,
 				FDCACC0529376D1C00DABB41 /* User.swift */,
 			);

@@ -17,7 +17,9 @@ struct SocialScreenView: View {
     var body: some View {
         NavigationView {
             Form {
-                if !adapter.challenges.isEmpty {
+                if (!adapter.isSignedIn) {
+                    Text("Sign in to participate in challenges!")
+                } else if !adapter.challenges.isEmpty {
                     List {
                         ForEach(adapter.challenges, id: \.self) { challenge in
                             
@@ -40,9 +42,13 @@ struct SocialScreenView: View {
                 adapter.getChallenges()
             }
             .toolbar {
-                Button("Add") {
-                    self.showingSheet = true
+                
+                if (adapter.isSignedIn) {
+                    Button("Add") {
+                        self.showingSheet = true
+                    }
                 }
+                
             }
             .navigationViewStyle(.stack)
             .navigationTitle("Social")
