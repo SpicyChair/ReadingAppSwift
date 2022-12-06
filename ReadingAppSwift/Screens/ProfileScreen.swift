@@ -66,6 +66,9 @@ struct ProfileScreen: View {
             Section ("Already have an account?") {
                 Button(action: {
                     // the user is not making a new account
+                    self.email = ""
+                    self.password = ""
+                    self.name = ""
                     self.registering = false
                     self.showingSheet = true
                  }) {
@@ -77,6 +80,9 @@ struct ProfileScreen: View {
             Section ("No account?") {
                 Button(action: {
                     // the user IS making a new account
+                    self.email = ""
+                    self.password = ""
+                    self.name = ""
                     self.registering = true
                     self.showingSheet = true
                     

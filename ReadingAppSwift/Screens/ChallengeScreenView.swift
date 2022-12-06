@@ -20,14 +20,26 @@ struct ChallengeScreenView: View {
                 Text("By \(adapter.users[challenge.createdBy]?.name ?? "Anonymous")")
                     .font(.system(size: 17, weight: .regular, design: .serif))
                 
-                Button ("Join Challenge") {
+                Button ("Join / Leave Challenge") {
                     adapter.toggleUserInChallenge(uid: challenge.uid)
                 }
             }
             
             Section("Participants") {
-                ForEach (challenge.users, id: \.self) { user in
-                    Text(adapter.users[user]?.name ?? "Anonymous")
+                if (adapter.currentChallengeParticipants.isEmpty) {
+                    Text("Be the first to join this challenge!")
+                } else {
+                    // the id is the index 1 of the (index, userID) array
+                    // ie the string
+                    
+                    // enumerated returns an indexed version
+                    ForEach(Array(adapter.currentChallengeParticipants.enumerated()), id: \.1.self) { (index, user) in
+                        
+                        LeaderboardCard(username: user.name, count: user.pageProgress, place: index + 1)
+                        
+                    }
+
+                    
                 }
             }
             
@@ -36,7 +48,11 @@ struct ChallengeScreenView: View {
             Section("Details") {
                 Text(challenge.description)
             }
-        }.navigationTitle("Challenge Details")
+        }
+        .onAppear {
+            adapter.getChallengeParticipants(uid: challenge.uid)
+        }
+        .navigationTitle("Challenge Details")
         
     }
 }

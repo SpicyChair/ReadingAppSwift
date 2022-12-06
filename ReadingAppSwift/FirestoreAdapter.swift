@@ -15,9 +15,15 @@ class FirestoreAdapter : ObservableObject {
     @Published var isSignedIn = false
     @Published var libraryFromFirebase:[String] = []
     @Published var challenges: [Challenge] = []
+    
+    
     @Published var username: String = ""
     
     @Published var users : [String : User] = [:]
+    
+    // this variable updates every time the  getChallengeParticipants() method is called
+    @Published var currentChallengeParticipants : [User] = []
+    
     
     init() {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -191,9 +197,10 @@ class FirestoreAdapter : ObservableObject {
                     
                     // extract each field
                     let name = data["name"] as? String ?? "Anonymous"
+                    let pageProgress = data["globalPageProgress"] as? Int ?? 0
                     let uid = document.documentID
                     // create new user object
-                    let user = User(name: name, uid: uid)
+                    let user = User(name: name, uid: uid, pageProgress: pageProgress)
                     // append user object to dictionary
                     self.users.updateValue(user, forKey: uid)
                 }
@@ -279,9 +286,42 @@ class FirestoreAdapter : ObservableObject {
                     // set the updated list of users
                     // merge is true to not overwrite the document
                     challengeRef.setData(["users" : challengeUsers], merge: true)
+                    self.getChallengeParticipants(uid: uid)
                     
                 }
             }
+        }
+    }
+    
+    func getChallengeParticipants(uid: String) {
+        // get the reference to the challenges collection of firestore
+        let challengeRef = db.collection("challenges").document(uid)
+        
+        challengeRef.getDocument { document, error in
+            // if error occurs
+            if let error = error {
+                print(error)
+            }
+            
+            // else continue
+            
+            if let document = document {
+                let data = document.data()
+                
+                self.currentChallengeParticipants = []
+                // get the users property of the challenge
+                let challengeUsers = data?["users"] as? [String] ?? []
+                
+                for userUID in challengeUsers {
+                    if let user = self.users[userUID] {
+                        self.currentChallengeParticipants.append(user)
+                    }
+                }
+            }
+        }
+        
+        self.currentChallengeParticipants = self.currentChallengeParticipants.sorted {
+            $0.pageProgress < $1.pageProgress
         }
     }
 
