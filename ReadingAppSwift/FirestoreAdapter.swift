@@ -204,7 +204,7 @@ class FirestoreAdapter : ObservableObject {
                     // append user object to dictionary
                     self.users.updateValue(user, forKey: uid)
                 }
-            }
+             }
         
         }
     }
@@ -242,6 +242,7 @@ class FirestoreAdapter : ObservableObject {
                     // create new Challenge object
                     let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid, users: users)
                     // append Challenge object to array
+                    
                     self.challenges.append(challenge)
                 }
             }
@@ -317,12 +318,15 @@ class FirestoreAdapter : ObservableObject {
                         self.currentChallengeParticipants.append(user)
                     }
                 }
+                // sort the array by the page progress of the user
+                self.currentChallengeParticipants = self.currentChallengeParticipants.sorted {
+                    $0.pageProgress > $1.pageProgress
+                }
             }
         }
         
-        self.currentChallengeParticipants = self.currentChallengeParticipants.sorted {
-            $0.pageProgress < $1.pageProgress
-        }
+        
+        
     }
 
     

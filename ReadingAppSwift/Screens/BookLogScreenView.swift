@@ -12,7 +12,7 @@ struct BookLogScreenView: View {
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
     @EnvironmentObject private var state: BookLogBase
-    
+    @EnvironmentObject private var firestoreAdapter: FirestoreAdapter
     @State private var pageProgressToLog: String = ""
     
     let key: String
@@ -64,8 +64,10 @@ struct BookLogScreenView: View {
                                     .font(.system(size: 30, weight: .bold, design: .serif))
                                 Stepper(onIncrement: {
                                     state.logPages(pages: 1)
+                                    firestoreAdapter.writeLogDataToFireBase(bookLogBase: state)
                                 }, onDecrement: {
                                     state.logPages(pages: -1)
+                                    firestoreAdapter.writeLogDataToFireBase(bookLogBase: state)
                                 }) {
                                     
                                 }.frame(width: 85)
@@ -85,22 +87,13 @@ struct BookLogScreenView: View {
                                     // if number in range 0 to state.pageCount
                                     if (0...state.pageCount ~= number) {
                                         state.setPageProgress(pages: number)
+                                        firestoreAdapter.writeLogDataToFireBase(bookLogBase: state)
                                     }
                                 }
                             }.buttonStyle(.bordered)
                             
                         }
-                        /*
-                        NavigationLink {
-                            StatisticsScreenView()//data: state.pagesPerDay)
-                        } label: {
-                            Label("Statistics", systemImage: "info.circle")
-                        }
-                         */
-                        
-                        
-                        
-                        
+     
                     }.onAppear {
                         state.pageCount = book.volumeInfo.pageCount
                         state.key = key

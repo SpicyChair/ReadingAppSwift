@@ -10,6 +10,7 @@ import SwiftUI
 struct SocialScreenView: View {
     
     @EnvironmentObject var adapter: FirestoreAdapter
+    @State var didAppear = false
     @State private var showingSheet = false
     @State private var title = ""
     @State private var description = ""
@@ -27,8 +28,28 @@ struct SocialScreenView: View {
                         }
                         
                     }
+                    
                 }
                 
+                Section("Leaderboard") {
+                    
+                    
+                    // get the values of the user dict as an array, then sort it
+                    
+                    // the id is the index 1 of the (index, userID) array
+                    // ie the string
+                    
+                    // enumerated returns an indexed version
+                    
+                    if let users = Array(adapter.users.values).sorted {$0.pageProgress > $1.pageProgress} {
+                        ForEach(Array(users.enumerated()), id: \.1.self) { (index, user) in
+                            LeaderboardCard(username: user.name, count: user.pageProgress, place: index + 1)
+                                
+                        }
+                    }
+                    
+                    
+                }
 
             }
             // get challenges when view appears
@@ -38,8 +59,12 @@ struct SocialScreenView: View {
                 adapter.getChallenges()
             }
             .onAppear {
-                adapter.getUsers()
-                adapter.getChallenges()
+                if !didAppear {
+                    adapter.getUsers()
+                    adapter.getChallenges()
+                    didAppear = true
+                }
+                
             }
             .toolbar {
                 
