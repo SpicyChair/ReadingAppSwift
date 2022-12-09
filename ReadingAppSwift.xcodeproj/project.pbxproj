@@ -85,7 +85,7 @@
 		FD377C032937B24700DAF9A9 /* ChallengeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeScreenView.swift; sourceTree = "<group>"; };
 		FD4930B228E4C61B00330E75 /* AddToLibraryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLibraryButton.swift; sourceTree = "<group>"; };
 		FD4930B428E4D93900330E75 /* BookCardVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCardVertical.swift; sourceTree = "<group>"; };
-		FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD4EC65628D0729A00B99ED2 /* readaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4EC65928D0729A00B99ED2 /* ReadingAppSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingAppSwiftApp.swift; sourceTree = "<group>"; };
 		FD4EC65D28D0729D00B99ED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD4EC66028D0729D00B99ED2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		FD4EC65728D0729A00B99ED2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */,
+				FD4EC65628D0729A00B99ED2 /* readaily.app */,
 				FD4EC66628D0729E00B99ED2 /* ReadingAppSwiftTests.xctest */,
 				FD4EC67028D0729E00B99ED2 /* ReadingAppSwiftUITests.xctest */,
 			);
@@ -347,7 +347,7 @@
 				FD0311F6292FEED7003D57E3 /* PromiseKit */,
 			);
 			productName = ReadingAppSwift;
-			productReference = FD4EC65628D0729A00B99ED2 /* ReadingAppSwift.app */;
+			productReference = FD4EC65628D0729A00B99ED2 /* readaily.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FD4EC66528D0729E00B99ED2 /* ReadingAppSwiftTests */ = {
@@ -665,7 +665,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ReadingAppSwift/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -678,7 +678,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spicychair.ReadingAppSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = readaily;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -693,7 +693,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ReadingAppSwift/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -706,7 +706,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.spicychair.ReadingAppSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = readaily;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
