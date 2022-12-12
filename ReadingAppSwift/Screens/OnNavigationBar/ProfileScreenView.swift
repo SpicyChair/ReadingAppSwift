@@ -16,7 +16,7 @@ struct ProfileScreenView: View {
     
     
     @State private var showingSheet = false
-    @State private var registering = false
+    @State private var registering = true
     
     
     
