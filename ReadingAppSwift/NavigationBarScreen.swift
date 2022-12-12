@@ -31,7 +31,7 @@ struct NavigationBarScreen: View {
                 .tabItem {
                     Label("Social", systemImage: "person.3")
                 }
-            ProfileScreen()
+            ProfileScreenView()
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }

@@ -8,15 +8,16 @@
 import SwiftUI
 import Firebase
 
-struct ProfileScreen: View {
+struct ProfileScreenView: View {
     
     @State private var email = ""
     @State private var password = ""
     @State private var name = ""
-    //@State private var isSignedIn = false
+    
     
     @State private var showingSheet = false
-    @State private var registering = false
+    @State private var registering = true
+    
     
     
     // environment objects 
@@ -66,6 +67,9 @@ struct ProfileScreen: View {
             Section ("Already have an account?") {
                 Button(action: {
                     // the user is not making a new account
+                    self.email = ""
+                    self.password = ""
+                    self.name = ""
                     self.registering = false
                     self.showingSheet = true
                  }) {
@@ -77,6 +81,9 @@ struct ProfileScreen: View {
             Section ("No account?") {
                 Button(action: {
                     // the user IS making a new account
+                    self.email = ""
+                    self.password = ""
+                    self.name = ""
                     self.registering = true
                     self.showingSheet = true
                     
@@ -166,6 +173,7 @@ struct ProfileScreen: View {
                 perform: adapter.getSelfName
             )
             
+            
             Section("Sync Data") {
                 Button(action: {
                     adapter.deleteFirestoreData()
@@ -212,6 +220,6 @@ struct ProfileScreen: View {
 
 struct FirebaseLoginScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileScreen()
+        ProfileScreenView()
     }
 }

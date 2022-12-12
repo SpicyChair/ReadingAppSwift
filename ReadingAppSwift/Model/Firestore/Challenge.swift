@@ -17,4 +17,6 @@ struct Challenge : Hashable {
     
     // the challenge's UID to identify each challenge
     var uid: String
+    
+    var users: [String]
 }

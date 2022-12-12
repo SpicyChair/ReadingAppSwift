@@ -54,9 +54,9 @@ class BookLogBase: ObservableObject {
     // total progress in pages
     @Published var globalPageProgress: Int = 0
     
-    // dictionary of dates pointing to number of pages read
-    // on that particular day
-    @Published var globalPagesPerDay : [String : Int] = [:]
+
+    // number of minutes user has read today
+    @Published var minutesRead: Int = 0
     
     // the filename to store global log data
     var globalFilename = "global_log.json"
@@ -153,6 +153,7 @@ class BookLogBase: ObservableObject {
         if let loaded: SavedGlobalLog = fileManager.loadJSONFromFile(filename: globalFilename) {
             self.globalPageProgress = loaded.pageProgress
             self.globalPageGoal = loaded.pageGoal
+            self.minutesRead = loaded.minutesRead
         }
     
         if let loadedLoggedBooks: [String] = fileManager.loadJSONFromFile(filename: loggedBooksFilename) {
@@ -164,7 +165,7 @@ class BookLogBase: ObservableObject {
         
         // save data locally
         
-        fileManager.saveToJSON(filename: globalFilename , object: SavedGlobalLog(pageProgress: self.globalPageProgress, pageGoal: self.globalPageGoal))
+        fileManager.saveToJSON(filename: globalFilename , object: SavedGlobalLog(pageProgress: self.globalPageProgress, pageGoal: self.globalPageGoal, minutesRead: minutesRead))
         // saveToJSON is a generic function!
         fileManager.saveToJSON(filename: loggedBooksFilename, object: loggedBooks)
     }
@@ -178,7 +179,7 @@ class BookLogBase: ObservableObject {
         }
         
         self.globalPageProgress = 0
-        self.globalPagesPerDay = [:]
+        self.minutesRead = 0
         self.loggedBooks = []
         
     }

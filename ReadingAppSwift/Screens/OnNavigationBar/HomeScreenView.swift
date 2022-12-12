@@ -12,6 +12,7 @@ struct HomeScreenView: View {
     @EnvironmentObject var cache: CacheBase
     @EnvironmentObject var library: LibraryBase
     @EnvironmentObject var bookLogBase: BookLogBase
+    @State var minutesToLog: String = ""
     
     var body: some View {
         NavigationView {
@@ -22,7 +23,7 @@ struct HomeScreenView: View {
                         CircleProgressBar(progress: bookLogBase.globalPageProgress, maxProgress: bookLogBase.globalPageGoal, color: Color.green, showPercent: false)
                             .frame(width: 100, height: 100)
                         
-                        CircleProgressBar(progress: 3, maxProgress: 5, color: Color.blue, showPercent: false)
+                        CircleProgressBar(progress: bookLogBase.minutesRead, maxProgress: 50, color: Color.blue, showPercent: false)
                             .frame(width: 70, height: 70)
                          
                     }
@@ -40,10 +41,24 @@ struct HomeScreenView: View {
                         Text("Time Read Today")
                             .font(.system(size: 16, weight: .regular, design: .serif))
                             
-                        Text("30 / 50 min")
+                        Text("\(bookLogBase.minutesRead) / 50 min")
                             .font(.system(size: 20, weight: .bold, design: .serif))
-                         
-   
+                        
+                        
+                        // text field with a set button to change minutes read
+                        
+                        HStack {
+                            TextField("Time Read", text: $minutesToLog)
+                                .keyboardType(.numberPad)
+                                .frame(maxWidth: Double.infinity)
+                            Button("Set") {
+                                if let minutes = Int(minutesToLog) {
+                                    bookLogBase.minutesRead = minutes
+                                    bookLogBase.saveGlobalBookLog()
+                                }
+                            }.buttonStyle(.bordered)
+                            
+                        }
                     }
                     .padding()
                 }
@@ -96,8 +111,3 @@ struct HomeScreenView: View {
     }
 }
 
-struct HomeScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreenView()
-    }
-}

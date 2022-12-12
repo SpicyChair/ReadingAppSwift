@@ -15,9 +15,15 @@ class FirestoreAdapter : ObservableObject {
     @Published var isSignedIn = false
     @Published var libraryFromFirebase:[String] = []
     @Published var challenges: [Challenge] = []
+    
+    
     @Published var username: String = ""
     
     @Published var users : [String : User] = [:]
+    
+    // this variable updates every time the  getChallengeParticipants() method is called
+    @Published var currentChallengeParticipants : [User] = []
+    
     
     init() {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -96,10 +102,12 @@ class FirestoreAdapter : ObservableObject {
                     let globalPageGoal = data?["globalPageGoal"] as? Int ?? 50
                     // load logged books
                     let loggedBooks = data?["loggedBooks"] as? [String] ?? []
+                    let minutesRead = data?["minutesRead"] as? Int ?? 0
                     
                     bookLogBase.globalPageProgress = globalPageProgress
                     bookLogBase.globalPageGoal = globalPageGoal
                     bookLogBase.loggedBooks = loggedBooks
+                    bookLogBase.minutesRead = minutesRead
                     
                     
                     // go through each file and then save it locally
@@ -138,10 +146,13 @@ class FirestoreAdapter : ObservableObject {
         
         let fileManager = FileManager()
         
+    
+        
         writeToFirestore(key: "globalPageProgress", value: bookLogBase.globalPageProgress)
         writeToFirestore(key: "globalPageGoal", value: bookLogBase.globalPageGoal)
         writeToFirestore(key: "loggedBooks", value: bookLogBase.loggedBooks)
-        
+        writeToFirestore(key: "minutesRead", value: bookLogBase.minutesRead)
+
         for file in bookLogBase.loggedBooks {
             
             // load each file from local and then write to firebase
@@ -178,6 +189,7 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
+    
     func getUsers() {
         // reset users to reflect firestore and clear stale data
         self.users = [:]
@@ -191,13 +203,14 @@ class FirestoreAdapter : ObservableObject {
                     
                     // extract each field
                     let name = data["name"] as? String ?? "Anonymous"
+                    let pageProgress = data["globalPageProgress"] as? Int ?? 0
                     let uid = document.documentID
                     // create new user object
-                    let user = User(name: name, uid: uid)
+                    let user = User(name: name, uid: uid, pageProgress: pageProgress)
                     // append user object to dictionary
                     self.users.updateValue(user, forKey: uid)
                 }
-            }
+             }
         
         }
     }
@@ -230,15 +243,98 @@ class FirestoreAdapter : ObservableObject {
                     let description = data["description"] as? String ?? ""
                     let createdBy = data["createdBy"] as? String ?? ""
                     let uid = data["uid"] as? String ?? ""
+                    let users = data["users"] as? [String] ?? []
+                    
                     // create new Challenge object
-                    let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid)
+                    let challenge = Challenge(title: title, description: description, createdBy: createdBy, uid: uid, users: users)
                     // append Challenge object to array
+                    
                     self.challenges.append(challenge)
                 }
             }
         
         }
     }
+    
+    func toggleUserInChallenge(uid: String) {
+        
+        // toggles whether the user is participating in the challenge or not
+        // ie
+        // if user not in challenge, join
+        // else, leave the challenge
+        
+        if let user = Auth.auth().currentUser {
+            // get the reference to the challenges collection of firestore
+            let challengeRef = db.collection("challenges").document(uid)
+            
+            
+            challengeRef.getDocument { document, error in
+                // if error occurs
+                if let error = error {
+                    print(error)
+                }
+                
+                // else continue
+                
+                if let document = document {
+                    let data = document.data()
+                    
+                    // get the users property of the challenge
+                    var challengeUsers = data?["users"] as? [String] ?? []
+                    
+                    // if the user is already in the challenge
+                    if challengeUsers.contains(user.uid) {
+                        // remove the user
+                        challengeUsers = challengeUsers.filter {$0 != user.uid}
+                    } else {
+                        // else append the user
+                        challengeUsers.append(user.uid)
+                    }
+                    // set the updated list of users
+                    // merge is true to not overwrite the document
+                    challengeRef.setData(["users" : challengeUsers], merge: true)
+                    self.getChallengeParticipants(uid: uid)
+                    
+                }
+            }
+        }
+    }
+    
+    func getChallengeParticipants(uid: String) {
+        // get the reference to the challenges collection of firestore
+        let challengeRef = db.collection("challenges").document(uid)
+        
+        challengeRef.getDocument { document, error in
+            // if error occurs
+            if let error = error {
+                print(error)
+            }
+            
+            // else continue
+            
+            if let document = document {
+                let data = document.data()
+                
+                self.currentChallengeParticipants = []
+                // get the users property of the challenge
+                let challengeUsers = data?["users"] as? [String] ?? []
+                
+                for userUID in challengeUsers {
+                    if let user = self.users[userUID] {
+                        self.currentChallengeParticipants.append(user)
+                    }
+                }
+                // sort the array by the page progress of the user
+                self.currentChallengeParticipants = self.currentChallengeParticipants.sorted {
+                    $0.pageProgress > $1.pageProgress
+                }
+            }
+        }
+        
+        
+        
+    }
+
     
     
 
