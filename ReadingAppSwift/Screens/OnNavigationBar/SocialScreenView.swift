@@ -43,7 +43,9 @@ struct SocialScreenView: View {
                     
                     if let users = Array(adapter.users.values).sorted {$0.pageProgress > $1.pageProgress} {
                         ForEach(Array(users.enumerated()), id: \.1.self) { (index, user) in
-                            LeaderboardCard(username: user.name, count: user.pageProgress, place: index + 1)
+                            NavigationLink(destination: UserScreenView(user: user)) {
+                                LeaderboardCard(username: user.name, count: user.pageProgress, place: index + 1)
+                            }
                                 
                         }
                     }

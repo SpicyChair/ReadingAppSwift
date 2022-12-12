@@ -34,9 +34,9 @@ struct ChallengeScreenView: View {
                     
                     // enumerated returns an indexed version
                     ForEach(Array(adapter.currentChallengeParticipants.enumerated()), id: \.1.self) { (index, user) in
-                        
-                        LeaderboardCard(username: user.name, count: user.pageProgress, place: index + 1)
-                        
+                        NavigationLink(destination: UserScreenView(user: user)) {
+                            LeaderboardCard(username: user.name, count: user.pageProgress, place: index + 1)
+                        }
                     }
 
                     

@@ -102,10 +102,12 @@ class FirestoreAdapter : ObservableObject {
                     let globalPageGoal = data?["globalPageGoal"] as? Int ?? 50
                     // load logged books
                     let loggedBooks = data?["loggedBooks"] as? [String] ?? []
+                    let minutesRead = data?["minutesRead"] as? Int ?? 0
                     
                     bookLogBase.globalPageProgress = globalPageProgress
                     bookLogBase.globalPageGoal = globalPageGoal
                     bookLogBase.loggedBooks = loggedBooks
+                    bookLogBase.minutesRead = minutesRead
                     
                     
                     // go through each file and then save it locally
@@ -144,10 +146,13 @@ class FirestoreAdapter : ObservableObject {
         
         let fileManager = FileManager()
         
+    
+        
         writeToFirestore(key: "globalPageProgress", value: bookLogBase.globalPageProgress)
         writeToFirestore(key: "globalPageGoal", value: bookLogBase.globalPageGoal)
         writeToFirestore(key: "loggedBooks", value: bookLogBase.loggedBooks)
-        
+        writeToFirestore(key: "minutesRead", value: bookLogBase.minutesRead)
+
         for file in bookLogBase.loggedBooks {
             
             // load each file from local and then write to firebase
@@ -183,6 +188,7 @@ class FirestoreAdapter : ObservableObject {
             }
         }
     }
+    
     
     func getUsers() {
         // reset users to reflect firestore and clear stale data

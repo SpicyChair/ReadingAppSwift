@@ -12,4 +12,5 @@ struct SavedGlobalLog : Codable {
     var pageProgress: Int
     var pageGoal: Int
     var pagesPerDay: [String : Int]?
+    var minutesRead: Int
 }
