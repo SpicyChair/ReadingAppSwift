@@ -15,7 +15,7 @@ struct ProfileScreenView: View {
     @State private var name = ""
     
     
-    @State private var showingSheet = false
+    @State var showingSheet = false
     @State private var registering = true
     
     
@@ -36,7 +36,12 @@ struct ProfileScreenView: View {
             }
         }
         .navigationViewStyle(.stack)
-    
+        .onAppear {
+            // ???
+            // toggling the registering property makes the sheet work for some reason
+            // ???
+            registering.toggle()
+        }
     }
     
     /*
