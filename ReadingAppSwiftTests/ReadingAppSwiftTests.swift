@@ -57,6 +57,58 @@ class ReadingAppSwiftTests: XCTestCase {
 
     }
     
+    func testRecommendationsEmptyString() throws {
+        
+        // test the tagging feature
+        // the input is empty - expect an empty dictionary
+        let recommender: Recommendations = Recommendations()
+        
+        let text = ""
+        let expected : [String] = []
+        let response = recommender.tagAndGetTopN(text: text, n: 1)
+        XCTAssert(response == expected)
+
+    }
+    
+    func testRecommendationsOnlyStopWords() throws {
+        
+        // test the tagging feature
+        // the input is only stopwords - expect an empty dictionary
+        let recommender: Recommendations = Recommendations()
+        
+        let text = "The The The The The"
+        let expected : [String] = []
+        let response = recommender.tagAndGetTopN(text: text, n: 1)
+        XCTAssert(response == expected)
+
+    }
+    
+    func testRecommendationsNGreaterThanWords() throws {
+        
+        // test the tagging feature
+        // n greater than word count - expect an empty dictionary
+        let recommender: Recommendations = Recommendations()
+        
+        let text = "This input will have less than N words!"
+        let expected : [String] = []
+        let response = recommender.tagAndGetTopN(text: text, n: 999)
+        XCTAssert(response == expected)
+
+    }
+    
+    func testRecommendationsOnlyNonStopWords() throws {
+        
+        // test the tagging feature
+        // all words are non-stopwords, expect length of response to be equal length of input
+        let recommender: Recommendations = Recommendations()
+        
+        let text = "Recommendation Byson Android SwiftUI Flutter Dart"
+        let expected : [String] = text.components(separatedBy: " ")
+        let response = recommender.tagAndGetTopN(text: text, n: expected.count)
+        XCTAssert(response == expected)
+
+    }
+    
     func testSearchResultsNotEmpty() throws {
         
         // test that search yields results
@@ -101,7 +153,7 @@ class ReadingAppSwiftTests: XCTestCase {
     
     func testSearchResultBookHasDetails() throws {
         
-        // test that search yields results
+        // test that search yields results has details
         
         let state = SearchStateController()
         
@@ -119,5 +171,49 @@ class ReadingAppSwiftTests: XCTestCase {
             XCTAssertNotNil(book.key)
         })
 
+    }
+    
+    func testBookDetailsModelCorrect() throws {
+        
+        // test that search yields results
+        // tests that the result data within structs is not null and valid
+        
+        let state = SearchStateController()
+        
+        // search for A Walk in the Woods
+        
+        state.searchFor = "A Walk in the Woods"
+
+        //wait for search to finish before using XCTAssert
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            
+            let book:BookDetailsModel = state.results[0]
+            let data = book.volumeInfo
+            
+            // test for essential information
+            
+            XCTAssert(data.title.lowercased() == "a walk in the woods")
+            XCTAssert(data.authors[0].lowercased() == "bill bryson")
+            XCTAssertNotNil(data.pageCount)
+        })
+
+    }
+    
+    func testSearchResultsEmptyForArbitrarySearch() throws {
+        
+        // test that search yields results
+        
+        let state = SearchStateController()
+        
+        // search for arbitrary string
+        
+        state.searchFor = "//$3£=+-_"
+
+        
+        //wait for search to finish before using XCTAssert
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            // assert that results are empty
+            XCTAssert(state.results.isEmpty)
+        })
     }
 }

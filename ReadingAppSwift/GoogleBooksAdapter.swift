@@ -87,7 +87,7 @@ class GoogleBooksAdapter {
                 }.resume()
     }
     
-    private func parseJson<T: Decodable>(json: Data) -> T? {
+    func parseJson<T: Decodable>(json: Data) -> T? {
         let decoder = JSONDecoder()
             
         do {
