@@ -199,15 +199,33 @@ class ReadingAppSwiftTests: XCTestCase {
 
     }
     
-    func testSearchResultsEmptyForArbitrarySearch() throws {
+    func testSearchForArbitraryStringReturnsNothing() throws {
         
-        // test that search yields results
+        // test that search yields no results for a random string
         
         let state = SearchStateController()
         
         // search for arbitrary string
         
         state.searchFor = "//$3£=+-_"
+
+        
+        //wait for search to finish before using XCTAssert
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            // assert that results are empty
+            XCTAssert(state.results.isEmpty)
+        })
+    }
+    
+    func testSearchForEmptyStringReturnsNothing() throws {
+        
+        // test that searching for an empty string returns nothing
+        
+        let state = SearchStateController()
+        
+        // search for empty string
+        
+        state.searchFor = ""
 
         
         //wait for search to finish before using XCTAssert
