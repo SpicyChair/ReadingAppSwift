@@ -248,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				FDC08C9229376B5F00061D57 /* Firestore */,
-				FD83BB162936807700D56193 /* SavedGlobalLog.swift */,
 				FDAE3A6C2919557000DE088D /* Recommendations */,
 				FDF5FC7C28DB1AA4008F80B1 /* Book */,
 				FD285D5028F1C39400647DE8 /* Search */,
@@ -256,6 +255,7 @@
 				FDB690D828DB7625004F17BF /* CacheBase.swift */,
 				FD5A39D728ED8FFA007DACD9 /* BookLogBase.swift */,
 				FD0B040529111BD900F93464 /* DailyProgress.swift */,
+				FD83BB162936807700D56193 /* SavedGlobalLog.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

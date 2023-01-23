@@ -23,10 +23,14 @@ class DiscoverScreenStateController: ObservableObject {
         var genres: [String] = []
         
         for book in library {
+            // go through each book
+            // add book author to author array
+            // add categories to genres array
             authors.append(contentsOf: book.volumeInfo.authors)
             genres.append(contentsOf: book.volumeInfo.categories)
         }
         
+        // get the first (index 0) item from the recommender class
         self.mostFrequentAuthor = recommender.countAndGetTopN(arr: authors, n: 1)[0]
         self.mostFrequentGenre = recommender.countAndGetTopN(arr: genres, n: 1)[0]
     }

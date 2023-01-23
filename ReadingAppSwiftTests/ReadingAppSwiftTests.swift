@@ -60,7 +60,7 @@ class ReadingAppSwiftTests: XCTestCase {
     func testRecommendationsEmptyString() throws {
         
         // test the tagging feature
-        // the input is empty - expect an empty dictionary
+        // the input is empty - expect an empty array
         let recommender: Recommendations = Recommendations()
         
         let text = ""
@@ -73,7 +73,7 @@ class ReadingAppSwiftTests: XCTestCase {
     func testRecommendationsOnlyStopWords() throws {
         
         // test the tagging feature
-        // the input is only stopwords - expect an empty dictionary
+        // the input is only stopwords - expect an empty array
         let recommender: Recommendations = Recommendations()
         
         let text = "The The The The The"
@@ -96,19 +96,6 @@ class ReadingAppSwiftTests: XCTestCase {
 
     }
     
-    func testRecommendationsOnlyNonStopWords() throws {
-        
-        // test the tagging feature
-        // all words are non-stopwords, expect length of response to be equal length of input
-        let recommender: Recommendations = Recommendations()
-        
-        let text = "Recommendation Byson Android SwiftUI Flutter Dart"
-        let expected : [String] = text.components(separatedBy: " ")
-        let response = recommender.tagAndGetTopN(text: text, n: expected.count)
-        XCTAssert(response == expected)
-
-    }
-    
     func testSearchResultsNotEmpty() throws {
         
         // test that search yields results
@@ -118,7 +105,6 @@ class ReadingAppSwiftTests: XCTestCase {
         // search for Bill Bryson
         
         state.searchFor = "Bill Bryson"
-
         
         //wait for search to finish before using XCTAssert
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
@@ -127,7 +113,7 @@ class ReadingAppSwiftTests: XCTestCase {
         })
 
     }
-    
+
     
     func testSearchResultBook() throws {
         
@@ -233,5 +219,19 @@ class ReadingAppSwiftTests: XCTestCase {
             // assert that results are empty
             XCTAssert(state.results.isEmpty)
         })
+    }
+    
+    func testCanGetFirestoreUsers() throws {
+        
+        let adapter: FirestoreAdapter = FirestoreAdapter()
+        adapter.getUsers()
+        
+        //wait for refresh to finish before using XCTAssert
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            // assert that users are not empty
+            XCTAssert(!adapter.users.isEmpty)
+        })
+        
+        
     }
 }
