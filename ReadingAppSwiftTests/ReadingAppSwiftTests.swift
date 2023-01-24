@@ -234,4 +234,24 @@ class ReadingAppSwiftTests: XCTestCase {
         
         
     }
+    func testFirestoreUsersNotNull() throws {
+        
+        let adapter: FirestoreAdapter = FirestoreAdapter()
+        adapter.getUsers()
+        
+        //wait for refresh to finish before using XCTAssert
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            // assert that users are not empty
+            XCTAssert(!adapter.users.isEmpty)
+            
+            // get the user's data
+            if let user = adapter.users.first {
+                let data = user.value
+                // assert it is not nil
+                XCTAssertNotNil(data.pageProgress)
+                XCTAssertNotNil(data.name)
+                XCTAssertNotNil(data.uid)
+            }
+        })
+    }
 }
