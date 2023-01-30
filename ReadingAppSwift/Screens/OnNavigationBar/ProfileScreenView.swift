@@ -16,6 +16,7 @@ struct ProfileScreenView: View {
     
     
     @State var showingSheet = false
+    @State private var showingAlert = false
     @State private var registering = true
     
     
@@ -121,17 +122,25 @@ struct ProfileScreenView: View {
                     
                     if (registering) {
                         Button(action: {
-                            adapter.register(email: email, password: password, name: name)
+                            // Use NOT as failiure returns false -> showAlert = true
+                            showingAlert = !adapter.register(email: email, password: password, name: name)
                             self.showingSheet = false
                          }) {
                             Text("Register")
+                        }.alert(isPresented: $showingAlert) {
+                            Alert(title: Text("Error"), message: Text("Email need to be valid and password needs to have at least 6 characters"), dismissButton: .default(Text("Got it!")))
                         }
                     } else {
                         Button(action: {
-                            adapter.login(email: email, password: password)
+                            // Use NOT as failiure returns false -> showAlert = true
+                            showingAlert = adapter.login(email: email, password: password)
                             self.showingSheet = false
                          }) {
                             Text("Sign in")
+                        }
+                        
+                         .alert(isPresented: $showingAlert) {
+                                     Alert(title: Text("Error"), message: Text("Incorrect username or password"), dismissButton: .default(Text("Got it!")))
                         }
                     }
                     

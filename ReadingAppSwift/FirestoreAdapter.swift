@@ -330,9 +330,6 @@ class FirestoreAdapter : ObservableObject {
                 }
             }
         }
-        
-        
-        
     }
 
     
@@ -340,16 +337,22 @@ class FirestoreAdapter : ObservableObject {
 
     // account management options
     
-    func login(email: String, password: String) {
-           // use firebase to attempt sign in
-           Auth.auth().signIn(withEmail: email, password: password) { result, error in
-               if error != nil {
-                   print(error?.localizedDescription ?? "")
-               } else {
-                   print("Success! Logged in as \(email)")
-                   self.isSignedIn = true
-               }
+    func login(email: String, password: String) -> Bool {
+       // use firebase to attempt sign in
+       //variable is returned depending on result of the login
+       var success = true
+        
+       Auth.auth().signIn(withEmail: email, password: password) { result, error in
+           if error != nil {
+               print(error?.localizedDescription ?? "")
+               success = false
+           } else {
+               print("Success! Logged in as \(email)")
+               self.isSignedIn = true
            }
+       }
+        // return result
+        return success
     }
     
     func logout() {
@@ -365,15 +368,32 @@ class FirestoreAdapter : ObservableObject {
         }
     }
     
-    func register(email: String, password: String, name: String) {
+    func register(email: String, password: String, name: String) -> Bool {
         // use firebase to attempt to register and sign in
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-            } else {
-                self.setName(name: name)
-                print("Success! Registered as \(email)")
+        // returns true if successful
+        
+        // use regex to validate
+        let validEmail = email.range(of: "[\\w]+@[\\w]+\\.[\\w]+", options: .regularExpression) != nil
+        let validPassword = password.count > 6
+        
+        if (validEmail && validPassword) {
+            
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                } else {
+                    self.setName(name: name)
+                    print("Success! Registered as \(email)")
+                }
             }
+            
+            // success
+            return true
+            
+        } else {
+            // faliure due to invalid password or username
+            return false
+            
         }
     }
     
