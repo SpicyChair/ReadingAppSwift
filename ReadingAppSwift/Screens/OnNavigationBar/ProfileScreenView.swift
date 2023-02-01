@@ -14,6 +14,7 @@ struct ProfileScreenView: View {
     @State private var password = ""
     @State private var name = ""
     
+    @State var didAppear = false
     
     @State var showingSheet = false
     @State private var showingAlert = false
@@ -66,6 +67,12 @@ struct ProfileScreenView: View {
                     - Enter reading challenges
                     """
                     ).font(.system(size: 20, weight: .bold, design: .serif))
+                }.onAppear {
+                    if !didAppear {
+                        adapter.getChallenges()
+                        didAppear = true
+                    }
+                    adapter.getUsers()
                 }
                 
             }
