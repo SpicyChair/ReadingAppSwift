@@ -27,7 +27,7 @@ struct BookCoverImage: View {
                     .fill(.gray)
                 Image(systemName: "xmark.octagon")
             }
-            
+            // kingfisher used 
             KFImage(url)
                 .resizable()
                 .cacheOriginalImage()

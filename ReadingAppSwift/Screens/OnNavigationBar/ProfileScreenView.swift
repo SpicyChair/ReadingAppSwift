@@ -10,16 +10,18 @@ import Firebase
 
 struct ProfileScreenView: View {
     
+    // user details
     @State private var email = ""
     @State private var password = ""
     @State private var name = ""
     
+    // if view built before
     @State var didAppear = false
     
+    // vars to determine state of sheets and alerts
     @State var showingSheet = false
     @State private var showingAlert = false
     @State private var registering = true
-    
     
     
     // environment objects 
@@ -131,7 +133,10 @@ struct ProfileScreenView: View {
                         Button(action: {
                             // Use NOT as failiure returns false -> showAlert = true
                             showingAlert = !adapter.register(email: email, password: password, name: name)
-                            self.showingSheet = false
+                            // ONLY dismiss when not showing alert
+                            if (!showingAlert) {
+                                self.showingSheet = false
+                            }
                          }) {
                             Text("Register")
                         }.alert(isPresented: $showingAlert) {
@@ -141,7 +146,11 @@ struct ProfileScreenView: View {
                         Button(action: {
                             // Use NOT as failiure returns false -> showAlert = true
                             showingAlert = adapter.login(email: email, password: password)
-                            self.showingSheet = false
+                            // ONLY dismiss when not showing alert
+                            if (!showingAlert) {
+                                self.showingSheet = false
+                            }
+                            
                          }) {
                             Text("Sign in")
                         }

@@ -18,6 +18,7 @@ extension FileManager {
     }
     
     func saveToJSON<T: Codable>(filename: String, object: T) {
+        // generic function to save json from file into a model data variable
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(object) {
             if let json = String(data: encoded, encoding: .utf8) {
@@ -37,6 +38,7 @@ extension FileManager {
     }
     
     func loadJSONFromFile<T: Codable>(filename: String) -> T? {
+        // generic function to load json from file into a model data variable
         let url = getDocDirectoryURLWithFilename(filename: filename)
         
         if let data = try? Data(contentsOf: url) {
@@ -51,6 +53,7 @@ extension FileManager {
     }
     
     func deleteFile(filename: String) {
+        //delete file at filename
         let url = getDocDirectoryURLWithFilename(filename: filename)
         do {
             try self.removeItem(at: url)
@@ -60,7 +63,7 @@ extension FileManager {
     }
     
     func resetApp() {
-        // DANGER!!
+        // Reset app data
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let userPath = paths[0]
         
