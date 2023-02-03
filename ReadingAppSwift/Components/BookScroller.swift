@@ -19,10 +19,11 @@ struct BookScroller: View {
             // horizontal scrollview
             HStack (spacing: 12) {
                 
-                
+                // if results are NOT empty
                 
                 if (!state.results.isEmpty) {
                     
+                    // go thru each search result
                     
                     ForEach(state.results, id: \.self) { book in
                         

@@ -16,6 +16,7 @@ struct BookCardVertical: View {
     var navToDetails: Bool = false
     
     var body: some View {
+        // depending on navToDetails, navigate to certian view
         NavigationLink(destination: navToDetails ? AnyView(BookDetailScreenView(key: key)) : AnyView(BookLogScreenView(key: key))) {
             
             ZStack {

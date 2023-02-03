@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 class CacheBase : ObservableObject {
     
     // cached books from search

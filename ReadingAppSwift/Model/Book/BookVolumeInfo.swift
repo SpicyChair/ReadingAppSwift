@@ -34,7 +34,7 @@ struct BookVolumeInfo: Codable, Hashable {
         
         let recommender = Recommendations()
         
-       
+       // if no categories generate them
         self.categories = rawBookDetails.categories ?? recommender.tagAndGetTopN(text: description, n: 3)
 
         

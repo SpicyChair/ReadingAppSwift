@@ -27,6 +27,8 @@ struct CircleProgressBar: View {
                     lineWidth: 15
                 )
             Circle()
+            // get part of circle
+            // this shows progress
                 .trim(from: 0, to: (Double(progress) / Double(maxProgress)))
                 .stroke(
                     color,
@@ -41,6 +43,7 @@ struct CircleProgressBar: View {
             // animate changes
                 .animation(.easeOut, value: progress)
             
+            // if showPercent show a nicely formatted percent value in the centre
             if showPercent {
                 Text("\(((Double(progress) / Double(maxProgress)) * 100), specifier: "%.1f")%")
                     .font(.system(size: 22, weight: .bold, design: .serif))
