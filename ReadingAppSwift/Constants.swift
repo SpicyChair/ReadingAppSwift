@@ -7,4 +7,6 @@
 
 import Foundation
 
+// stores constant values such as api keys
+
 let booksApiKey = "AIzaSyDE6TMjW-wLYv_mY8bqse_jyToYKFl1xRk"
