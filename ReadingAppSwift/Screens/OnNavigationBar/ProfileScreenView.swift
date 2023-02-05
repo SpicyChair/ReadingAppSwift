@@ -44,7 +44,9 @@ struct ProfileScreenView: View {
             // ???
             // toggling the registering property makes the sheet work for some reason
             // ???
+            showingSheet = true
             registering.toggle()
+            showingSheet = false
         }
     }
     

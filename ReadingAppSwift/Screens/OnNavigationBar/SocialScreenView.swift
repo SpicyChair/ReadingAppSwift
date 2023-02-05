@@ -62,10 +62,10 @@ struct SocialScreenView: View {
             }
             .onAppear {
                 if !didAppear {
-                    adapter.getUsers()
                     adapter.getChallenges()
                     didAppear = true
                 }
+                adapter.getUsers()
                 
             }
             .toolbar {

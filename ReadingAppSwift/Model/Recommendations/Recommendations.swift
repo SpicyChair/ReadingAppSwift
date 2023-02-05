@@ -19,7 +19,6 @@ class Recommendations {
     
     
     
-    
     func tagAndGetTopN(text: String, n: Int) -> [String] {
         
         // count of all the words in the string
