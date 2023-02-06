@@ -39,12 +39,8 @@ struct ChallengeScreenView: View {
                         }
                     }
 
-                    
                 }
             }
-            
-            
-            
             Section("Details") {
                 Text(challenge.description)
             }

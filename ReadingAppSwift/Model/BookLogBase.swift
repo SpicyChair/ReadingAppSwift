@@ -183,8 +183,4 @@ class BookLogBase: ObservableObject {
         self.loggedBooks = []
         
     }
-    
-    // struct to facilitate encoding and decoding
-    
-    
 }

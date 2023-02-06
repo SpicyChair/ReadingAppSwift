@@ -48,8 +48,6 @@ struct CircleProgressBar: View {
                 Text("\(((Double(progress) / Double(maxProgress)) * 100), specifier: "%.1f")%")
                     .font(.system(size: 22, weight: .bold, design: .serif))
             }
-            
-            
         }
     }
 }

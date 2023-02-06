@@ -8,10 +8,7 @@
 import Foundation
 
 class GoogleBooksAdapter {
-    
 
-    
-    
     // the base url for the google books api
     let baseUrl = "https://www.googleapis.com/books/v1"
     let responseLimit = 10
@@ -35,11 +32,7 @@ class GoogleBooksAdapter {
             completion(nil)
             return
         }
-        
-        
-        
-        
-        
+
         let request = URLRequest(url: url)
                 URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let data = data {

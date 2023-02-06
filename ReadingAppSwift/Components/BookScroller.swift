@@ -27,7 +27,6 @@ struct BookScroller: View {
                     
                     ForEach(state.results, id: \.self) { book in
                         
-        
                         if !(book.key == excludingKey) {
                             // ensure the same book is not recommended twice
                             BookCardVertical(key: book.key,
@@ -46,9 +45,7 @@ struct BookScroller: View {
         }
         .padding([.top, .bottom], 10)
         .onAppear(perform: {
-            
             state.searchFor = self.searchFor
-            
         })
     }
 }
